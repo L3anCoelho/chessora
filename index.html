@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#070b11" />
+    <meta name="description" content="Chessora: jogue, aprenda e pratique xadrez com aulas, desafios e partidas contra o Stockfish." />
+    <title>Chessora</title>
+    <script>
+      try {
+        const preferences = JSON.parse(localStorage.getItem('xi:preferences:v1') || '{}');
+        if (preferences.theme === 'light') {
+          document.documentElement.dataset.theme = 'light';
+          const themeColor = document.querySelector('meta[name="theme-color"]');
+          if (themeColor) themeColor.content = '#ffffff';
+        }
+      } catch (error) {
+        console.warn('Não foi possível carregar o tema salvo; usando o tema escuro.', error);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

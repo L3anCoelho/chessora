@@ -1,0 +1,162 @@
+/* Estilo dos e-books: tema do site adaptado para leitura e impressão (fundo claro no miolo, capa grafite). */
+:root {
+  --ink: #1d2025;
+  --ink-soft: #3d434c;
+  --muted: #6b7380;
+  --line: #d9dde2;
+  --paper: #ffffff;
+  --graphite: #121418;
+  --graphite-2: #191c21;
+  --green: #2f7d54;
+  --green-soft: #e8f2ec;
+  --blue: #3f6fa6;
+  --blue-soft: #eaf0f7;
+  --red: #b5473d;
+}
+
+@page { size: 160mm 230mm; }
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--paper); }
+body {
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 9.6pt;
+  line-height: 1.55;
+  color: var(--ink);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  hyphens: auto;
+}
+
+.marker { position: absolute; top: 0; left: 0; font: 6pt monospace; letter-spacing: 1pt; color: var(--paper); white-space: nowrap; }
+
+h1, h2, h3 { font-family: 'Newsreader', Georgia, serif; font-weight: 600; color: var(--ink); line-height: 1.2; break-after: avoid; }
+h2 { font-size: 15pt; margin: 18pt 0 6pt; padding-top: 4pt; border-top: 1px solid var(--line); }
+h3 { font-size: 11.5pt; margin: 12pt 0 4pt; }
+p { margin: 0 0 7pt; orphans: 3; widows: 3; }
+ul, ol { margin: 0 0 8pt; padding-left: 15pt; }
+li { margin-bottom: 3pt; }
+strong { font-weight: 700; }
+.san { font-weight: 700; white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+blockquote {
+  margin: 10pt 0;
+  padding: 7pt 10pt;
+  border-left: 3px solid var(--blue);
+  background: var(--blue-soft);
+  border-radius: 0 4px 4px 0;
+  break-inside: avoid;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+table { width: 100%; border-collapse: collapse; margin: 6pt 0 10pt; font-size: 9pt; break-inside: avoid; }
+th, td { text-align: left; padding: 4pt 6pt; border-bottom: 1px solid var(--line); }
+th { font-weight: 700; color: var(--ink-soft); background: #f3f5f7; }
+
+/* ---------- Capa ---------- */
+.cover {
+  width: 160mm;
+  height: 230mm;
+  background: var(--graphite);
+  color: #eceef1;
+  padding: 26mm 18mm 16mm;
+  position: relative;
+  overflow: hidden;
+  break-after: page;
+  display: flex;
+  flex-direction: column;
+}
+.cover-brand { font-size: 8.5pt; letter-spacing: 0.24em; text-transform: uppercase; color: #6dbb90; font-weight: 700; margin: 0; }
+.cover-rule { width: 22mm; height: 2px; background: #5aa57c; margin: 7mm 0 9mm; }
+.cover-title { font-family: 'Newsreader', Georgia, serif; font-size: 34pt; line-height: 1.05; color: #f4f5f7; margin: 0 0 5mm; font-weight: 600; }
+.cover-sub { font-size: 11pt; color: #a1a9b4; margin: 0; max-width: 112mm; line-height: 1.45; }
+.cover-art { position: absolute; right: -14mm; bottom: 26mm; width: 92mm; opacity: 0.92; transform: rotate(-6deg); }
+.cover-art .board { width: 100%; filter: drop-shadow(0 6mm 9mm rgba(0, 0, 0, 0.45)); }
+.cover-art .bc { display: none; }
+.cover-foot { margin-top: auto; font-size: 8pt; color: #737c88; position: relative; z-index: 1; }
+
+/* ---------- Página de créditos ---------- */
+.colophon { min-height: 190mm; display: flex; align-items: flex-end; break-after: page; font-size: 8pt; color: var(--muted); }
+.colophon p { margin-bottom: 4pt; max-width: 105mm; }
+
+/* ---------- Sumário ---------- */
+.toc { break-after: page; }
+.toc-list { list-style: none; padding: 0; margin: 10pt 0 0; }
+.toc-list li { display: flex; align-items: baseline; gap: 4pt; margin: 0; padding: 3.2pt 0; }
+.toc-list li > span:first-child { flex: 0 1 auto; }
+.toc-list .dots { flex: 1; border-bottom: 1px dotted #b7bdc6; transform: translateY(-2pt); }
+.toc-list .pg { font-variant-numeric: tabular-nums; color: var(--ink-soft); min-width: 14pt; text-align: right; }
+.toc-list b { display: inline-block; width: 16pt; color: var(--green); }
+.toc-intro { color: var(--ink-soft); }
+.toc-part { margin-top: 9pt !important; padding-top: 6pt !important; border-top: 1px solid var(--line); font-family: 'Newsreader', Georgia, serif; font-size: 11.5pt; font-weight: 600; justify-content: space-between; }
+
+/* ---------- Partes (e-book completo) ---------- */
+.part-page {
+  position: relative;
+  break-before: page;
+  break-after: page;
+  min-height: 190mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left: 3px solid var(--green);
+  padding-left: 12mm;
+}
+.part-kicker { font-size: 8.5pt; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green); font-weight: 700; margin: 0 0 4mm; }
+.part-page h1 { font-size: 32pt; margin: 0 0 4mm; }
+.part-page p:last-child { color: var(--muted); font-size: 11pt; max-width: 95mm; }
+
+/* ---------- Capítulos ---------- */
+.chapter { break-before: page; position: relative; }
+.chapter-kicker { font-size: 8pt; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green); font-weight: 700; margin: 0 0 3pt; }
+.chapter-title { font-size: 25pt; margin: 0 0 6pt; }
+.chapter-summary { font-family: 'Newsreader', Georgia, serif; font-style: italic; font-size: 12pt; color: var(--ink-soft); margin-bottom: 12pt; padding-bottom: 10pt; border-bottom: 1px solid var(--line); }
+.chapter > h2:first-of-type { border-top: 0; margin-top: 8pt; }
+
+/* ---------- Diagramas ---------- */
+.diagram { margin: 8pt auto 10pt; width: 64mm; break-inside: avoid; text-align: center; }
+.diagram .board { width: 100%; display: block; }
+.diagram figcaption { font-size: 8.3pt; color: var(--ink-soft); margin-top: 4pt; line-height: 1.4; text-align: left; }
+.board .bc { font-family: 'Manrope', sans-serif; font-size: 9px; fill: #4b5360; text-anchor: middle; font-weight: 600; }
+.board .piece-body > * { stroke-width: 3; stroke-linejoin: round; }
+.board .piece-detail > * { stroke-width: 3; stroke-linecap: round; }
+.board .piece-w .piece-body > * { fill: #f4f2ee; stroke: #24272c; }
+.board .piece-w .piece-detail > * { stroke: #24272c; }
+.board .piece-w .piece-eye { fill: #24272c; stroke: none; }
+.board .piece-b .piece-body > * { fill: #2a2e35; stroke: #0e1013; }
+.board .piece-b .piece-detail > * { stroke: #c3c9d1; }
+.board .piece-b .piece-eye { fill: #c3c9d1; stroke: none; }
+
+/* ---------- Passo a passo ---------- */
+.steps { margin: 8pt 0 12pt; border-left: 2px solid var(--line); padding-left: 9pt; }
+.steps-title { font-weight: 700; color: var(--ink-soft); margin-bottom: 5pt; }
+.step { display: grid; grid-template-columns: 17mm 1fr; gap: 6pt; padding: 3.5pt 0; break-inside: avoid; }
+.step .mv { font-weight: 800; color: var(--green); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.step .why p, .step .why { margin: 0; }
+.step-note { font-size: 8.8pt; color: var(--ink-soft); font-style: italic; margin: 3pt 0 5pt; }
+.diagram.in-steps { float: right; width: 50mm; margin: 2pt 0 6pt 9pt; }
+.steps::after { content: ''; display: block; clear: both; }
+
+/* ---------- Exercícios ---------- */
+.ex-grid { margin: 8pt 0 12pt; font-size: 0; }
+.ex-grid > .exercise { display: inline-flex; width: calc(50% - 4pt); vertical-align: top; margin: 0 0 8pt; font-size: 9.6pt; }
+.ex-grid > .exercise:nth-child(odd) { margin-right: 8pt; }
+.exercise { border: 1px solid var(--line); border-radius: 6px; padding: 7pt 7pt 6pt; break-inside: avoid; background: #fafbfc; display: flex; flex-direction: column; }
+.ex-head { display: flex; justify-content: space-between; font-weight: 800; font-size: 8.4pt; margin: 0 0 4pt; color: var(--ink); }
+.ex-turn { font-weight: 600; color: var(--muted); }
+.diagram.ex-board { width: 47mm; margin: 0 auto 4pt; }
+.ex-prompt { font-size: 8.6pt; line-height: 1.4; margin-bottom: 5pt; flex: 1; }
+.ex-qr { display: flex; gap: 5pt; align-items: center; font-size: 6.3pt; color: var(--muted); line-height: 1.3; border-top: 1px solid var(--line); padding-top: 5pt; }
+.ex-qr svg { width: 16mm; height: 16mm; flex: none; }
+.ex-qr p { margin: 0; }
+.ex-url { word-break: break-all; color: var(--ink-soft); }
+
+/* ---------- Respostas ---------- */
+.answers { margin-top: 16pt; padding-top: 8pt; border-top: 2px solid var(--ink); break-inside: auto; }
+.answers h2 { border: 0; margin-top: 0; font-size: 13pt; }
+.answer-list { list-style: none; padding: 0; font-size: 9pt; }
+.answer-list li { margin-bottom: 5pt; break-inside: avoid; }
+.ans-no { display: inline-block; min-width: 18pt; font-weight: 800; color: var(--green); }
+
+/* Seções padrão do capítulo */
+.intro h2 { border-top: 0; }

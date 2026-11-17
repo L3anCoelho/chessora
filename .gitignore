@@ -1,0 +1,11 @@
+node_modules
+dist
+public/engine
+.env
+.env.local
+*.local
+
+# e-books
+ebooks/node_modules
+ebooks/.build
+ebooks/.cache

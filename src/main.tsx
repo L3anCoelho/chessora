@@ -1,0 +1,14 @@
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import '@fontsource-variable/manrope';
+import '@fontsource-variable/newsreader';
+import '@/styles/global.css';
+import '@/components/ui/ui.css';
+import '@/styles/pages.css';
+import App from './App';
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+);

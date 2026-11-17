@@ -1,0 +1,576 @@
+/**
+ * Catálogo do curso.
+ *
+ * Regra de distribuição de conteúdo:
+ * - Aulas públicas e "gratuito com cadastro" trazem o corpo aqui (body).
+ * - Aulas premium NUNCA trazem body neste arquivo: o texto fica na tabela lesson_contents,
+ *   protegida por RLS. Assim, o conteúdo pago não vai para o pacote JavaScript público.
+ *
+ * Para adicionar uma aula: crie o objeto em `lessons`, adicione o id em `lessonIds` do módulo
+ * e, se for premium, insira o corpo em lesson_contents (ver supabase/seed.sql).
+ */
+import type { Course, Lesson, Module } from '@/types/domain';
+import { SCOPES } from '@/config/ebook';
+
+export const modules: Module[] = [
+  {
+    id: 'fundamentos',
+    slug: 'fundamentos',
+    order: 1,
+    title: 'Fundamentos',
+    summary: 'O tabuleiro, as peças e todas as regras para jogar uma partida completa.',
+    outcomes: [
+      'Montar o tabuleiro e nomear qualquer casa',
+      'Mover e capturar com todas as peças',
+      'Reconhecer xeque, xeque-mate e empate',
+      'Fazer o roque e promover peões',
+    ],
+    access: 'public',
+    lessonIds: [
+      'tabuleiro',
+      'pecas',
+      'movimentos',
+      'capturas',
+      'xeque',
+      'xeque-mate',
+      'regras-basicas',
+      'roque',
+      'promocao',
+      'empate',
+    ],
+  },
+  {
+    id: 'taticas',
+    slug: 'taticas',
+    order: 2,
+    title: 'Táticas',
+    summary: 'Os golpes curtos que ganham material e decidem partidas entre iniciantes.',
+    outcomes: [
+      'Encontrar garfos e ataques duplos',
+      'Usar e escapar de cravadas',
+      'Punir peças indefesas',
+      'Ver mates em um lance',
+    ],
+    access: 'premium',
+    requiredScope: SCOPES.taticas,
+    ebookChapter: 1,
+    lessonIds: ['garfo', 'cravada', 'ataque-duplo', 'pecas-indefesas', 'descoberta', 'mate-em-um'],
+  },
+  {
+    id: 'estrategia',
+    slug: 'estrategia',
+    order: 3,
+    title: 'Estratégia',
+    summary: 'Como escolher um plano quando não há golpe tático na posição.',
+    outcomes: [
+      'Disputar o centro e desenvolver com propósito',
+      'Manter o rei seguro',
+      'Avaliar estruturas de peões e trocas',
+    ],
+    access: 'premium',
+    requiredScope: SCOPES.estrategia,
+    ebookChapter: 2,
+    lessonIds: [
+      'controle-do-centro',
+      'desenvolvimento',
+      'seguranca-do-rei',
+      'estrutura-de-peoes',
+      'trocas',
+      'planejamento',
+    ],
+  },
+  {
+    id: 'aberturas',
+    slug: 'aberturas',
+    order: 4,
+    title: 'Aberturas',
+    summary: 'As ideias por trás de cinco aberturas clássicas, sem decorar lances.',
+    outcomes: ['Entender os planos típicos de cada abertura', 'Evitar armadilhas comuns nos primeiros lances'],
+    access: 'premium',
+    requiredScope: SCOPES.aberturas,
+    ebookChapter: 3,
+    lessonIds: ['italiana', 'siciliana', 'francesa', 'espanhola', 'gambito-da-dama'],
+  },
+  {
+    id: 'finais',
+    slug: 'finais',
+    order: 5,
+    title: 'Finais',
+    summary: 'Como converter vantagem em vitória quando restam poucas peças.',
+    outcomes: ['Promover peões com apoio do rei', 'Dar mate com torre e com dama'],
+    access: 'premium',
+    requiredScope: SCOPES.finais,
+    ebookChapter: 4,
+    lessonIds: ['rei-e-peao', 'promocao-no-final', 'finais-basicos', 'mate-com-torre', 'mate-com-dama'],
+  },
+];
+
+const START_FEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
+
+export const lessons: Lesson[] = [
+  /* ---------------- Módulo 1: Fundamentos ---------------- */
+  {
+    id: 'tabuleiro',
+    slug: 'conhecendo-o-tabuleiro',
+    moduleId: 'fundamentos',
+    order: 1,
+    title: 'Conhecendo o tabuleiro',
+    summary: 'Casas, colunas, fileiras e diagonais.',
+    durationMinutes: 4,
+    access: 'public',
+    status: 'published',
+    body: [
+      {
+        type: 'paragraph',
+        text: 'O tabuleiro tem 64 casas, em 8 linhas de 8, alternando entre claras e escuras. Toda a partida acontece nessa grade.',
+      },
+      { type: 'heading', text: 'Colunas e fileiras' },
+      {
+        type: 'paragraph',
+        text: 'As linhas verticais são as colunas, identificadas pelas letras de a até h. As linhas horizontais são as fileiras, numeradas de 1 a 8 a partir do lado das brancas. Juntando as duas, cada casa ganha um nome único.',
+      },
+      {
+        type: 'diagram',
+        fen: '4k3/8/8/8/8/8/8/4K3 w - - 0 1',
+        highlights: ['e4', 'b7', 'g2'],
+        caption: 'Casas destacadas: e4, b7 e g2. Primeiro a coluna, depois a fileira.',
+      },
+      {
+        type: 'tip',
+        title: 'Casa clara à direita',
+        text: 'Ao montar o tabuleiro, a casa do canto inferior direito de cada jogador deve ser clara. Se estiver escura, gire o tabuleiro.',
+      },
+      { type: 'heading', text: 'Diagonais' },
+      {
+        type: 'paragraph',
+        text: 'Diagonais são linhas de casas da mesma cor que se tocam pelos cantos. A diagonal mais longa vai de a1 a h8, com 8 casas. Bispos e dama usam as diagonais para se mover.',
+      },
+    ],
+  },
+  {
+    id: 'pecas',
+    slug: 'conhecendo-as-pecas',
+    moduleId: 'fundamentos',
+    order: 2,
+    title: 'Conhecendo as peças',
+    summary: 'As seis peças, a posição inicial e quanto cada uma vale.',
+    durationMinutes: 5,
+    access: 'public',
+    status: 'published',
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Cada jogador começa com 16 peças: 8 peões, 2 torres, 2 cavalos, 2 bispos, 1 dama e 1 rei.',
+      },
+      {
+        type: 'diagram',
+        fen: START_FEN,
+        caption: 'Posição inicial. As torres ficam nos cantos, depois cavalos, bispos, e no centro a dama e o rei.',
+      },
+      {
+        type: 'tip',
+        title: 'A dama na sua cor',
+        text: 'A dama branca começa na casa clara d1 e a dama preta na casa escura d8. O rei fica ao lado, na coluna e.',
+      },
+      { type: 'heading', text: 'Valor das peças' },
+      {
+        type: 'paragraph',
+        text: 'Os valores abaixo ajudam a decidir se uma troca é boa. São uma referência, não uma lei: a posição sempre importa.',
+      },
+      {
+        type: 'list',
+        items: [
+          'Peão: 1 ponto',
+          'Cavalo: 3 pontos',
+          'Bispo: 3 pontos',
+          'Torre: 5 pontos',
+          'Dama: 9 pontos',
+          'Rei: não tem valor de troca, porque perdê-lo é perder a partida',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'movimentos',
+    slug: 'movimentos',
+    moduleId: 'fundamentos',
+    order: 3,
+    title: 'Movimentos',
+    summary: 'Como cada peça se move, com as casas alcançadas em destaque.',
+    durationMinutes: 8,
+    access: 'public',
+    status: 'published',
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Nos diagramas abaixo, as casas destacadas são exatamente os lances legais da peça. Elas foram calculadas pelas regras do jogo, não desenhadas à mão.',
+      },
+      { type: 'heading', text: 'Torre' },
+      { type: 'paragraph', text: 'Anda quantas casas quiser na coluna ou na fileira, sem pular peças.' },
+      { type: 'diagram', fen: '4k3/8/8/8/3R4/8/8/4K3 w - - 0 1', showMovesFrom: 'd4', caption: 'Torre em d4.' },
+      { type: 'heading', text: 'Bispo' },
+      { type: 'paragraph', text: 'Anda quantas casas quiser na diagonal. Cada bispo fica a partida inteira na mesma cor de casa.' },
+      { type: 'diagram', fen: '4k3/8/8/8/3B4/8/8/4K3 w - - 0 1', showMovesFrom: 'd4', caption: 'Bispo em d4.' },
+      { type: 'heading', text: 'Dama' },
+      { type: 'paragraph', text: 'Combina torre e bispo: colunas, fileiras e diagonais. É a peça mais forte.' },
+      { type: 'diagram', fen: '4k3/8/8/8/3Q4/8/8/4K3 w - - 0 1', showMovesFrom: 'd4', caption: 'Dama em d4.' },
+      { type: 'heading', text: 'Cavalo' },
+      {
+        type: 'paragraph',
+        text: 'Anda em L: duas casas numa direção e uma para o lado. É a única peça que pula outras peças.',
+      },
+      { type: 'diagram', fen: '4k3/8/8/8/3N4/8/8/4K3 w - - 0 1', showMovesFrom: 'd4', caption: 'Cavalo em d4: até 8 casas.' },
+      { type: 'heading', text: 'Rei' },
+      {
+        type: 'paragraph',
+        text: 'Anda uma casa em qualquer direção. Nunca pode ir para uma casa atacada pelo adversário.',
+      },
+      { type: 'diagram', fen: '4k3/8/8/8/3K4/8/8/8 w - - 0 1', showMovesFrom: 'd4', caption: 'Rei em d4.' },
+      { type: 'heading', text: 'Peão' },
+      {
+        type: 'paragraph',
+        text: 'Anda uma casa para a frente. No primeiro lance de cada peão, pode avançar duas. É a única peça que não volta.',
+      },
+      { type: 'diagram', fen: '4k3/8/8/8/8/8/4P3/4K3 w - - 0 1', showMovesFrom: 'e2', caption: 'Peão em e2: pode ir a e3 ou e4.' },
+    ],
+  },
+  {
+    id: 'capturas',
+    slug: 'capturas',
+    moduleId: 'fundamentos',
+    order: 4,
+    title: 'Capturas',
+    summary: 'Como tomar peças, a captura do peão e o en passant.',
+    durationMinutes: 6,
+    access: 'public',
+    status: 'published',
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Capturar é mover uma peça para a casa ocupada por uma peça adversária, que sai do tabuleiro. Não é obrigatório capturar.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Todas as peças capturam do mesmo jeito que se movem, com uma exceção: o peão anda para a frente, mas captura uma casa na diagonal, também para a frente.',
+      },
+      {
+        type: 'exercise',
+        id: 'capturas-peao',
+        prompt: 'Capture o cavalo preto com o peão.',
+        fen: '4k3/8/8/3n4/4P3/8/8/4K3 w - - 0 1',
+        acceptedMoves: ['exd5'],
+        goal: 'move',
+        successText: 'Isso. O peão de e4 captura na diagonal e vai para d5.',
+      },
+      { type: 'heading', text: 'En passant' },
+      {
+        type: 'paragraph',
+        text: 'Quando um peão avança duas casas e para ao lado de um peão adversário, esse peão pode capturá-lo como se ele tivesse andado só uma. A captura só vale no lance imediatamente seguinte.',
+      },
+      {
+        type: 'diagram',
+        fen: '4k3/8/8/3pP3/8/8/8/4K3 w - d6 0 1',
+        showMovesFrom: 'e5',
+        caption: 'As pretas acabaram de jogar d7-d5. O peão de e5 pode capturar em d6.',
+      },
+    ],
+  },
+  {
+    id: 'xeque',
+    slug: 'xeque',
+    moduleId: 'fundamentos',
+    order: 5,
+    title: 'Xeque',
+    summary: 'Quando o rei está atacado e as três formas de sair.',
+    durationMinutes: 5,
+    access: 'public',
+    status: 'published',
+    body: [
+      {
+        type: 'paragraph',
+        text: 'O rei está em xeque quando uma peça adversária o ataca. Quem está em xeque é obrigado a resolver isso no lance seguinte.',
+      },
+      {
+        type: 'diagram',
+        fen: '4k3/8/8/8/8/8/8/4RK2 b - - 0 1',
+        highlights: ['e8', 'e1'],
+        caption: 'A torre branca em e1 dá xeque no rei preto pela coluna e.',
+      },
+      { type: 'heading', text: 'Três formas de sair do xeque' },
+      {
+        type: 'list',
+        ordered: true,
+        items: [
+          'Mover o rei para uma casa que não esteja atacada',
+          'Colocar uma peça entre o rei e a peça que ataca',
+          'Capturar a peça que dá o xeque',
+        ],
+      },
+      {
+        type: 'exercise',
+        id: 'xeque-capturar',
+        prompt: 'As pretas estão em xeque. Saia do xeque capturando a dama.',
+        fen: '4k3/4Q3/8/8/8/8/8/4K3 b - - 0 1',
+        acceptedMoves: ['Kxe7'],
+        goal: 'move',
+        successText: 'Correto. A dama estava sem proteção, então o rei pode capturá-la.',
+      },
+    ],
+  },
+  {
+    id: 'xeque-mate',
+    slug: 'xeque-mate',
+    moduleId: 'fundamentos',
+    order: 6,
+    title: 'Xeque-mate',
+    summary: 'O objetivo do jogo: o xeque do qual não há saída.',
+    durationMinutes: 5,
+    access: 'public',
+    status: 'published',
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Xeque-mate é um xeque em que nenhuma das três saídas funciona: o rei não tem casa livre, nada pode bloquear e ninguém pode capturar a peça atacante. Quem dá o mate vence a partida.',
+      },
+      {
+        type: 'diagram',
+        fen: '3R2k1/5ppp/8/8/8/8/5PPP/6K1 b - - 1 1',
+        highlights: ['d8', 'g8'],
+        caption: 'Mate do corredor: os próprios peões prendem o rei na última fileira.',
+      },
+      {
+        type: 'exercise',
+        id: 'mate-corredor',
+        prompt: 'Brancas jogam e dão xeque-mate em um lance.',
+        fen: '6k1/5ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1',
+        acceptedMoves: ['Rd8#'],
+        goal: 'checkmate',
+        successText: 'Mate. O rei preto não tem para onde ir e nada pode bloquear a torre.',
+      },
+      {
+        type: 'tip',
+        title: 'Deixe uma saída para o seu rei',
+        text: 'Avançar um dos peões na frente do rei, quando houver tempo, evita levar este mesmo mate.',
+      },
+    ],
+  },
+  {
+    id: 'regras-basicas',
+    slug: 'regras-basicas',
+    moduleId: 'fundamentos',
+    order: 7,
+    title: 'Regras básicas',
+    summary: 'Quem começa, como os turnos funcionam e o que é proibido.',
+    durationMinutes: 4,
+    access: 'public',
+    status: 'published',
+    body: [
+      {
+        type: 'list',
+        items: [
+          'As brancas sempre fazem o primeiro lance.',
+          'Os jogadores alternam: um lance de cada vez, sem passar a vez.',
+          'Cada lance move uma única peça. A única exceção é o roque, que move rei e torre.',
+          'É proibido fazer um lance que deixe o seu próprio rei em xeque.',
+          'Duas peças não ocupam a mesma casa. Só o cavalo pula outras peças.',
+          'A partida termina em xeque-mate, desistência ou empate.',
+        ],
+      },
+      {
+        type: 'tip',
+        title: 'Peça tocada, peça jogada',
+        text: 'Em torneios, se você tocar intencionalmente numa peça sua, precisa movê-la. Em partidas casuais isso costuma ser combinado entre os jogadores.',
+      },
+    ],
+  },
+  {
+    id: 'roque',
+    slug: 'roque',
+    moduleId: 'fundamentos',
+    order: 8,
+    title: 'Roque',
+    summary: 'O lance especial que protege o rei e ativa a torre.',
+    durationMinutes: 5,
+    access: 'public',
+    status: 'published',
+    body: [
+      {
+        type: 'paragraph',
+        text: 'No roque, o rei anda duas casas em direção a uma torre, e a torre passa por cima dele para a casa ao lado. Existe o roque pequeno, para o lado do rei, e o roque grande, para o lado da dama.',
+      },
+      {
+        type: 'diagram',
+        fen: 'r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1',
+        showMovesFrom: 'e1',
+        caption: 'O rei em e1 pode rocar para g1 ou c1, além dos lances normais.',
+      },
+      { type: 'heading', text: 'Condições' },
+      {
+        type: 'list',
+        items: [
+          'Nem o rei nem a torre usada podem ter se movido antes.',
+          'Não pode haver peças entre o rei e a torre.',
+          'O rei não pode estar em xeque.',
+          'O rei não pode passar nem parar numa casa atacada.',
+        ],
+      },
+      {
+        type: 'exercise',
+        id: 'roque-pequeno',
+        prompt: 'Faça o roque pequeno: arraste o rei duas casas para a direita.',
+        fen: '4k3/8/8/8/8/8/8/R3K2R w KQ - 0 1',
+        acceptedMoves: ['O-O'],
+        goal: 'move',
+        successText: 'Roque feito. O rei foi para g1 e a torre para f1.',
+      },
+    ],
+  },
+  {
+    id: 'promocao',
+    slug: 'promocao',
+    moduleId: 'fundamentos',
+    order: 9,
+    title: 'Promoção',
+    summary: 'O que acontece quando um peão chega ao fim do tabuleiro.',
+    durationMinutes: 4,
+    access: 'public',
+    status: 'published',
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Quando um peão chega à última fileira, ele é trocado imediatamente por uma dama, torre, bispo ou cavalo da mesma cor. Quase sempre a escolha é a dama.',
+      },
+      {
+        type: 'exercise',
+        id: 'promover-dama',
+        prompt: 'Avance o peão até e8 e escolha a dama.',
+        fen: '8/4P1k1/8/8/8/8/8/4K3 w - - 0 1',
+        acceptedMoves: ['e8=Q'],
+        goal: 'move',
+        successText: 'Promovido. Agora as brancas têm uma dama a mais.',
+      },
+      {
+        type: 'tip',
+        title: 'Quando não escolher a dama',
+        text: 'Às vezes um cavalo dá xeque ou garfo que a dama não daria, ou a dama causaria afogamento. Essas exceções são raras, mas existem.',
+      },
+    ],
+  },
+  {
+    id: 'empate',
+    slug: 'empate',
+    moduleId: 'fundamentos',
+    order: 10,
+    title: 'Empate',
+    summary: 'Afogamento e as outras formas de a partida terminar sem vencedor.',
+    durationMinutes: 5,
+    access: 'public',
+    status: 'published',
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Afogamento acontece quando o jogador da vez não está em xeque, mas não tem nenhum lance legal. A partida termina empatada, mesmo que o outro lado tenha muito mais material.',
+      },
+      {
+        type: 'diagram',
+        fen: '7k/5Q2/6K1/8/8/8/8/8 b - - 0 1',
+        highlights: ['h8'],
+        caption: 'Pretas jogam, mas o rei não tem casa livre e não está em xeque: afogamento.',
+      },
+      { type: 'heading', text: 'Outras formas de empate' },
+      {
+        type: 'list',
+        items: [
+          'Material insuficiente: nenhum lado tem peças para dar mate, como rei contra rei.',
+          'Repetição tripla: a mesma posição aparece três vezes com o mesmo jogador da vez.',
+          'Regra dos 50 lances: 50 lances de cada lado sem captura e sem movimento de peão.',
+          'Acordo: os dois jogadores combinam o empate.',
+        ],
+      },
+      {
+        type: 'tip',
+        title: 'Cuidado quando estiver ganhando',
+        text: 'Antes de cada lance com muita vantagem, confira se o rei adversário ainda terá algum lance. Afogamentos acidentais salvam muitas partidas perdidas.',
+      },
+    ],
+  },
+
+  /* ---------------- Módulo 2: Táticas ---------------- */
+  {
+    id: 'garfo',
+    slug: 'garfo',
+    moduleId: 'taticas',
+    order: 1,
+    title: 'Garfo',
+    summary: 'Uma peça atacando duas ao mesmo tempo.',
+    durationMinutes: 6,
+    access: 'registered',
+    status: 'published',
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Garfo é quando uma única peça ataca duas peças adversárias no mesmo lance. O adversário só consegue salvar uma delas. O cavalo é o especialista em garfos, porque ataca casas que as outras peças não alcançam.',
+      },
+      {
+        type: 'diagram',
+        fen: 'r3k3/2N5/8/8/8/8/8/4K3 b - - 0 1',
+        highlights: ['c7', 'a8', 'e8'],
+        caption: 'O cavalo em c7 dá xeque no rei e ataca a torre. Depois que o rei sair, a torre cai.',
+      },
+      {
+        type: 'exercise',
+        id: 'garfo-cavalo',
+        prompt: 'Encontre o garfo de cavalo que ganha a torre.',
+        fen: 'r3k3/8/8/3N4/8/8/8/4K3 w - - 0 1',
+        acceptedMoves: ['Nc7+'],
+        goal: 'move',
+        successText: 'Garfo. O rei precisa sair do xeque e, no próximo lance, Nxa8.',
+      },
+      { type: 'heading', text: 'Garfo de peão' },
+      {
+        type: 'paragraph',
+        text: 'Peões também dão garfos, e são os mais baratos: trocar um peão por uma peça de 3 pontos já é lucro.',
+      },
+      {
+        type: 'diagram',
+        fen: '4k3/8/2n1b3/8/3P4/8/8/4K3 w - - 0 1',
+        highlights: ['d5', 'c6', 'e6'],
+        caption: 'O avanço d4-d5 ataca o cavalo em c6 e o bispo em e6 ao mesmo tempo.',
+      },
+    ],
+  },
+  { id: 'cravada', slug: 'cravada', moduleId: 'taticas', order: 2, title: 'Cravada', summary: 'Quando uma peça não pode sair da frente de outra mais valiosa.', durationMinutes: 7, access: 'premium', requiredScope: SCOPES.taticas, status: 'published' },
+  { id: 'ataque-duplo', slug: 'ataque-duplo', moduleId: 'taticas', order: 3, title: 'Ataque duplo', summary: 'Duas ameaças num lance, com peças diferentes.', durationMinutes: 6, access: 'premium', requiredScope: SCOPES.taticas, status: 'coming-soon' },
+  { id: 'pecas-indefesas', slug: 'pecas-indefesas', moduleId: 'taticas', order: 4, title: 'Peças indefesas', summary: 'Como identificar e punir peças sem proteção.', durationMinutes: 5, access: 'premium', requiredScope: SCOPES.taticas, status: 'coming-soon' },
+  { id: 'descoberta', slug: 'descoberta', moduleId: 'taticas', order: 5, title: 'Ataque descoberto', summary: 'Mover uma peça para liberar o ataque de outra.', durationMinutes: 6, access: 'premium', requiredScope: SCOPES.taticas, status: 'coming-soon' },
+  { id: 'mate-em-um', slug: 'mate-em-um', moduleId: 'taticas', order: 6, title: 'Xeque-mate em um lance', summary: 'Padrões de mate que aparecem em toda partida.', durationMinutes: 6, access: 'premium', requiredScope: SCOPES.taticas, status: 'coming-soon' },
+
+  /* ---------------- Módulo 3: Estratégia ---------------- */
+  { id: 'controle-do-centro', slug: 'controle-do-centro', moduleId: 'estrategia', order: 1, title: 'Controle do centro', summary: 'Por que as casas d4, e4, d5 e e5 importam tanto.', durationMinutes: 7, access: 'premium', requiredScope: SCOPES.estrategia, status: 'published' },
+  { id: 'desenvolvimento', slug: 'desenvolvimento', moduleId: 'estrategia', order: 2, title: 'Desenvolvimento', summary: 'Colocar as peças em jogo na ordem certa.', durationMinutes: 6, access: 'premium', requiredScope: SCOPES.estrategia, status: 'coming-soon' },
+  { id: 'seguranca-do-rei', slug: 'seguranca-do-rei', moduleId: 'estrategia', order: 3, title: 'Segurança do rei', summary: 'Rocar no momento certo e manter o abrigo.', durationMinutes: 6, access: 'premium', requiredScope: SCOPES.estrategia, status: 'coming-soon' },
+  { id: 'estrutura-de-peoes', slug: 'estrutura-de-peoes', moduleId: 'estrategia', order: 4, title: 'Estrutura de peões', summary: 'Peões dobrados, isolados e passados.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.estrategia, status: 'coming-soon' },
+  { id: 'trocas', slug: 'trocas', moduleId: 'estrategia', order: 5, title: 'Trocas', summary: 'Quando trocar peças favorece você.', durationMinutes: 6, access: 'premium', requiredScope: SCOPES.estrategia, status: 'coming-soon' },
+  { id: 'planejamento', slug: 'planejamento', moduleId: 'estrategia', order: 6, title: 'Planejamento', summary: 'Montar um plano simples a partir da posição.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.estrategia, status: 'coming-soon' },
+
+  /* ---------------- Módulo 4: Aberturas ---------------- */
+  { id: 'italiana', slug: 'abertura-italiana', moduleId: 'aberturas', order: 1, title: 'Abertura Italiana', summary: '1.e4 e5 2.Nf3 Nc6 3.Bc4 e as ideias contra f7.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.aberturas, status: 'coming-soon' },
+  { id: 'siciliana', slug: 'defesa-siciliana', moduleId: 'aberturas', order: 2, title: 'Defesa Siciliana', summary: '1.e4 c5: a resposta assimétrica das pretas.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.aberturas, status: 'coming-soon' },
+  { id: 'francesa', slug: 'defesa-francesa', moduleId: 'aberturas', order: 3, title: 'Defesa Francesa', summary: '1.e4 e6 e a luta pela casa d5.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.aberturas, status: 'coming-soon' },
+  { id: 'espanhola', slug: 'abertura-espanhola', moduleId: 'aberturas', order: 4, title: 'Abertura Espanhola', summary: '1.e4 e5 2.Nf3 Nc6 3.Bb5 e a pressão sobre e5.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.aberturas, status: 'coming-soon' },
+  { id: 'gambito-da-dama', slug: 'gambito-da-dama', moduleId: 'aberturas', order: 5, title: 'Gambito da Dama', summary: '1.d4 d5 2.c4: oferecer um peão pelo centro.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.aberturas, status: 'coming-soon' },
+
+  /* ---------------- Módulo 5: Finais ---------------- */
+  { id: 'rei-e-peao', slug: 'rei-e-peao', moduleId: 'finais', order: 1, title: 'Rei e peão', summary: 'Oposição e a casa-chave na frente do peão.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.finais, status: 'coming-soon' },
+  { id: 'promocao-no-final', slug: 'promocao-no-final', moduleId: 'finais', order: 2, title: 'Promoção no final', summary: 'A regra do quadrado e a corrida de peões.', durationMinutes: 6, access: 'premium', requiredScope: SCOPES.finais, status: 'coming-soon' },
+  { id: 'finais-basicos', slug: 'finais-basicos', moduleId: 'finais', order: 3, title: 'Finais básicos', summary: 'Rei ativo e peões passados.', durationMinutes: 7, access: 'premium', requiredScope: SCOPES.finais, status: 'coming-soon' },
+  { id: 'mate-com-torre', slug: 'mate-com-torre', moduleId: 'finais', order: 4, title: 'Mate com torre', summary: 'Empurrar o rei para a borda com rei e torre.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.finais, status: 'coming-soon' },
+  { id: 'mate-com-dama', slug: 'mate-com-dama', moduleId: 'finais', order: 5, title: 'Mate com dama', summary: 'Mate rápido sem cair no afogamento.', durationMinutes: 6, access: 'premium', requiredScope: SCOPES.finais, status: 'coming-soon' },
+];
+
+export const course: Course = {
+  id: 'xadrez-inteligente',
+  title: 'Xadrez Inteligente',
+  description: 'Do primeiro lance às primeiras vitórias, em cinco módulos.',
+  moduleIds: modules.map((module) => module.id),
+};

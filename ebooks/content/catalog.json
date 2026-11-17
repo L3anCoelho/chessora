@@ -1,0 +1,100 @@
+{
+  "order": [
+    "aberturas",
+    "taticas",
+    "estrategia",
+    "finais",
+    "completo"
+  ],
+  "common": [
+    "comum/como-usar.md"
+  ],
+  "products": {
+    "taticas": {
+      "file": "taticas",
+      "title": "Táticas",
+      "shortTitle": "Táticas",
+      "subtitle": "Os golpes curtos que ganham material e decidem partidas",
+      "moduleRoute": "/aprender/taticas",
+      "coverNote": "Coleção Xadrez Inteligente · Volume 1 · Táticas",
+      "coverFen": "r3k3/2N5/8/8/8/8/8/4K3 b - - 0 1",
+      "intro": "taticas/00-introducao.md",
+      "chapters": [
+        "taticas/01-garfo.md",
+        "taticas/02-cravada.md",
+        "taticas/03-ataque-duplo.md",
+        "taticas/04-pecas-indefesas.md",
+        "taticas/05-descoberta.md",
+        "taticas/06-mate-em-um.md"
+      ]
+    },
+    "estrategia": {
+      "file": "estrategia",
+      "title": "Estratégia",
+      "shortTitle": "Estratégia",
+      "subtitle": "Como escolher um plano quando não há golpe na posição",
+      "moduleRoute": "/aprender/estrategia",
+      "coverNote": "Coleção Xadrez Inteligente · Volume 2 · Estratégia",
+      "coverMoves": "1.e4 e5 2.Nf3 Nc6 3.d4 exd4 4.Nxd4 Nf6 5.Nc3 Bb4",
+      "intro": "estrategia/00-introducao.md",
+      "chapters": [
+        "estrategia/01-controle-do-centro.md",
+        "estrategia/02-desenvolvimento.md",
+        "estrategia/03-seguranca-do-rei.md",
+        "estrategia/04-estrutura-de-peoes.md",
+        "estrategia/05-trocas.md",
+        "estrategia/06-planejamento.md"
+      ]
+    },
+    "aberturas": {
+      "file": "aberturas",
+      "title": "Aberturas",
+      "shortTitle": "Aberturas",
+      "subtitle": "As ideias por trás de cinco aberturas clássicas, lance a lance",
+      "moduleRoute": "/aprender/aberturas",
+      "coverNote": "Coleção Xadrez Inteligente · Volume 3 · Aberturas",
+      "coverMoves": "1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5",
+      "intro": "aberturas/00-introducao.md",
+      "chapters": [
+        "aberturas/01-italiana.md",
+        "aberturas/02-siciliana.md",
+        "aberturas/03-francesa.md",
+        "aberturas/04-espanhola.md",
+        "aberturas/05-gambito-da-dama.md"
+      ]
+    },
+    "finais": {
+      "file": "finais",
+      "title": "Finais",
+      "shortTitle": "Finais",
+      "subtitle": "Como transformar vantagem em vitória quando restam poucas peças",
+      "moduleRoute": "/aprender/finais",
+      "coverNote": "Coleção Xadrez Inteligente · Volume 4 · Finais",
+      "coverFen": "8/8/8/4k3/8/4K3/4P3/8 w - - 0 1",
+      "intro": "finais/00-introducao.md",
+      "chapters": [
+        "finais/01-rei-e-peao.md",
+        "finais/02-promocao-no-final.md",
+        "finais/03-finais-basicos.md",
+        "finais/04-mate-com-torre.md",
+        "finais/05-mate-com-dama.md"
+      ]
+    },
+    "completo": {
+      "file": "completo",
+      "title": "Xadrez Inteligente: o curso completo",
+      "shortTitle": "Completo",
+      "subtitle": "Táticas, estratégia, aberturas e finais em um só livro",
+      "coverNote": "Coleção Xadrez Inteligente · Edição completa · Volumes 1 a 4",
+      "coverMoves": "1.d4 d5 2.c4 e6 3.Nc3 Nf6",
+      "intro": "completo/00-introducao.md",
+      "parts": [
+        "taticas",
+        "estrategia",
+        "aberturas",
+        "finais"
+      ],
+      "coverTitle": "O curso completo"
+    }
+  }
+}

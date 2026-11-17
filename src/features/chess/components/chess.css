@@ -1,0 +1,395 @@
+/* ---------- Tabuleiro ---------- */
+
+.board-frame {
+  width: 100%;
+  padding: 6px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+}
+
+.board {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  container-type: inline-size;
+}
+
+.square {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--board-dark);
+  cursor: default;
+  min-width: 0;
+  min-height: 0;
+}
+
+.square.is-light {
+  background: var(--board-light);
+}
+
+.square:focus-visible {
+  box-shadow: inset 0 0 0 3px var(--blue);
+  z-index: 1;
+}
+
+.board.is-interactive .square {
+  cursor: pointer;
+}
+
+.board.is-dragging,
+.board.is-dragging .square {
+  cursor: grabbing;
+}
+
+.square::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.square.is-last-move::before {
+  background: var(--board-last-move);
+  box-shadow: inset 0 0 0 2px var(--blue);
+}
+
+.square.is-highlight::before {
+  background: var(--board-highlight);
+}
+
+.square.is-selected::before {
+  background: var(--board-selected);
+  box-shadow: inset 0 0 0 3px var(--blue-strong);
+}
+
+.square.is-check::before {
+  background: var(--check-glow);
+}
+
+.square.is-move-target::after {
+  content: '';
+  position: absolute;
+  width: 28%;
+  height: 28%;
+  border-radius: 50%;
+  background: var(--board-target);
+  pointer-events: none;
+}
+
+.square.is-capture-target::after {
+  content: '';
+  position: absolute;
+  inset: 4%;
+  border-radius: 50%;
+  border: 0.45rem solid var(--board-target);
+  pointer-events: none;
+}
+
+.square .piece {
+  position: relative;
+  width: 88%;
+  height: 88%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.coord {
+  position: absolute;
+  font-size: clamp(0.66rem, 2.4cqi, 0.9rem);
+  font-weight: 700;
+  line-height: 1;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.coord-rank {
+  top: 4%;
+  left: 5%;
+}
+
+.coord-file {
+  bottom: 4%;
+  right: 6%;
+}
+
+.square.is-light .coord {
+  color: var(--board-coord-light);
+}
+
+.square.is-dark .coord {
+  color: var(--board-coord-dark);
+}
+
+.drag-ghost {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  pointer-events: none;
+  filter: var(--piece-drag-shadow);
+}
+
+.drag-ghost .piece {
+  width: 100%;
+  height: 100%;
+  transform: scale(1.08);
+}
+
+/* ---------- Peças ---------- */
+
+.piece-body > * {
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+
+.piece-detail > * {
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.piece-w .piece-body > * {
+  fill: var(--piece-white);
+  stroke: var(--piece-white-line);
+}
+
+.piece-w .piece-detail > * {
+  stroke: var(--piece-white-line);
+}
+
+.piece-w .piece-eye {
+  fill: var(--piece-white-line);
+  stroke: none;
+}
+
+.piece-b .piece-body > * {
+  fill: var(--piece-black);
+  stroke: var(--piece-black-line);
+}
+
+.piece-b .piece-detail > * {
+  stroke: var(--piece-detail);
+}
+
+.piece-b .piece-eye {
+  fill: var(--piece-detail);
+  stroke: none;
+}
+
+/* ---------- Promoção ---------- */
+
+.promotion-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  background: var(--overlay);
+}
+
+.promotion-panel {
+  display: grid;
+  gap: var(--space-3);
+  justify-items: center;
+  padding: var(--space-4);
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-pop);
+}
+
+.promotion-panel p {
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
+
+.promotion-options {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.promotion-option {
+  width: clamp(44px, 12cqi, 64px);
+  aspect-ratio: 1;
+  padding: 4px;
+  background: var(--board-light);
+  border: 0;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.promotion-option:hover {
+  background: var(--surface-3);
+}
+
+.promotion-cancel {
+  background: none;
+  border: 0;
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Painéis da partida ---------- */
+
+.player-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-1);
+  min-height: 44px;
+}
+
+.player-identity {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.player-swatch {
+  flex: none;
+  margin-top: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-strong);
+}
+
+.player-swatch.is-w {
+  background: var(--piece-white);
+}
+
+.player-swatch.is-b {
+  background: var(--piece-black);
+}
+
+.player-name {
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+.turn-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--green-text);
+  background: var(--green-soft);
+  white-space: nowrap;
+}
+
+.turn-indicator::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.captured {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 20px;
+}
+
+.captured .piece {
+  width: 20px;
+  height: 20px;
+  margin-right: -6px;
+}
+
+.captured-balance {
+  margin-left: 10px;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+/* ---------- Histórico de lances ---------- */
+
+.move-list {
+  display: grid;
+  grid-template-columns: 2.6rem 1fr 1fr;
+  align-content: start;
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+  max-height: 340px;
+  overflow-y: auto;
+}
+
+.move-list .move-number {
+  padding: 4px 8px;
+  color: var(--text-faint);
+  background: var(--surface-2);
+}
+
+.move-list .move {
+  padding: 4px 10px;
+  font-weight: 600;
+}
+
+.move-list .move.is-current {
+  background: var(--blue-soft);
+  color: var(--blue-strong);
+}
+
+.move-list-empty {
+  padding: var(--space-4);
+  color: var(--text-faint);
+  font-size: var(--text-sm);
+}
+
+@media (max-width: 900px) {
+  .move-list {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-height: none;
+    gap: 2px;
+    padding-bottom: 4px;
+    scrollbar-width: thin;
+  }
+
+  .move-list .move-number {
+    background: none;
+    padding: 4px 2px 4px 8px;
+  }
+
+  .move-list .move {
+    white-space: nowrap;
+    padding: 4px 6px;
+    border-radius: var(--radius-sm);
+  }
+}
