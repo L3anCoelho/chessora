@@ -94,16 +94,21 @@ export const authService = {
   async fetchEntitlements(userId: string): Promise<UserEntitlement[]> {
     const { data, error } = await requireSupabase()
       .from('entitlements')
-      .select('id, user_id, product_id, source, status, external_reference, starts_at, expires_at, products(grants_scopes)')
+      .select('id, user_id, product_id, source, status, external_reference, starts_at, expires_at, products(name, grants_scopes)')
       .eq('user_id', userId);
     if (error) throw error;
     return (data ?? []).map((row) => {
-      const product = row.products as unknown as { grants_scopes: string[] } | { grants_scopes: string[] }[] | null;
-      const grants = Array.isArray(product) ? (product[0]?.grants_scopes ?? []) : (product?.grants_scopes ?? []);
+      const raw = row.products as unknown as
+        | { name?: string; grants_scopes: string[] }
+        | { name?: string; grants_scopes: string[] }[]
+        | null;
+      const product = Array.isArray(raw) ? raw[0] : raw;
+      const grants = product?.grants_scopes ?? [];
       return {
         id: row.id as string,
         userId: row.user_id as string,
         productId: row.product_id as string,
+        productName: product?.name,
         scopes: grants,
         source: row.source as EntitlementSource,
         status: row.status as EntitlementStatus,

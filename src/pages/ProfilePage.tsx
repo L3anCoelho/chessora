@@ -92,7 +92,7 @@ export default function ProfilePage() {
               {entitlements.map((item) => (
                 <li key={item.id}>
                   <div>
-                    <strong>{item.productId === ebookProduct.id ? ebookProduct.name : item.productId}</strong>
+                    <strong>{item.productId === ebookProduct.id ? ebookProduct.name : (item.productName ?? item.productId)}</strong>
                     <span className="faint">
                       {SOURCE_LABEL[item.source]} em {formatDate(item.startsAt)}
                       {item.expiresAt ? `, válido até ${formatDate(item.expiresAt)}` : ', sem prazo de validade'}

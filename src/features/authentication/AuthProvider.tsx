@@ -74,6 +74,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     };
   }, [loadUserData]);
 
+  // Ao voltar para a aba, recarrega perfil e acessos (ex.: liberação feita pela equipe).
+  useEffect(() => {
+    if (!isSupabaseConfigured) return;
+    let last = Date.now();
+    const onVisible = () => {
+      if (document.visibilityState !== 'visible' || Date.now() - last < 15000) return;
+      last = Date.now();
+      authService.getSession().then((session) => {
+        if (session) void loadUserData(session);
+      });
+    };
+    document.addEventListener('visibilitychange', onVisible);
+    window.addEventListener('focus', onVisible);
+    return () => {
+      document.removeEventListener('visibilitychange', onVisible);
+      window.removeEventListener('focus', onVisible);
+    };
+  }, [loadUserData]);
+
   const refresh = useCallback(async () => {
     loadUserData(await authService.getSession());
   }, [loadUserData]);

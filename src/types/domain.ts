@@ -38,6 +38,8 @@ export interface UserEntitlement {
   id: string;
   userId: string;
   productId: string;
+  /** Nome do produto, quando o banco o devolve. */
+  productName?: string;
   scopes: AccessScope[];
   source: EntitlementSource;
   status: EntitlementStatus;
