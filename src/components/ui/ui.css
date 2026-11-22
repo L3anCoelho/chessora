@@ -583,29 +583,37 @@ textarea.input {
 
 .header-logo img {
   display: block;
+  max-width: 100%;
   width: auto;
-  height: 36px;
+  height: 88px;
   object-fit: contain;
+}
+
+@media (max-width: 640px) {
+  .header-logo img {
+    height: 64px;
+  }
 }
 
 .logo-img {
   display: none;
   width: auto;
-  height: 36px;
+  height: 56px;
   object-fit: contain;
 }
 
-/* Tema escuro (padrão): versão para fundo escuro */
+/* Logo completa */
 .logo-img-dark {
   display: block;
 }
 
-:root[data-theme='light'] .logo-img-dark {
-  display: none;
+.footer-brand .logo-img-dark {
+  display: block;
+  height: 120px;
 }
 
-:root[data-theme='light'] .logo-img-light {
-  display: block;
+.footer-brand .logo-img-emblem {
+  display: none;
 }
 
 .logo-mark {
@@ -622,8 +630,7 @@ textarea.input {
 
 /* Celular estreito: só o emblema */
 @media (max-width: 380px) {
-  .logo-img-dark,
-  :root[data-theme='light'] .logo-img-light {
+  .logo-img-dark {
     display: none;
   }
 

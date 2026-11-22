@@ -1,4 +1,4 @@
-# Chessora
+# CoeviChess
 
 Plataforma de xadrez para aprender, praticar e jogar: partidas contra o Stockfish ou entre duas pessoas, aulas com
 tabuleiro interativo, desafios com correção na hora e acompanhamento de progresso. A arquitetura já está preparada
