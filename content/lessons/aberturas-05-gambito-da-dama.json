@@ -1,0 +1,93 @@
+{
+  "lessonId": "gambito-da-dama",
+  "moduleId": "aberturas",
+  "requiredScope": "module:aberturas",
+  "durationMinutes": 8,
+  "body": [
+    {
+      "type": "paragraph",
+      "text": "O Gambito da Dama oferece o peão de c4 para tirar o peão de d5 do centro. Não é um sacrifício de verdade: as brancas recuperam o peão quando quiserem, porque as pretas não conseguem segurá-lo."
+    },
+    {
+      "type": "paragraph",
+      "text": "Jogue a Defesa Recusada com as brancas, a resposta mais sólida das pretas e a mais comum em qualquer nível."
+    },
+    {
+      "type": "guided-line",
+      "id": "gambito-linha",
+      "title": "O Gambito da Dama Recusado, lance a lance",
+      "orientation": "w",
+      "intro": "Você joga com as brancas.",
+      "conclusion": "Peças desenvolvidas, pressão em d5 e um centro estável. As pretas ainda precisam resolver o bispo de c8.",
+      "steps": [
+        {
+          "move": "d4",
+          "reply": "d5",
+          "explanation": "Centro ocupado pelos dois lados, agora na coluna d."
+        },
+        {
+          "move": "c4",
+          "reply": "e6",
+          "explanation": "O gambito. As pretas recusam e defendem d5 com um peão, aceitando prender o bispo de c8."
+        },
+        {
+          "move": "Nc3",
+          "reply": "Nf6",
+          "explanation": "Mais um atacante em d5. Nessa abertura, quase tudo gira em torno dessa casa."
+        },
+        {
+          "move": "Bg5",
+          "reply": "Be7",
+          "explanation": "O bispo crava o cavalo de f6, que é um dos defensores de d5. As pretas desfazem a cravada."
+        },
+        {
+          "move": "e3",
+          "reply": "O-O",
+          "explanation": "Lance modesto e necessário: abre o bispo de f1 sem soltar d4."
+        },
+        {
+          "move": "Nf3",
+          "reply": "Nbd7",
+          "explanation": "Desenvolvimento completo de um lado; do outro, o cavalo vai a d7 para não atrapalhar o peão de c7."
+        }
+      ]
+    },
+    {
+      "type": "tip",
+      "title": "Por que não dá para segurar o peão",
+      "text": "Depois de 1.d4 d5 2.c4 dxc4, tentar manter o peão com ...b5 abre o lado da dama. As brancas jogam a4 e a estrutura preta desmonta. Aceite o peão, devolva-o e desenvolva."
+    },
+    {
+      "type": "exercise",
+      "id": "gambito-define",
+      "prompt": "Jogue o lance que oferece o Gambito da Dama.",
+      "fen": "rnbqkbnr/ppp1pppp/8/3p4/3P4/8/PPP1PPPP/RNBQKBNR w KQkq - 0 2",
+      "acceptedMoves": [
+        "c4"
+      ],
+      "goal": "move",
+      "successText": "2.c4. O peão ataca d5 de lado, que é o único jeito de tirar o centro preto do lugar."
+    },
+    {
+      "type": "exercise",
+      "id": "gambito-recupera",
+      "prompt": "As pretas aceitaram o peão e desenvolveram. Recupere o peão agora, com uma peça.",
+      "fen": "rnbqkb1r/ppp1pppp/5n2/8/2pP4/4P3/PP3PPP/RNBQKBNR w KQkq - 1 4",
+      "acceptedMoves": [
+        "Bxc4"
+      ],
+      "goal": "move",
+      "successText": "O bispo recupera o peão e já fica numa boa diagonal. Terminar o desenvolvimento primeiro (Cf3, Cc3) também serve, porque o peão de c4 não tem como ser defendido."
+    }
+  ],
+  "checks": [
+    {
+      "exerciseId": "gambito-define",
+      "mode": "theory"
+    },
+    {
+      "exerciseId": "gambito-recupera",
+      "mode": "theory"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "lessonId": "italiana",
+  "moduleId": "aberturas",
+  "requiredScope": "module:aberturas",
+  "durationMinutes": 8,
+  "body": [
+    {
+      "type": "paragraph",
+      "text": "A Italiana começa com três lances que qualquer iniciante entende: peão ao centro, cavalo para fora, bispo na diagonal que aponta para f7. Nesta aula você não vai ler a abertura, vai jogá-la."
+    },
+    {
+      "type": "paragraph",
+      "text": "Repita a sequência abaixo até ela sair sem pensar. Cada lance só é aceito se for o certo; quando errar, o tabuleiro volta e você tenta de novo."
+    },
+    {
+      "type": "guided-line",
+      "id": "italiana-linha",
+      "title": "A linha principal, lance a lance",
+      "orientation": "w",
+      "intro": "Você joga com as brancas. As pretas respondem sozinhas.",
+      "conclusion": "Essa é a posição que você quer alcançar: peças fora, rei seguro, torre na coluna e.",
+      "steps": [
+        { "move": "e4", "reply": "e5", "explanation": "Peão ao centro. Ele abre a saída da dama e do bispo de f1 no mesmo lance." },
+        { "move": "Nf3", "reply": "Nc6", "explanation": "O cavalo sai atacando e5. As pretas defendem com outra peça, não com um peão." },
+        { "move": "Bc4", "reply": "Bc5", "explanation": "Este é o lance que dá nome à abertura. O bispo escolhe a diagonal que termina em f7." },
+        { "move": "c3", "reply": "Nf6", "explanation": "Um lance discreto: prepara d4 e tira a casa d4 do cavalo preto." },
+        { "move": "d3", "reply": "d6", "explanation": "Segura e4 com um peão e libera o bispo de c1. Sem pressa de abrir o centro." },
+        { "move": "O-O", "reply": "O-O", "explanation": "Rei no canto antes de qualquer plano de ataque. Os dois lados fazem a mesma coisa." },
+        { "move": "Re1", "reply": "a6", "explanation": "A torre ocupa a coluna onde o jogo vai abrir. O desenvolvimento acabou; agora começa o plano." }
+      ]
+    },
+    {
+      "type": "tip",
+      "title": "O plano depois do roque",
+      "text": "O cavalo de b1 não cabe em c3, porque o peão está lá. O caminho dele é d2, f1 e g3, mirando f5. Enquanto isso, prepare d4 no momento em que as peças pretas estiverem mal colocadas."
+    },
+    {
+      "type": "exercise",
+      "id": "italiana-define",
+      "prompt": "As peças já saíram. Jogue o lance que transforma isso numa Abertura Italiana.",
+      "fen": "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 4 3",
+      "acceptedMoves": ["Bc4"],
+      "goal": "move",
+      "successText": "Bispo em c4. A partir daqui, f7 é a casa que as pretas precisam vigiar."
+    },
+    {
+      "type": "exercise",
+      "id": "italiana-f7",
+      "prompt": "As pretas desenvolveram um cavalo e esqueceram f7. Dê xeque-mate em um lance.",
+      "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR w KQkq - 4 4",
+      "acceptedMoves": ["Qxf7#"],
+      "goal": "checkmate",
+      "successText": "A dama captura em f7 apoiada pelo bispo de c4. Só o rei defendia essa casa."
+    },
+    {
+      "type": "tip",
+      "title": "Do outro lado do tabuleiro",
+      "text": "Quando você joga de pretas, f7 é o seu ponto fraco. Antes de cada lance, conte quantas peças brancas miram f7 e quantas suas defendem. Se a conta virar a favor delas, resolva isso antes de continuar o desenvolvimento."
+    }
+  ],
+  "checks": [
+    { "exerciseId": "italiana-define", "mode": "theory" },
+    { "exerciseId": "italiana-f7", "mode": "mate" }
+  ]
+}

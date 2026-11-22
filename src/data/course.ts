@@ -554,11 +554,11 @@ export const lessons: Lesson[] = [
   { id: 'planejamento', slug: 'planejamento', moduleId: 'estrategia', order: 6, title: 'Planejamento', summary: 'Montar um plano simples a partir da posição.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.estrategia, status: 'coming-soon' },
 
   /* ---------------- Módulo 4: Aberturas ---------------- */
-  { id: 'italiana', slug: 'abertura-italiana', moduleId: 'aberturas', order: 1, title: 'Abertura Italiana', summary: '1.e4 e5 2.Nf3 Nc6 3.Bc4 e as ideias contra f7.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.aberturas, status: 'coming-soon' },
-  { id: 'siciliana', slug: 'defesa-siciliana', moduleId: 'aberturas', order: 2, title: 'Defesa Siciliana', summary: '1.e4 c5: a resposta assimétrica das pretas.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.aberturas, status: 'coming-soon' },
-  { id: 'francesa', slug: 'defesa-francesa', moduleId: 'aberturas', order: 3, title: 'Defesa Francesa', summary: '1.e4 e6 e a luta pela casa d5.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.aberturas, status: 'coming-soon' },
-  { id: 'espanhola', slug: 'abertura-espanhola', moduleId: 'aberturas', order: 4, title: 'Abertura Espanhola', summary: '1.e4 e5 2.Nf3 Nc6 3.Bb5 e a pressão sobre e5.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.aberturas, status: 'coming-soon' },
-  { id: 'gambito-da-dama', slug: 'gambito-da-dama', moduleId: 'aberturas', order: 5, title: 'Gambito da Dama', summary: '1.d4 d5 2.c4: oferecer um peão pelo centro.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.aberturas, status: 'coming-soon' },
+  { id: 'italiana', slug: 'abertura-italiana', moduleId: 'aberturas', order: 1, title: 'Abertura Italiana', summary: '1.e4 e5 2.Nf3 Nc6 3.Bc4 e as ideias contra f7.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.aberturas, status: 'published' },
+  { id: 'siciliana', slug: 'defesa-siciliana', moduleId: 'aberturas', order: 2, title: 'Defesa Siciliana', summary: '1.e4 c5: a resposta assimétrica das pretas.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.aberturas, status: 'published' },
+  { id: 'francesa', slug: 'defesa-francesa', moduleId: 'aberturas', order: 3, title: 'Defesa Francesa', summary: '1.e4 e6 e a luta pela casa d5.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.aberturas, status: 'published' },
+  { id: 'espanhola', slug: 'abertura-espanhola', moduleId: 'aberturas', order: 4, title: 'Abertura Espanhola', summary: '1.e4 e5 2.Nf3 Nc6 3.Bb5 e a pressão sobre e5.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.aberturas, status: 'published' },
+  { id: 'gambito-da-dama', slug: 'gambito-da-dama', moduleId: 'aberturas', order: 5, title: 'Gambito da Dama', summary: '1.d4 d5 2.c4: oferecer um peão pelo centro.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.aberturas, status: 'published' },
 
   /* ---------------- Módulo 5: Finais ---------------- */
   { id: 'rei-e-peao', slug: 'rei-e-peao', moduleId: 'finais', order: 1, title: 'Rei e peão', summary: 'Oposição e a casa-chave na frente do peão.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.finais, status: 'coming-soon' },

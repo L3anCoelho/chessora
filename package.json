@@ -9,6 +9,8 @@
     "build": "tsc -b && vite build",
     "typecheck": "tsc -b --noEmit",
     "test": "vitest run",
+    "lessons:build": "node scripts/build-lesson-sql.mjs",
+    "lessons:check": "node scripts/validate-lessons.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
