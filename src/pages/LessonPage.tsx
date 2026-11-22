@@ -105,6 +105,7 @@ export default function LessonPage() {
           <LessonContent
             blocks={result.data}
             onExerciseSolved={() => toast.show('Exercício resolvido.')}
+            onGuidedLineFinished={() => toast.show('Sequência concluída.')}
           />
           <div className="lesson-complete">
             {isDone ? (

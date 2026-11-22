@@ -1800,3 +1800,136 @@ code {
 .access-confirm > span {
   font-size: var(--text-sm);
 }
+
+/* ---------- Guia lance a lance ---------- */
+
+.guided-line {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+}
+
+.guided-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.guided-head h3 {
+  font-family: var(--font-ui);
+  font-size: var(--text-lg);
+  font-weight: 700;
+}
+
+.guided-intro {
+  font-size: var(--text-md);
+  color: var(--text-muted);
+  max-width: 62ch;
+}
+
+.guided-body {
+  display: grid;
+  grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.guided-side {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+  min-width: 0;
+}
+
+.guided-feedback {
+  display: grid;
+  gap: var(--space-2);
+  min-height: 4.5rem;
+  font-size: var(--text-sm);
+}
+
+.guided-explanation {
+  color: var(--text-muted);
+}
+
+.guided-explanation strong {
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.guided-wrong {
+  color: var(--danger-text);
+  font-weight: 600;
+}
+
+.guided-done {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--green-text);
+  font-weight: 600;
+}
+
+.guided-hint {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--blue-soft);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+}
+
+.guided-hint svg {
+  color: var(--blue-strong);
+  flex: none;
+}
+
+.guided-moves {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  margin: 0;
+  padding: var(--space-3);
+  list-style: none;
+  background: var(--surface-2);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+  max-height: 11rem;
+  overflow-y: auto;
+}
+
+.guided-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.guided-summary {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding-left: 1.4rem;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.guided-summary strong {
+  color: var(--text);
+}
+
+@media (max-width: 860px) {
+  .guided-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .guided-line {
+    padding: var(--space-4);
+  }
+}

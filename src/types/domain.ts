@@ -127,7 +127,36 @@ export type LessonBlock =
       acceptedMoves: string[];
       goal: 'move' | 'checkmate';
       successText: string;
-    };
+    }
+  | GuidedLineBlock;
+
+/** Um passo do guia lance a lance. Os lances vêm em SAN do chess.js (inglês). */
+export interface GuidedStep {
+  /** Lance que o aluno deve jogar. */
+  move: string;
+  /** Resposta do adversário, jogada automaticamente. */
+  reply?: string;
+  /** Por que esse lance, em uma ou duas frases. */
+  explanation: string;
+}
+
+/**
+ * Guia lance a lance: o aluno joga a linha no tabuleiro, um lance de cada vez.
+ * Só o lance certo é aceito; a resposta do adversário é automática.
+ */
+export interface GuidedLineBlock {
+  type: 'guided-line';
+  id: string;
+  title: string;
+  /** Posição de partida. Padrão: posição inicial. */
+  startFen?: string;
+  orientation?: 'w' | 'b';
+  /** Texto curto mostrado antes do tabuleiro. */
+  intro?: string;
+  /** Texto mostrado quando a linha termina. */
+  conclusion?: string;
+  steps: GuidedStep[];
+}
 
 /* ---------- Desafios ---------- */
 

@@ -6,6 +6,7 @@ import { ChessBoard } from '@/features/chess/components/ChessBoard';
 import { legalTargets } from '@/features/chess/logic/rules';
 import { PuzzleBoard, type PuzzlePhase } from '@/features/challenges/components/PuzzleBoard';
 import { evaluateExerciseMove } from '@/features/challenges/validate';
+import { GuidedLine } from './GuidedLine';
 import { usePreferences } from '@/hooks/usePreferences';
 
 type DiagramBlock = Extract<LessonBlock, { type: 'diagram' }>;
@@ -80,7 +81,15 @@ function LessonExercise({ block, onSolved }: { block: ExerciseBlock; onSolved?: 
   );
 }
 
-export function LessonContent({ blocks, onExerciseSolved }: { blocks: LessonBlock[]; onExerciseSolved?: (id: string) => void }) {
+export function LessonContent({
+  blocks,
+  onExerciseSolved,
+  onGuidedLineFinished,
+}: {
+  blocks: LessonBlock[];
+  onExerciseSolved?: (id: string) => void;
+  onGuidedLineFinished?: (id: string) => void;
+}) {
   return (
     <div className="lesson-content">
       {blocks.map((block, index) => {
@@ -113,6 +122,8 @@ export function LessonContent({ blocks, onExerciseSolved }: { blocks: LessonBloc
             return <LessonDiagram key={index} block={block} />;
           case 'exercise':
             return <LessonExercise key={block.id} block={block} onSolved={onExerciseSolved} />;
+          case 'guided-line':
+            return <GuidedLine key={block.id} block={block} onFinished={onGuidedLineFinished} />;
           default:
             return null;
         }
