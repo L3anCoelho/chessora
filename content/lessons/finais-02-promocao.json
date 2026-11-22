@@ -1,0 +1,55 @@
+{
+  "lessonId": "promocao-no-final",
+  "moduleId": "finais",
+  "requiredScope": "module:finais",
+  "durationMinutes": 6,
+  "body": [
+    {
+      "type": "paragraph",
+      "text": "No final, um peão longe dos reis decide a partida. Para saber se dá tempo de pegá-lo, existe um truque que dispensa contar lance a lance: o quadrado."
+    },
+    {
+      "type": "paragraph",
+      "text": "Desenhe um quadrado que tenha o peão num canto e a casa de promoção no outro. Se o rei adversário está dentro desse quadrado, ou consegue entrar no próprio lance, ele alcança o peão. Se não, o peão promove."
+    },
+    {
+      "type": "diagram",
+      "fen": "8/8/8/8/6k1/8/1P6/5K2 b - - 0 1",
+      "highlights": ["b4", "c4", "d4", "e4", "f4", "f5", "f6", "f7", "f8", "b8"],
+      "caption": "O peão de b2 pode dar o passo duplo, então o quadrado conta a partir de b4: de b4 a f4 e daí até f8. O rei preto, em g4, está um passo fora.",
+      "orientation": "w"
+    },
+    {
+      "type": "exercise",
+      "id": "prom-entrar-quadrado",
+      "prompt": "As pretas jogam. Entre no quadrado do peão para alcançá-lo a tempo.",
+      "fen": "8/8/8/8/6k1/8/1P6/5K2 b - - 0 1",
+      "acceptedMoves": ["Kf5", "Kf4", "Kf3"],
+      "goal": "move",
+      "successText": "Entrando na coluna f, o rei acompanha o peão até b8 e o pega. Para o lado errado, o peão chega primeiro."
+    },
+    {
+      "type": "tip",
+      "title": "Cuidado com o passo duplo",
+      "text": "Se o peão ainda está na casa de origem, conte o quadrado a partir da casa do passo duplo, não da casa onde ele está. Esquecer isso é o erro mais comum nessa conta."
+    },
+    {
+      "type": "exercise",
+      "id": "prom-corrida",
+      "prompt": "O rei preto está longe demais. Promova o peão.",
+      "fen": "8/1P6/8/8/8/7k/8/6K1 w - - 0 1",
+      "acceptedMoves": ["b8=Q"],
+      "goal": "move",
+      "successText": "Dama nova no tabuleiro. Com rei e dama contra rei, o mate vem em poucos lances."
+    },
+    {
+      "type": "tip",
+      "title": "Promova para dama, quase sempre",
+      "text": "Escolher torre ou cavalo só compensa em situações raras, como fugir de um afogamento ou dar um xeque que a dama não daria. Na dúvida, dama."
+    }
+  ],
+  "checks": [
+    { "exerciseId": "prom-entrar-quadrado", "mode": "best", "minGap": 300 },
+    { "exerciseId": "prom-corrida", "mode": "best", "minGap": 300 }
+  ]
+}

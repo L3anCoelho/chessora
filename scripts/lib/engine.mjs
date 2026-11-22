@@ -119,7 +119,13 @@ export async function analyse(fen, { depth = 16, multipv = 6 } = {}) {
 
 /** Pontuação comparável (mate vale muito mais que qualquer material). */
 export function scoreOf(entry) {
-  if (entry.mate !== null) return entry.mate > 0 ? 100000 - entry.mate : -100000 - entry.mate;
+  // Mate pesa muito mais que material, e um mate mais curto é estritamente
+  // melhor: a distância entra na conta com peso alto para não virar empate
+  // dentro da margem de tolerância usada nas comparações.
+  if (entry.mate !== null) {
+    const magnitude = 1000000 - Math.abs(entry.mate) * 1000;
+    return entry.mate > 0 ? magnitude : -magnitude;
+  }
   return entry.cp ?? 0;
 }
 

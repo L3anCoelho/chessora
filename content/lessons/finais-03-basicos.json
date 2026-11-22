@@ -1,0 +1,55 @@
+{
+  "lessonId": "finais-basicos",
+  "moduleId": "finais",
+  "requiredScope": "module:finais",
+  "durationMinutes": 7,
+  "body": [
+    {
+      "type": "paragraph",
+      "text": "Quando sobram torres e peões, duas regras resolvem a maior parte das posições: o rei vira uma peça de ataque e a torre fica atrás do peão passado, nunca na frente dele."
+    },
+    {
+      "type": "paragraph",
+      "text": "A torre atrás do peão ganha força a cada avanço, porque cobre todas as casas que o peão ainda vai percorrer. A torre na frente só atrapalha o próprio peão."
+    },
+    {
+      "type": "diagram",
+      "fen": "r5k1/5ppp/8/8/P7/8/5PPK/7R w - - 0 1",
+      "highlights": ["a1", "a4", "a8"],
+      "caption": "O peão de a4 é passado. A torre preta já está atrás dele, do lado certo. A torre branca, em h1, ainda está longe da ação.",
+      "orientation": "w"
+    },
+    {
+      "type": "exercise",
+      "id": "fb-torre-atras",
+      "prompt": "Coloque a sua torre atrás do peão passado.",
+      "fen": "r5k1/5ppp/8/8/P7/8/5PPK/7R w - - 0 1",
+      "acceptedMoves": ["Ra1"],
+      "goal": "move",
+      "successText": "Ta1. Agora o peão avança apoiado, e é a torre preta que fica parada segurando a casa a8."
+    },
+    {
+      "type": "tip",
+      "title": "O rei também joga",
+      "text": "Com poucas peças no tabuleiro, o rei deixa de ser alvo e vira atacante. Se não há nada urgente, leve o rei para o centro antes de qualquer outro plano."
+    },
+    {
+      "type": "exercise",
+      "id": "fb-avanca",
+      "prompt": "A torre já está atrás do peão. Avance o peão passado.",
+      "fen": "r5k1/5pp1/7p/P7/8/8/5PPK/R7 w - - 0 1",
+      "acceptedMoves": ["a6"],
+      "goal": "move",
+      "successText": "a6. Cada passo do peão deixa a torre preta mais passiva, porque ela não pode sair de a8."
+    },
+    {
+      "type": "tip",
+      "title": "Quando trocar",
+      "text": "Com um peão a mais, troque peças e evite trocar peões. Com um peão a menos, faça o contrário: cada peão que sai do tabuleiro aumenta a sua chance de empatar."
+    }
+  ],
+  "checks": [
+    { "exerciseId": "fb-torre-atras", "mode": "theory" },
+    { "exerciseId": "fb-avanca", "mode": "theory" }
+  ]
+}

@@ -561,11 +561,11 @@ export const lessons: Lesson[] = [
   { id: 'gambito-da-dama', slug: 'gambito-da-dama', moduleId: 'aberturas', order: 5, title: 'Gambito da Dama', summary: '1.d4 d5 2.c4: oferecer um peão pelo centro.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.aberturas, status: 'published' },
 
   /* ---------------- Módulo 5: Finais ---------------- */
-  { id: 'rei-e-peao', slug: 'rei-e-peao', moduleId: 'finais', order: 1, title: 'Rei e peão', summary: 'Oposição e a casa-chave na frente do peão.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.finais, status: 'coming-soon' },
-  { id: 'promocao-no-final', slug: 'promocao-no-final', moduleId: 'finais', order: 2, title: 'Promoção no final', summary: 'A regra do quadrado e a corrida de peões.', durationMinutes: 6, access: 'premium', requiredScope: SCOPES.finais, status: 'coming-soon' },
-  { id: 'finais-basicos', slug: 'finais-basicos', moduleId: 'finais', order: 3, title: 'Finais básicos', summary: 'Rei ativo e peões passados.', durationMinutes: 7, access: 'premium', requiredScope: SCOPES.finais, status: 'coming-soon' },
-  { id: 'mate-com-torre', slug: 'mate-com-torre', moduleId: 'finais', order: 4, title: 'Mate com torre', summary: 'Empurrar o rei para a borda com rei e torre.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.finais, status: 'coming-soon' },
-  { id: 'mate-com-dama', slug: 'mate-com-dama', moduleId: 'finais', order: 5, title: 'Mate com dama', summary: 'Mate rápido sem cair no afogamento.', durationMinutes: 6, access: 'premium', requiredScope: SCOPES.finais, status: 'coming-soon' },
+  { id: 'rei-e-peao', slug: 'rei-e-peao', moduleId: 'finais', order: 1, title: 'Rei e peão', summary: 'Oposição e a casa-chave na frente do peão.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.finais, status: 'published' },
+  { id: 'promocao-no-final', slug: 'promocao-no-final', moduleId: 'finais', order: 2, title: 'Promoção no final', summary: 'A regra do quadrado e a corrida de peões.', durationMinutes: 6, access: 'premium', requiredScope: SCOPES.finais, status: 'published' },
+  { id: 'finais-basicos', slug: 'finais-basicos', moduleId: 'finais', order: 3, title: 'Finais básicos', summary: 'Rei ativo e peões passados.', durationMinutes: 7, access: 'premium', requiredScope: SCOPES.finais, status: 'published' },
+  { id: 'mate-com-torre', slug: 'mate-com-torre', moduleId: 'finais', order: 4, title: 'Mate com torre', summary: 'Empurrar o rei para a borda com rei e torre.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.finais, status: 'published' },
+  { id: 'mate-com-dama', slug: 'mate-com-dama', moduleId: 'finais', order: 5, title: 'Mate com dama', summary: 'Mate rápido sem cair no afogamento.', durationMinutes: 6, access: 'premium', requiredScope: SCOPES.finais, status: 'published' },
 ];
 
 export const course: Course = {

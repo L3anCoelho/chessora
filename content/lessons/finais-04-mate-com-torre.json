@@ -1,0 +1,58 @@
+{
+  "lessonId": "mate-com-torre",
+  "moduleId": "finais",
+  "requiredScope": "module:finais",
+  "durationMinutes": 8,
+  "body": [
+    {
+      "type": "paragraph",
+      "text": "Rei e torre contra rei é um mate que você vai precisar dar muitas vezes. A torre sozinha não consegue: ela corta o tabuleiro, e quem empurra o rei adversário é o seu rei."
+    },
+    {
+      "type": "paragraph",
+      "text": "Jogue a sequência abaixo até o fim. Repare que a torre dá um único xeque na partida inteira: o último."
+    },
+    {
+      "type": "guided-line",
+      "id": "torre-tecnica",
+      "title": "Do corte ao mate, lance a lance",
+      "startFen": "5k2/4R3/8/5K2/8/8/8/8 w - - 0 1",
+      "orientation": "w",
+      "intro": "A torre já cortou o rei preto na oitava fileira. Agora é com o seu rei.",
+      "conclusion": "Esse é o padrão: reis frente a frente e a torre entrando pela lateral. Decore o desenho, não os lances.",
+      "steps": [
+        { "move": "Kf6", "reply": "Kg8", "explanation": "Os reis ficam frente a frente, com uma casa no meio. É essa oposição que tira as casas do rei preto." },
+        { "move": "Rc7", "reply": "Kh8", "explanation": "Lance de espera. A torre anda pela sétima fileira, continua cortando o rei e devolve a vez às pretas." },
+        { "move": "Kg6", "reply": "Kg8", "explanation": "O rei acompanha. Agora o rei preto só tem uma casa, e é justamente a que você quer." },
+        { "move": "Rc8#", "explanation": "Xeque-mate. A torre entra pela oitava fileira e o rei branco cobre as casas de fuga." }
+      ]
+    },
+    {
+      "type": "tip",
+      "title": "O erro que faz você perder tempo",
+      "text": "Dar xeque com a torre sem o rei por perto só empurra o rei adversário para longe e recomeça o trabalho. Dê xeque quando ele for mate ou quando ele diminuir a caixa."
+    },
+    {
+      "type": "exercise",
+      "id": "torre-mate-frente",
+      "prompt": "Os reis estão frente a frente. Dê xeque-mate em um lance.",
+      "fen": "6k1/8/6K1/8/8/8/8/R7 w - - 0 1",
+      "acceptedMoves": ["Ra8#"],
+      "goal": "checkmate",
+      "successText": "Ta8 é mate: a torre cobre a oitava fileira e o rei branco cobre f7, g7 e h7."
+    },
+    {
+      "type": "exercise",
+      "id": "torre-escada",
+      "prompt": "Com duas torres o rei nem precisa ajudar. Termine o mate em escada.",
+      "fen": "6k1/R7/8/8/8/8/8/1R4K1 w - - 0 1",
+      "acceptedMoves": ["Rb8#"],
+      "goal": "checkmate",
+      "successText": "Uma torre corta a sétima fileira, a outra dá o mate na oitava. É a escada: cada torre cuida de uma fileira."
+    }
+  ],
+  "checks": [
+    { "exerciseId": "torre-mate-frente", "mode": "mate" },
+    { "exerciseId": "torre-escada", "mode": "mate" }
+  ]
+}

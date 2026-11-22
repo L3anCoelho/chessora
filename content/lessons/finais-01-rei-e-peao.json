@@ -1,0 +1,55 @@
+{
+  "lessonId": "rei-e-peao",
+  "moduleId": "finais",
+  "requiredScope": "module:finais",
+  "durationMinutes": 8,
+  "body": [
+    {
+      "type": "paragraph",
+      "text": "Rei e peão contra rei é o final mais importante que existe, porque todos os outros acabam nele. A regra prática é curta: o peão sozinho não promove; quem promove é o rei na frente dele."
+    },
+    {
+      "type": "diagram",
+      "fen": "5k2/8/8/5K2/5P2/8/8/8 b - - 0 1",
+      "highlights": ["f5", "f7", "f8"],
+      "caption": "O rei branco está na frente do peão e os reis estão a duas casas um do outro, na mesma coluna. Quem tem a vez aqui está em desvantagem.",
+      "orientation": "w"
+    },
+    {
+      "type": "paragraph",
+      "text": "Dois reis na mesma coluna, com uma casa vazia entre eles, é o que se chama de oposição. Quem precisa mover primeiro é obrigado a sair da frente, e por isso perde terreno."
+    },
+    {
+      "type": "exercise",
+      "id": "rp-oposicao-unica",
+      "prompt": "As pretas jogam. Só um lance segura o empate. Encontre-o.",
+      "fen": "5k2/8/8/5K2/5P2/8/8/8 b - - 0 1",
+      "acceptedMoves": ["Kf7"],
+      "goal": "move",
+      "successText": "Kf7 mantém o rei na frente do peão e devolve a vez às brancas. Qualquer outro lance larga a coluna f e o peão promove."
+    },
+    {
+      "type": "tip",
+      "title": "Como achar o lance na prática",
+      "text": "Pergunte sempre: depois do meu lance, o rei adversário consegue ficar duas casas à minha frente na mesma coluna? Se consegue, procure outro lance."
+    },
+    {
+      "type": "exercise",
+      "id": "rp-rei-na-frente",
+      "prompt": "As brancas jogam e ganham. Faça progresso sem largar a frente do peão.",
+      "fen": "8/8/4K3/4P3/5k2/8/8/8 w - - 0 1",
+      "acceptedMoves": ["Kf6", "Kd6", "Kd5"],
+      "goal": "move",
+      "successText": "O rei continua na frente do peão e as pretas não têm como bloquear. Recuar para a sétima fileira jogaria a vitória fora: o peão ficaria sozinho."
+    },
+    {
+      "type": "tip",
+      "title": "O resumo que vale a partida",
+      "text": "Rei na frente do peão e com a oposição: vitória. Rei adversário na frente do peão, bem colocado: empate. Peão correndo sozinho, com o rei atrás: quase sempre empate."
+    }
+  ],
+  "checks": [
+    { "exerciseId": "rp-oposicao-unica", "mode": "best", "minGap": 300 },
+    { "exerciseId": "rp-rei-na-frente", "mode": "best", "minGap": 300 }
+  ]
+}

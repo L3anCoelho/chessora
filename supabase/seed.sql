@@ -580,4 +580,378 @@ on conflict (lesson_id) do update
       body = excluded.body,
       updated_at = now();
 
+-- finais · rei-e-peao
+insert into public.lesson_contents (lesson_id, module_id, required_scope, body)
+values (
+  'rei-e-peao',
+  'finais',
+  'module:finais',
+  $json$[
+  {
+    "type": "paragraph",
+    "text": "Rei e peão contra rei é o final mais importante que existe, porque todos os outros acabam nele. A regra prática é curta: o peão sozinho não promove; quem promove é o rei na frente dele."
+  },
+  {
+    "type": "diagram",
+    "fen": "5k2/8/8/5K2/5P2/8/8/8 b - - 0 1",
+    "highlights": [
+      "f5",
+      "f7",
+      "f8"
+    ],
+    "caption": "O rei branco está na frente do peão e os reis estão a duas casas um do outro, na mesma coluna. Quem tem a vez aqui está em desvantagem.",
+    "orientation": "w"
+  },
+  {
+    "type": "paragraph",
+    "text": "Dois reis na mesma coluna, com uma casa vazia entre eles, é o que se chama de oposição. Quem precisa mover primeiro é obrigado a sair da frente, e por isso perde terreno."
+  },
+  {
+    "type": "exercise",
+    "id": "rp-oposicao-unica",
+    "prompt": "As pretas jogam. Só um lance segura o empate. Encontre-o.",
+    "fen": "5k2/8/8/5K2/5P2/8/8/8 b - - 0 1",
+    "acceptedMoves": [
+      "Kf7"
+    ],
+    "goal": "move",
+    "successText": "Kf7 mantém o rei na frente do peão e devolve a vez às brancas. Qualquer outro lance larga a coluna f e o peão promove."
+  },
+  {
+    "type": "tip",
+    "title": "Como achar o lance na prática",
+    "text": "Pergunte sempre: depois do meu lance, o rei adversário consegue ficar duas casas à minha frente na mesma coluna? Se consegue, procure outro lance."
+  },
+  {
+    "type": "exercise",
+    "id": "rp-rei-na-frente",
+    "prompt": "As brancas jogam e ganham. Faça progresso sem largar a frente do peão.",
+    "fen": "8/8/4K3/4P3/5k2/8/8/8 w - - 0 1",
+    "acceptedMoves": [
+      "Kf6",
+      "Kd6",
+      "Kd5"
+    ],
+    "goal": "move",
+    "successText": "O rei continua na frente do peão e as pretas não têm como bloquear. Recuar para a sétima fileira jogaria a vitória fora: o peão ficaria sozinho."
+  },
+  {
+    "type": "tip",
+    "title": "O resumo que vale a partida",
+    "text": "Rei na frente do peão e com a oposição: vitória. Rei adversário na frente do peão, bem colocado: empate. Peão correndo sozinho, com o rei atrás: quase sempre empate."
+  }
+]$json$::jsonb
+)
+on conflict (lesson_id) do update
+  set module_id = excluded.module_id,
+      required_scope = excluded.required_scope,
+      body = excluded.body,
+      updated_at = now();
+
+-- finais · promocao-no-final
+insert into public.lesson_contents (lesson_id, module_id, required_scope, body)
+values (
+  'promocao-no-final',
+  'finais',
+  'module:finais',
+  $json$[
+  {
+    "type": "paragraph",
+    "text": "No final, um peão longe dos reis decide a partida. Para saber se dá tempo de pegá-lo, existe um truque que dispensa contar lance a lance: o quadrado."
+  },
+  {
+    "type": "paragraph",
+    "text": "Desenhe um quadrado que tenha o peão num canto e a casa de promoção no outro. Se o rei adversário está dentro desse quadrado, ou consegue entrar no próprio lance, ele alcança o peão. Se não, o peão promove."
+  },
+  {
+    "type": "diagram",
+    "fen": "8/8/8/8/6k1/8/1P6/5K2 b - - 0 1",
+    "highlights": [
+      "b4",
+      "c4",
+      "d4",
+      "e4",
+      "f4",
+      "f5",
+      "f6",
+      "f7",
+      "f8",
+      "b8"
+    ],
+    "caption": "O peão de b2 pode dar o passo duplo, então o quadrado conta a partir de b4: de b4 a f4 e daí até f8. O rei preto, em g4, está um passo fora.",
+    "orientation": "w"
+  },
+  {
+    "type": "exercise",
+    "id": "prom-entrar-quadrado",
+    "prompt": "As pretas jogam. Entre no quadrado do peão para alcançá-lo a tempo.",
+    "fen": "8/8/8/8/6k1/8/1P6/5K2 b - - 0 1",
+    "acceptedMoves": [
+      "Kf5",
+      "Kf4",
+      "Kf3"
+    ],
+    "goal": "move",
+    "successText": "Entrando na coluna f, o rei acompanha o peão até b8 e o pega. Para o lado errado, o peão chega primeiro."
+  },
+  {
+    "type": "tip",
+    "title": "Cuidado com o passo duplo",
+    "text": "Se o peão ainda está na casa de origem, conte o quadrado a partir da casa do passo duplo, não da casa onde ele está. Esquecer isso é o erro mais comum nessa conta."
+  },
+  {
+    "type": "exercise",
+    "id": "prom-corrida",
+    "prompt": "O rei preto está longe demais. Promova o peão.",
+    "fen": "8/1P6/8/8/8/7k/8/6K1 w - - 0 1",
+    "acceptedMoves": [
+      "b8=Q"
+    ],
+    "goal": "move",
+    "successText": "Dama nova no tabuleiro. Com rei e dama contra rei, o mate vem em poucos lances."
+  },
+  {
+    "type": "tip",
+    "title": "Promova para dama, quase sempre",
+    "text": "Escolher torre ou cavalo só compensa em situações raras, como fugir de um afogamento ou dar um xeque que a dama não daria. Na dúvida, dama."
+  }
+]$json$::jsonb
+)
+on conflict (lesson_id) do update
+  set module_id = excluded.module_id,
+      required_scope = excluded.required_scope,
+      body = excluded.body,
+      updated_at = now();
+
+-- finais · finais-basicos
+insert into public.lesson_contents (lesson_id, module_id, required_scope, body)
+values (
+  'finais-basicos',
+  'finais',
+  'module:finais',
+  $json$[
+  {
+    "type": "paragraph",
+    "text": "Quando sobram torres e peões, duas regras resolvem a maior parte das posições: o rei vira uma peça de ataque e a torre fica atrás do peão passado, nunca na frente dele."
+  },
+  {
+    "type": "paragraph",
+    "text": "A torre atrás do peão ganha força a cada avanço, porque cobre todas as casas que o peão ainda vai percorrer. A torre na frente só atrapalha o próprio peão."
+  },
+  {
+    "type": "diagram",
+    "fen": "r5k1/5ppp/8/8/P7/8/5PPK/7R w - - 0 1",
+    "highlights": [
+      "a1",
+      "a4",
+      "a8"
+    ],
+    "caption": "O peão de a4 é passado. A torre preta já está atrás dele, do lado certo. A torre branca, em h1, ainda está longe da ação.",
+    "orientation": "w"
+  },
+  {
+    "type": "exercise",
+    "id": "fb-torre-atras",
+    "prompt": "Coloque a sua torre atrás do peão passado.",
+    "fen": "r5k1/5ppp/8/8/P7/8/5PPK/7R w - - 0 1",
+    "acceptedMoves": [
+      "Ra1"
+    ],
+    "goal": "move",
+    "successText": "Ta1. Agora o peão avança apoiado, e é a torre preta que fica parada segurando a casa a8."
+  },
+  {
+    "type": "tip",
+    "title": "O rei também joga",
+    "text": "Com poucas peças no tabuleiro, o rei deixa de ser alvo e vira atacante. Se não há nada urgente, leve o rei para o centro antes de qualquer outro plano."
+  },
+  {
+    "type": "exercise",
+    "id": "fb-avanca",
+    "prompt": "A torre já está atrás do peão. Avance o peão passado.",
+    "fen": "r5k1/5pp1/7p/P7/8/8/5PPK/R7 w - - 0 1",
+    "acceptedMoves": [
+      "a6"
+    ],
+    "goal": "move",
+    "successText": "a6. Cada passo do peão deixa a torre preta mais passiva, porque ela não pode sair de a8."
+  },
+  {
+    "type": "tip",
+    "title": "Quando trocar",
+    "text": "Com um peão a mais, troque peças e evite trocar peões. Com um peão a menos, faça o contrário: cada peão que sai do tabuleiro aumenta a sua chance de empatar."
+  }
+]$json$::jsonb
+)
+on conflict (lesson_id) do update
+  set module_id = excluded.module_id,
+      required_scope = excluded.required_scope,
+      body = excluded.body,
+      updated_at = now();
+
+-- finais · mate-com-torre
+insert into public.lesson_contents (lesson_id, module_id, required_scope, body)
+values (
+  'mate-com-torre',
+  'finais',
+  'module:finais',
+  $json$[
+  {
+    "type": "paragraph",
+    "text": "Rei e torre contra rei é um mate que você vai precisar dar muitas vezes. A torre sozinha não consegue: ela corta o tabuleiro, e quem empurra o rei adversário é o seu rei."
+  },
+  {
+    "type": "paragraph",
+    "text": "Jogue a sequência abaixo até o fim. Repare que a torre dá um único xeque na partida inteira: o último."
+  },
+  {
+    "type": "guided-line",
+    "id": "torre-tecnica",
+    "title": "Do corte ao mate, lance a lance",
+    "startFen": "5k2/4R3/8/5K2/8/8/8/8 w - - 0 1",
+    "orientation": "w",
+    "intro": "A torre já cortou o rei preto na oitava fileira. Agora é com o seu rei.",
+    "conclusion": "Esse é o padrão: reis frente a frente e a torre entrando pela lateral. Decore o desenho, não os lances.",
+    "steps": [
+      {
+        "move": "Kf6",
+        "reply": "Kg8",
+        "explanation": "Os reis ficam frente a frente, com uma casa no meio. É essa oposição que tira as casas do rei preto."
+      },
+      {
+        "move": "Rc7",
+        "reply": "Kh8",
+        "explanation": "Lance de espera. A torre anda pela sétima fileira, continua cortando o rei e devolve a vez às pretas."
+      },
+      {
+        "move": "Kg6",
+        "reply": "Kg8",
+        "explanation": "O rei acompanha. Agora o rei preto só tem uma casa, e é justamente a que você quer."
+      },
+      {
+        "move": "Rc8#",
+        "explanation": "Xeque-mate. A torre entra pela oitava fileira e o rei branco cobre as casas de fuga."
+      }
+    ]
+  },
+  {
+    "type": "tip",
+    "title": "O erro que faz você perder tempo",
+    "text": "Dar xeque com a torre sem o rei por perto só empurra o rei adversário para longe e recomeça o trabalho. Dê xeque quando ele for mate ou quando ele diminuir a caixa."
+  },
+  {
+    "type": "exercise",
+    "id": "torre-mate-frente",
+    "prompt": "Os reis estão frente a frente. Dê xeque-mate em um lance.",
+    "fen": "6k1/8/6K1/8/8/8/8/R7 w - - 0 1",
+    "acceptedMoves": [
+      "Ra8#"
+    ],
+    "goal": "checkmate",
+    "successText": "Ta8 é mate: a torre cobre a oitava fileira e o rei branco cobre f7, g7 e h7."
+  },
+  {
+    "type": "exercise",
+    "id": "torre-escada",
+    "prompt": "Com duas torres o rei nem precisa ajudar. Termine o mate em escada.",
+    "fen": "6k1/R7/8/8/8/8/8/1R4K1 w - - 0 1",
+    "acceptedMoves": [
+      "Rb8#"
+    ],
+    "goal": "checkmate",
+    "successText": "Uma torre corta a sétima fileira, a outra dá o mate na oitava. É a escada: cada torre cuida de uma fileira."
+  }
+]$json$::jsonb
+)
+on conflict (lesson_id) do update
+  set module_id = excluded.module_id,
+      required_scope = excluded.required_scope,
+      body = excluded.body,
+      updated_at = now();
+
+-- finais · mate-com-dama
+insert into public.lesson_contents (lesson_id, module_id, required_scope, body)
+values (
+  'mate-com-dama',
+  'finais',
+  'module:finais',
+  $json$[
+  {
+    "type": "paragraph",
+    "text": "Com rei e dama contra rei o mate é rápido, mas tem uma armadilha: afogar o rei adversário e empatar uma partida ganha. A dama faz a caixa, e o mate só vem com o apoio do rei."
+  },
+  {
+    "type": "paragraph",
+    "text": "Na sequência abaixo a dama não se mexe até o último lance. Ela já prendeu o rei preto na coluna h; o que falta é o rei branco chegar."
+  },
+  {
+    "type": "guided-line",
+    "id": "dama-tecnica",
+    "title": "A dama prende, o rei chega, lance a lance",
+    "startFen": "7k/8/8/8/8/8/2K5/6Q1 w - - 0 1",
+    "orientation": "w",
+    "intro": "A dama em g1 já tira a coluna g do rei preto. Traga o seu rei.",
+    "conclusion": "Cinco lances, e a dama só se mexeu para dar mate. O método é esse: caixa primeiro, rei depois.",
+    "steps": [
+      {
+        "move": "Kd3",
+        "reply": "Kh7",
+        "explanation": "O rei começa a caminhada. A dama segura a coluna g sozinha e o rei preto anda entre h7 e h8."
+      },
+      {
+        "move": "Ke4",
+        "reply": "Kh8",
+        "explanation": "Mais um passo. Não tenha pressa de dar xeque: aqui o xeque só empurraria o rei preto de volta para o meio."
+      },
+      {
+        "move": "Kf5",
+        "reply": "Kh7",
+        "explanation": "O rei branco já está perto o bastante para começar a cobrir as casas de fuga."
+      },
+      {
+        "move": "Kf6",
+        "reply": "Kh6",
+        "explanation": "Agora o rei branco cobre g5, g6 e g7. O rei preto só tem h6 e h8."
+      },
+      {
+        "move": "Qh1#",
+        "explanation": "A dama desce a coluna h e dá mate. O rei branco já cobria todas as saídas."
+      }
+    ]
+  },
+  {
+    "type": "tip",
+    "title": "O teste do afogamento",
+    "text": "Antes de cada lance da dama, pergunte: depois disso, o rei adversário ainda tem alguma casa? Se não tiver e não for xeque, é afogamento e a partida acaba empatada."
+  },
+  {
+    "type": "exercise",
+    "id": "dama-mate-oitava",
+    "prompt": "O rei branco já cobre a sétima fileira. Dê xeque-mate em um lance.",
+    "fen": "6k1/8/6K1/8/8/8/8/1Q6 w - - 0 1",
+    "acceptedMoves": [
+      "Qb8#"
+    ],
+    "goal": "checkmate",
+    "successText": "Db8 é mate. O rei branco em g6 cobre f7, g7 e h7, e a dama cobre a oitava fileira."
+  },
+  {
+    "type": "exercise",
+    "id": "dama-mate-coluna",
+    "prompt": "O rei preto está preso na oitava fileira. Dê xeque-mate em um lance.",
+    "fen": "5k2/8/5K2/8/8/8/8/3Q4 w - - 0 1",
+    "acceptedMoves": [
+      "Qd8#"
+    ],
+    "goal": "checkmate",
+    "successText": "Dd8 é mate. É o mesmo desenho do exercício anterior: rei em frente, dama na fileira do fundo."
+  }
+]$json$::jsonb
+)
+on conflict (lesson_id) do update
+  set module_id = excluded.module_id,
+      required_scope = excluded.required_scope,
+      body = excluded.body,
+      updated_at = now();
+
 -- <<< fim das aulas premium geradas
