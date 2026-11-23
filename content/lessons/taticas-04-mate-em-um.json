@@ -1,0 +1,58 @@
+{
+  "lessonId": "mate-em-um",
+  "moduleId": "taticas",
+  "requiredScope": "module:taticas",
+  "durationMinutes": 6,
+  "body": [
+    {
+      "type": "paragraph",
+      "text": "Mate em um não se calcula, se reconhece. Depois de ver o mesmo desenho algumas dezenas de vezes, ele aparece sozinho. Esta aula é só treino: três posições, três padrões diferentes."
+    },
+    {
+      "type": "paragraph",
+      "text": "Em todas elas, use a mesma rotina: olhe onde o rei adversário pode ir, veja quais dessas casas já estão cobertas e procure o lance que fecha a última."
+    },
+    {
+      "type": "exercise",
+      "id": "mate1-coluna-h",
+      "prompt": "O rei preto está no canto. Dê xeque-mate em um lance.",
+      "fen": "8/p3p2k/p7/6Q1/8/3R4/P7/7K w - - 0 1",
+      "acceptedMoves": ["Rh3#"],
+      "goal": "checkmate",
+      "successText": "Th3 dá xeque pela coluna h. A dama de g5 já cobria g6, g7 e h6, então o rei não tem para onde ir."
+    },
+    {
+      "type": "exercise",
+      "id": "mate1-dama-apoiada",
+      "prompt": "A torre de g2 cobre a coluna g. Dê xeque-mate em um lance.",
+      "fen": "7k/2pp4/3p4/5Q2/8/7P/6R1/6K1 w - - 0 1",
+      "acceptedMoves": ["Qh5#"],
+      "goal": "checkmate",
+      "successText": "Dh5 ataca o rei pela coluna h, e a torre de g2 tira as casas g7 e g8. Rei no canto com a coluna vizinha fechada é mate."
+    },
+    {
+      "type": "tip",
+      "title": "O mate do corredor",
+      "text": "O padrão mais comum de todos: o rei fica preso atrás dos próprios peões e uma torre ou dama entra pela última fileira. Se o seu rei tem os três peões intactos na frente, abra uma casa de fuga quando sobrar tempo."
+    },
+    {
+      "type": "exercise",
+      "id": "mate1-corredor",
+      "prompt": "O rei preto não tem casa de fuga na oitava fileira. Dê xeque-mate em um lance.",
+      "fen": "7k/1p5p/5p2/2R5/8/8/P7/6QK w - - 0 1",
+      "acceptedMoves": ["Rc8#"],
+      "goal": "checkmate",
+      "successText": "Tc8 entra na oitava fileira. Os peões de b7 e h7 são os próprios carcereiros do rei preto."
+    },
+    {
+      "type": "tip",
+      "title": "Treine na ordem certa",
+      "text": "Numa partida, olhe sempre nesta ordem: xeques, capturas e ameaças. A maioria dos mates em um aparece logo no primeiro item dessa lista."
+    }
+  ],
+  "checks": [
+    { "exerciseId": "mate1-coluna-h", "mode": "mate" },
+    { "exerciseId": "mate1-dama-apoiada", "mode": "mate" },
+    { "exerciseId": "mate1-corredor", "mode": "mate" }
+  ]
+}

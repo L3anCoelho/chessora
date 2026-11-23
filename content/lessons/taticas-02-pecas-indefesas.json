@@ -1,0 +1,48 @@
+{
+  "lessonId": "pecas-indefesas",
+  "moduleId": "taticas",
+  "requiredScope": "module:taticas",
+  "durationMinutes": 5,
+  "body": [
+    {
+      "type": "paragraph",
+      "text": "Peça indefesa é a peça que ninguém está protegendo. Ela não cai sozinha, mas é o alvo de quase toda tática: sem defensor, basta um ataque para ela ser perdida."
+    },
+    {
+      "type": "paragraph",
+      "text": "Antes de qualquer lance, faça uma varredura rápida: quais peças pretas estão sem defesa? E quais das minhas estão? Essa pergunta custa cinco segundos e evita a maior parte dos erros."
+    },
+    {
+      "type": "exercise",
+      "id": "indefesa-captura",
+      "prompt": "Uma peça preta está sem nenhuma defesa. Capture-a.",
+      "fen": "n5k1/6p1/p2p4/3b4/8/PQ6/PP6/1K6 w - - 0 1",
+      "acceptedMoves": ["Qxd5+"],
+      "goal": "move",
+      "successText": "Dxd5 leva o bispo de graça e ainda com xeque. Nada defendia d5: o cavalo de a8 está longe e os peões não alcançam."
+    },
+    {
+      "type": "tip",
+      "title": "Conte antes de capturar",
+      "text": "Capturar só vale a pena quando você ataca mais vezes do que o adversário defende. Conte os atacantes, conte os defensores e compare os valores. Se a conta empatar, a captura costuma ser ruim."
+    },
+    {
+      "type": "exercise",
+      "id": "indefesa-duas",
+      "prompt": "O bispo de e7 e o cavalo de e4 estão sem defesa, e os dois na mesma coluna. Ataque os dois.",
+      "fen": "8/3pb2k/2p4p/6R1/4n3/6P1/P3P1K1/8 w - - 0 1",
+      "acceptedMoves": ["Re5"],
+      "goal": "move",
+      "successText": "Te5 encaixa a torre entre as duas peças, atacando uma para cima e outra para baixo. As pretas só conseguem salvar uma."
+    },
+    {
+      "type": "tip",
+      "title": "Peça defendida também cai",
+      "text": "Uma peça pode ter defensor e mesmo assim estar perdida, se o defensor estiver cravado, sobrecarregado ou se você atacar mais vezes do que ele defende. Mas comece pelas que não têm defensor nenhum: são as mais fáceis."
+    }
+  ],
+  "checks": [
+    { "exerciseId": "indefesa-captura", "mode": "best", "minGap": 200 },
+    { "exerciseId": "indefesa-duas", "mode": "best", "minGap": 200 }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "lessonId": "ataque-duplo",
+  "moduleId": "taticas",
+  "requiredScope": "module:taticas",
+  "durationMinutes": 6,
+  "body": [
+    {
+      "type": "paragraph",
+      "text": "Ataque duplo é um lance só com duas ameaças. O adversário resolve uma e perde a outra. Não precisa ser cavalo: dama, torre, bispo e peão fazem a mesma coisa."
+    },
+    {
+      "type": "paragraph",
+      "text": "O jeito de achar é sempre o mesmo. Primeiro, liste as peças adversárias que estão sem defesa. Depois, procure uma casa de onde a sua peça alcance duas delas ao mesmo tempo."
+    },
+    {
+      "type": "exercise",
+      "id": "duplo-duas-soltas",
+      "prompt": "Duas peças pretas estão sem defesa. Ataque as duas com um lance só.",
+      "fen": "7k/r4p2/p4np1/8/8/3Q4/1P1P2PK/8 w - - 0 1",
+      "acceptedMoves": [
+        "Qd4"
+      ],
+      "goal": "move",
+      "successText": "Dd4 mira a torre de a7 por uma diagonal e o cavalo de f6 pela outra. As pretas salvam uma peça e perdem a outra."
+    },
+    {
+      "type": "tip",
+      "title": "O xeque é a ameaça mais forte",
+      "text": "Quando uma das duas ameaças é xeque, o adversário não tem escolha: ele precisa atender ao xeque e não tem tempo de salvar a outra peça. Por isso vale sempre olhar os xeques primeiro."
+    },
+    {
+      "type": "exercise",
+      "id": "duplo-com-xeque",
+      "prompt": "Dê um xeque que também ataque uma peça preta sem defesa.",
+      "fen": "8/2rp3k/n1pp4/8/8/P3P3/4P3/3Q3K w - - 0 1",
+      "acceptedMoves": [
+        "Qd3+"
+      ],
+      "goal": "move",
+      "successText": "Dd3 dá xeque pela diagonal que termina em h7 e, pela outra diagonal, alcança o cavalo de a6. O rei sai do xeque e o cavalo cai."
+    },
+    {
+      "type": "tip",
+      "title": "Do outro lado",
+      "text": "A mesma conta vale para você. Antes de mover, pergunte quais das suas peças estão sem defesa. Duas peças soltas no tabuleiro são um convite para um ataque duplo."
+    }
+  ],
+  "checks": [
+    {
+      "exerciseId": "duplo-duas-soltas",
+      "mode": "best",
+      "minGap": 60
+    },
+    {
+      "exerciseId": "duplo-com-xeque",
+      "mode": "best",
+      "minGap": 60
+    }
+  ]
+}

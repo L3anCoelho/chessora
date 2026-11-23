@@ -1,0 +1,71 @@
+{
+  "lessonId": "descoberta",
+  "moduleId": "taticas",
+  "requiredScope": "module:taticas",
+  "durationMinutes": 6,
+  "body": [
+    {
+      "type": "paragraph",
+      "text": "No ataque descoberto, quem ataca não é a peça que se move. Uma peça sua está na frente de outra; quando ela sai do caminho, a de trás passa a atacar. E a peça que saiu ainda faz uma segunda ameaça."
+    },
+    {
+      "type": "diagram",
+      "fen": "6k1/2q3pp/8/3N4/8/1B6/5PPP/6K1 w - - 0 1",
+      "highlights": [
+        "b3",
+        "d5",
+        "g8"
+      ],
+      "caption": "O bispo de b3 aponta para o rei preto, mas o próprio cavalo de d5 está no caminho. Qualquer lance do cavalo abre essa diagonal.",
+      "orientation": "w"
+    },
+    {
+      "type": "paragraph",
+      "text": "Procure esse desenho no seu tabuleiro: duas peças suas na mesma linha, com uma peça adversária importante no fim dela. A peça da frente fica livre para atacar o que quiser."
+    },
+    {
+      "type": "exercise",
+      "id": "descoberta-xeque",
+      "prompt": "Abra a diagonal do bispo e capture alguma coisa no mesmo lance.",
+      "fen": "6k1/2q3pp/8/3N4/8/1B6/5PPP/6K1 w - - 0 1",
+      "acceptedMoves": [
+        "Nxc7+"
+      ],
+      "goal": "move",
+      "successText": "Cxc7 come a dama e, ao sair de d5, descobre o xeque do bispo. As pretas precisam atender ao xeque e não têm como recuperar a dama."
+    },
+    {
+      "type": "tip",
+      "title": "Por que o xeque é tão forte aqui",
+      "text": "Quando a descoberta vem com xeque, o adversário é obrigado a cuidar do rei. Ele não tem o lance livre que precisaria para recapturar a peça que você acabou de levar."
+    },
+    {
+      "type": "exercise",
+      "id": "descoberta-dama",
+      "prompt": "A torre de e1, o seu cavalo e a dama preta estão na mesma coluna. Ganhe uma peça.",
+      "fen": "6k1/4qppp/2b5/4N3/8/8/5PPP/4RK2 w - - 0 1",
+      "acceptedMoves": [
+        "Nxc6"
+      ],
+      "goal": "move",
+      "successText": "Cxc6 leva o bispo e abre a coluna e, onde a torre passa a atacar a dama. Capturar a torre com Dxe1 não serve às pretas, porque o rei de f1 defende a casa."
+    },
+    {
+      "type": "tip",
+      "title": "Olhe para as suas peças empilhadas",
+      "text": "Sempre que duas peças suas ficarem na mesma coluna, fileira ou diagonal, pergunte o que existe no fim dessa linha. É assim que a descoberta aparece numa partida de verdade."
+    }
+  ],
+  "checks": [
+    {
+      "exerciseId": "descoberta-xeque",
+      "mode": "best",
+      "minGap": 200
+    },
+    {
+      "exerciseId": "descoberta-dama",
+      "mode": "best",
+      "minGap": 200
+    }
+  ]
+}

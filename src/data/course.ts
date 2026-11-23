@@ -540,10 +540,10 @@ export const lessons: Lesson[] = [
     ],
   },
   { id: 'cravada', slug: 'cravada', moduleId: 'taticas', order: 2, title: 'Cravada', summary: 'Quando uma peça não pode sair da frente de outra mais valiosa.', durationMinutes: 7, access: 'premium', requiredScope: SCOPES.taticas, status: 'published' },
-  { id: 'ataque-duplo', slug: 'ataque-duplo', moduleId: 'taticas', order: 3, title: 'Ataque duplo', summary: 'Duas ameaças num lance, com peças diferentes.', durationMinutes: 6, access: 'premium', requiredScope: SCOPES.taticas, status: 'coming-soon' },
-  { id: 'pecas-indefesas', slug: 'pecas-indefesas', moduleId: 'taticas', order: 4, title: 'Peças indefesas', summary: 'Como identificar e punir peças sem proteção.', durationMinutes: 5, access: 'premium', requiredScope: SCOPES.taticas, status: 'coming-soon' },
-  { id: 'descoberta', slug: 'descoberta', moduleId: 'taticas', order: 5, title: 'Ataque descoberto', summary: 'Mover uma peça para liberar o ataque de outra.', durationMinutes: 6, access: 'premium', requiredScope: SCOPES.taticas, status: 'coming-soon' },
-  { id: 'mate-em-um', slug: 'mate-em-um', moduleId: 'taticas', order: 6, title: 'Xeque-mate em um lance', summary: 'Padrões de mate que aparecem em toda partida.', durationMinutes: 6, access: 'premium', requiredScope: SCOPES.taticas, status: 'coming-soon' },
+  { id: 'ataque-duplo', slug: 'ataque-duplo', moduleId: 'taticas', order: 3, title: 'Ataque duplo', summary: 'Duas ameaças num lance, com peças diferentes.', durationMinutes: 6, access: 'premium', requiredScope: SCOPES.taticas, status: 'published' },
+  { id: 'pecas-indefesas', slug: 'pecas-indefesas', moduleId: 'taticas', order: 4, title: 'Peças indefesas', summary: 'Como identificar e punir peças sem proteção.', durationMinutes: 5, access: 'premium', requiredScope: SCOPES.taticas, status: 'published' },
+  { id: 'descoberta', slug: 'descoberta', moduleId: 'taticas', order: 5, title: 'Ataque descoberto', summary: 'Mover uma peça para liberar o ataque de outra.', durationMinutes: 6, access: 'premium', requiredScope: SCOPES.taticas, status: 'published' },
+  { id: 'mate-em-um', slug: 'mate-em-um', moduleId: 'taticas', order: 6, title: 'Xeque-mate em um lance', summary: 'Padrões de mate que aparecem em toda partida.', durationMinutes: 6, access: 'premium', requiredScope: SCOPES.taticas, status: 'published' },
 
   /* ---------------- Módulo 3: Estratégia ---------------- */
   { id: 'controle-do-centro', slug: 'controle-do-centro', moduleId: 'estrategia', order: 1, title: 'Controle do centro', summary: 'Por que as casas d4, e4, d5 e e5 importam tanto.', durationMinutes: 7, access: 'premium', requiredScope: SCOPES.estrategia, status: 'published' },

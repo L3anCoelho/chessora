@@ -871,3 +871,245 @@ on conflict (lesson_id) do update
       required_scope = excluded.required_scope,
       body = excluded.body,
       updated_at = now();
+
+-- taticas · ataque-duplo
+insert into public.lesson_contents (lesson_id, module_id, required_scope, body)
+values (
+  'ataque-duplo',
+  'taticas',
+  'module:taticas',
+  $json$[
+  {
+    "type": "paragraph",
+    "text": "Ataque duplo é um lance só com duas ameaças. O adversário resolve uma e perde a outra. Não precisa ser cavalo: dama, torre, bispo e peão fazem a mesma coisa."
+  },
+  {
+    "type": "paragraph",
+    "text": "O jeito de achar é sempre o mesmo. Primeiro, liste as peças adversárias que estão sem defesa. Depois, procure uma casa de onde a sua peça alcance duas delas ao mesmo tempo."
+  },
+  {
+    "type": "exercise",
+    "id": "duplo-duas-soltas",
+    "prompt": "Duas peças pretas estão sem defesa. Ataque as duas com um lance só.",
+    "fen": "7k/r4p2/p4np1/8/8/3Q4/1P1P2PK/8 w - - 0 1",
+    "acceptedMoves": [
+      "Qd4"
+    ],
+    "goal": "move",
+    "successText": "Dd4 mira a torre de a7 por uma diagonal e o cavalo de f6 pela outra. As pretas salvam uma peça e perdem a outra."
+  },
+  {
+    "type": "tip",
+    "title": "O xeque é a ameaça mais forte",
+    "text": "Quando uma das duas ameaças é xeque, o adversário não tem escolha: ele precisa atender ao xeque e não tem tempo de salvar a outra peça. Por isso vale sempre olhar os xeques primeiro."
+  },
+  {
+    "type": "exercise",
+    "id": "duplo-com-xeque",
+    "prompt": "Dê um xeque que também ataque uma peça preta sem defesa.",
+    "fen": "8/2rp3k/n1pp4/8/8/P3P3/4P3/3Q3K w - - 0 1",
+    "acceptedMoves": [
+      "Qd3+"
+    ],
+    "goal": "move",
+    "successText": "Dd3 dá xeque pela diagonal que termina em h7 e, pela outra diagonal, alcança o cavalo de a6. O rei sai do xeque e o cavalo cai."
+  },
+  {
+    "type": "tip",
+    "title": "Do outro lado",
+    "text": "A mesma conta vale para você. Antes de mover, pergunte quais das suas peças estão sem defesa. Duas peças soltas no tabuleiro são um convite para um ataque duplo."
+  }
+]$json$::jsonb
+)
+on conflict (lesson_id) do update
+  set module_id = excluded.module_id,
+      required_scope = excluded.required_scope,
+      body = excluded.body,
+      updated_at = now();
+
+-- taticas · pecas-indefesas
+insert into public.lesson_contents (lesson_id, module_id, required_scope, body)
+values (
+  'pecas-indefesas',
+  'taticas',
+  'module:taticas',
+  $json$[
+  {
+    "type": "paragraph",
+    "text": "Peça indefesa é a peça que ninguém está protegendo. Ela não cai sozinha, mas é o alvo de quase toda tática: sem defensor, basta um ataque para ela ser perdida."
+  },
+  {
+    "type": "paragraph",
+    "text": "Antes de qualquer lance, faça uma varredura rápida: quais peças pretas estão sem defesa? E quais das minhas estão? Essa pergunta custa cinco segundos e evita a maior parte dos erros."
+  },
+  {
+    "type": "exercise",
+    "id": "indefesa-captura",
+    "prompt": "Uma peça preta está sem nenhuma defesa. Capture-a.",
+    "fen": "n5k1/6p1/p2p4/3b4/8/PQ6/PP6/1K6 w - - 0 1",
+    "acceptedMoves": [
+      "Qxd5+"
+    ],
+    "goal": "move",
+    "successText": "Dxd5 leva o bispo de graça e ainda com xeque. Nada defendia d5: o cavalo de a8 está longe e os peões não alcançam."
+  },
+  {
+    "type": "tip",
+    "title": "Conte antes de capturar",
+    "text": "Capturar só vale a pena quando você ataca mais vezes do que o adversário defende. Conte os atacantes, conte os defensores e compare os valores. Se a conta empatar, a captura costuma ser ruim."
+  },
+  {
+    "type": "exercise",
+    "id": "indefesa-duas",
+    "prompt": "O bispo de e7 e o cavalo de e4 estão sem defesa, e os dois na mesma coluna. Ataque os dois.",
+    "fen": "8/3pb2k/2p4p/6R1/4n3/6P1/P3P1K1/8 w - - 0 1",
+    "acceptedMoves": [
+      "Re5"
+    ],
+    "goal": "move",
+    "successText": "Te5 encaixa a torre entre as duas peças, atacando uma para cima e outra para baixo. As pretas só conseguem salvar uma."
+  },
+  {
+    "type": "tip",
+    "title": "Peça defendida também cai",
+    "text": "Uma peça pode ter defensor e mesmo assim estar perdida, se o defensor estiver cravado, sobrecarregado ou se você atacar mais vezes do que ele defende. Mas comece pelas que não têm defensor nenhum: são as mais fáceis."
+  }
+]$json$::jsonb
+)
+on conflict (lesson_id) do update
+  set module_id = excluded.module_id,
+      required_scope = excluded.required_scope,
+      body = excluded.body,
+      updated_at = now();
+
+-- taticas · descoberta
+insert into public.lesson_contents (lesson_id, module_id, required_scope, body)
+values (
+  'descoberta',
+  'taticas',
+  'module:taticas',
+  $json$[
+  {
+    "type": "paragraph",
+    "text": "No ataque descoberto, quem ataca não é a peça que se move. Uma peça sua está na frente de outra; quando ela sai do caminho, a de trás passa a atacar. E a peça que saiu ainda faz uma segunda ameaça."
+  },
+  {
+    "type": "diagram",
+    "fen": "6k1/2q3pp/8/3N4/8/1B6/5PPP/6K1 w - - 0 1",
+    "highlights": [
+      "b3",
+      "d5",
+      "g8"
+    ],
+    "caption": "O bispo de b3 aponta para o rei preto, mas o próprio cavalo de d5 está no caminho. Qualquer lance do cavalo abre essa diagonal.",
+    "orientation": "w"
+  },
+  {
+    "type": "paragraph",
+    "text": "Procure esse desenho no seu tabuleiro: duas peças suas na mesma linha, com uma peça adversária importante no fim dela. A peça da frente fica livre para atacar o que quiser."
+  },
+  {
+    "type": "exercise",
+    "id": "descoberta-xeque",
+    "prompt": "Abra a diagonal do bispo e capture alguma coisa no mesmo lance.",
+    "fen": "6k1/2q3pp/8/3N4/8/1B6/5PPP/6K1 w - - 0 1",
+    "acceptedMoves": [
+      "Nxc7+"
+    ],
+    "goal": "move",
+    "successText": "Cxc7 come a dama e, ao sair de d5, descobre o xeque do bispo. As pretas precisam atender ao xeque e não têm como recuperar a dama."
+  },
+  {
+    "type": "tip",
+    "title": "Por que o xeque é tão forte aqui",
+    "text": "Quando a descoberta vem com xeque, o adversário é obrigado a cuidar do rei. Ele não tem o lance livre que precisaria para recapturar a peça que você acabou de levar."
+  },
+  {
+    "type": "exercise",
+    "id": "descoberta-dama",
+    "prompt": "A torre de e1, o seu cavalo e a dama preta estão na mesma coluna. Ganhe uma peça.",
+    "fen": "6k1/4qppp/2b5/4N3/8/8/5PPP/4RK2 w - - 0 1",
+    "acceptedMoves": [
+      "Nxc6"
+    ],
+    "goal": "move",
+    "successText": "Cxc6 leva o bispo e abre a coluna e, onde a torre passa a atacar a dama. Capturar a torre com Dxe1 não serve às pretas, porque o rei de f1 defende a casa."
+  },
+  {
+    "type": "tip",
+    "title": "Olhe para as suas peças empilhadas",
+    "text": "Sempre que duas peças suas ficarem na mesma coluna, fileira ou diagonal, pergunte o que existe no fim dessa linha. É assim que a descoberta aparece numa partida de verdade."
+  }
+]$json$::jsonb
+)
+on conflict (lesson_id) do update
+  set module_id = excluded.module_id,
+      required_scope = excluded.required_scope,
+      body = excluded.body,
+      updated_at = now();
+
+-- taticas · mate-em-um
+insert into public.lesson_contents (lesson_id, module_id, required_scope, body)
+values (
+  'mate-em-um',
+  'taticas',
+  'module:taticas',
+  $json$[
+  {
+    "type": "paragraph",
+    "text": "Mate em um não se calcula, se reconhece. Depois de ver o mesmo desenho algumas dezenas de vezes, ele aparece sozinho. Esta aula é só treino: três posições, três padrões diferentes."
+  },
+  {
+    "type": "paragraph",
+    "text": "Em todas elas, use a mesma rotina: olhe onde o rei adversário pode ir, veja quais dessas casas já estão cobertas e procure o lance que fecha a última."
+  },
+  {
+    "type": "exercise",
+    "id": "mate1-coluna-h",
+    "prompt": "O rei preto está no canto. Dê xeque-mate em um lance.",
+    "fen": "8/p3p2k/p7/6Q1/8/3R4/P7/7K w - - 0 1",
+    "acceptedMoves": [
+      "Rh3#"
+    ],
+    "goal": "checkmate",
+    "successText": "Th3 dá xeque pela coluna h. A dama de g5 já cobria g6, g7 e h6, então o rei não tem para onde ir."
+  },
+  {
+    "type": "exercise",
+    "id": "mate1-dama-apoiada",
+    "prompt": "A torre de g2 cobre a coluna g. Dê xeque-mate em um lance.",
+    "fen": "7k/2pp4/3p4/5Q2/8/7P/6R1/6K1 w - - 0 1",
+    "acceptedMoves": [
+      "Qh5#"
+    ],
+    "goal": "checkmate",
+    "successText": "Dh5 ataca o rei pela coluna h, e a torre de g2 tira as casas g7 e g8. Rei no canto com a coluna vizinha fechada é mate."
+  },
+  {
+    "type": "tip",
+    "title": "O mate do corredor",
+    "text": "O padrão mais comum de todos: o rei fica preso atrás dos próprios peões e uma torre ou dama entra pela última fileira. Se o seu rei tem os três peões intactos na frente, abra uma casa de fuga quando sobrar tempo."
+  },
+  {
+    "type": "exercise",
+    "id": "mate1-corredor",
+    "prompt": "O rei preto não tem casa de fuga na oitava fileira. Dê xeque-mate em um lance.",
+    "fen": "7k/1p5p/5p2/2R5/8/8/P7/6QK w - - 0 1",
+    "acceptedMoves": [
+      "Rc8#"
+    ],
+    "goal": "checkmate",
+    "successText": "Tc8 entra na oitava fileira. Os peões de b7 e h7 são os próprios carcereiros do rei preto."
+  },
+  {
+    "type": "tip",
+    "title": "Treine na ordem certa",
+    "text": "Numa partida, olhe sempre nesta ordem: xeques, capturas e ameaças. A maioria dos mates em um aparece logo no primeiro item dessa lista."
+  }
+]$json$::jsonb
+)
+on conflict (lesson_id) do update
+  set module_id = excluded.module_id,
+      required_scope = excluded.required_scope,
+      body = excluded.body,
+      updated_at = now();
