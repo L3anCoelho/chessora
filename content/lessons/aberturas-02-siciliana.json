@@ -2,38 +2,107 @@
   "lessonId": "siciliana",
   "moduleId": "aberturas",
   "requiredScope": "module:aberturas",
-  "durationMinutes": 8,
+  "durationMinutes": 10,
   "body": [
     {
       "type": "paragraph",
-      "text": "Contra 1.e4, a Siciliana responde pelo lado: 1...c5. As pretas não ocupam o centro, elas vigiam d4 e esperam o momento de trocar o peão de c por um peão central das brancas."
+      "text": "Contra 1.e4, a Siciliana responde pelo lado: 1...c5. Aqui você joga com as pretas, do segundo lance até o xeque-mate, contra um adversário que entrega um peão para atacar e acaba atacado."
     },
     {
-      "type": "paragraph",
-      "text": "Jogue a linha abaixo com as pretas. Repare que, do quarto lance em diante, você tem dois peões no centro e as brancas só um."
-    },
-    {
-      "type": "guided-line",
-      "id": "siciliana-linha",
-      "title": "A Siciliana aberta, lance a lance",
+      "type": "guided-game",
+      "id": "siciliana-partida",
+      "title": "Do primeiro lance ao mate: a casa h2 esquecida",
       "startFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
       "orientation": "b",
-      "intro": "As brancas abriram com 1.e4. Você joga com as pretas.",
-      "conclusion": "Essa é a estrutura típica: dois peões centrais pretos, coluna c semiaberta e a casa d5 como centro da disputa.",
-      "steps": [
-        { "move": "c5", "reply": "Nf3", "explanation": "O peão de c vigia d4 sem bloquear nenhuma peça preta." },
-        { "move": "d6", "reply": "d4", "explanation": "Controla e5 e abre o bispo de c8. As brancas abrem o centro na hora que escolheram." },
-        { "move": "cxd4", "reply": "Nxd4", "explanation": "A troca que dá nome à ideia: um peão lateral sai, um peão central branco some." },
-        { "move": "Nf6", "reply": "Nc3", "explanation": "Desenvolve atacando e4 e obriga as brancas a defender." },
-        { "move": "a6", "reply": "Be2", "explanation": "Tira b5 das peças brancas e prepara ...b5 mais tarde. É o lance da Najdorf." },
-        { "move": "e5", "reply": "Nb3", "explanation": "Ganha espaço e expulsa o cavalo. O preço é a casa d5, que fica sem defesa de peão." },
-        { "move": "Be7", "reply": "O-O", "explanation": "Hora de terminar o desenvolvimento e rocar. Na Siciliana não sobra tempo para lances de peão extras." }
+      "intro": "As brancas abriram com 1.e4 e vão entregar um peão pelo desenvolvimento. Você joga com as pretas até o fim.",
+      "conclusion": "Em todas as tentativas o problema das brancas é o mesmo: o cavalo de f3 é o único defensor de h2, e ele foi obrigado a sair.",
+      "variations": [
+        {
+          "label": "Ele captura o cavalo",
+          "ending": "Xeque-mate. A dama chega a h2 apoiada pelo cavalo de g4, e a torre de f1 tirou a última saída do próprio rei.",
+          "moves": [
+            { "san": "c5", "note": "A Siciliana: o peão vigia d4 sem bloquear nenhuma peça preta." },
+            { "san": "d4", "note": "ele abre o centro na marra" },
+            { "san": "cxd4", "note": "Aceite: um peão lateral seu sai, um peão central dele some." },
+            { "san": "c3", "note": "ele oferece um peão pelo desenvolvimento" },
+            { "san": "dxc3", "note": "Pode aceitar. O peão a mais é real, e você devolve depois se precisar." },
+            { "san": "Nxc3", "note": "ele recupera o tempo" },
+            { "san": "Nc6", "note": "Desenvolvimento normal. Na Siciliana não sobra tempo para lances de peão extras." },
+            { "san": "Nf3", "note": "ele tira o cavalo" },
+            { "san": "e6", "note": "Abre o bispo de f8 e segura d5." },
+            { "san": "Bc4", "note": "ele mira f7" },
+            { "san": "Qc7", "note": "Lance-chave: a dama sai da coluna d e já aponta para a diagonal que termina em h2." },
+            { "san": "O-O", "note": "ele roca" },
+            { "san": "Nf6", "note": "Desenvolve e prepara o salto para g4." },
+            { "san": "Qe2", "note": "ele arruma a torre" },
+            { "san": "Ng4", "note": "O cavalo encosta. Agora dama e cavalo miram h2 juntos." },
+            { "san": "h3", "note": "ele enxota o cavalo, mas tira a defesa de h2" },
+            { "san": "Nd4", "note": "O golpe. O cavalo ataca a dama de e2 e o cavalo de f3, que é o único defensor de h2." },
+            { "san": "Nxd4", "note": "ele come o cavalo" },
+            { "san": "Qh2#" }
+          ]
+        },
+        {
+          "label": "Ele recua o cavalo para e1",
+          "ending": "Mesmo mate. Não importa para onde o cavalo de f3 vá: ao sair, ele larga h2.",
+          "moves": [
+            { "san": "c5" }, { "san": "d4" }, { "san": "cxd4" }, { "san": "c3" }, { "san": "dxc3" },
+            { "san": "Nxc3" }, { "san": "Nc6" }, { "san": "Nf3" }, { "san": "e6" }, { "san": "Bc4" },
+            { "san": "Qc7" }, { "san": "O-O" }, { "san": "Nf6" }, { "san": "Qe2" }, { "san": "Ng4" },
+            { "san": "h3" }, { "san": "Nd4" },
+            { "san": "Ne1", "note": "ele salva a dama recuando o cavalo" },
+            { "san": "Qh2#" }
+          ]
+        },
+        {
+          "label": "Ele avança o cavalo para g5",
+          "ending": "Mesmo mate de novo. O cavalo de f3 era insubstituível.",
+          "moves": [
+            { "san": "c5" }, { "san": "d4" }, { "san": "cxd4" }, { "san": "c3" }, { "san": "dxc3" },
+            { "san": "Nxc3" }, { "san": "Nc6" }, { "san": "Nf3" }, { "san": "e6" }, { "san": "Bc4" },
+            { "san": "Qc7" }, { "san": "O-O" }, { "san": "Nf6" }, { "san": "Qe2" }, { "san": "Ng4" },
+            { "san": "h3" }, { "san": "Nd4" },
+            { "san": "Ng5", "note": "ele contra-ataca em vez de se defender" },
+            { "san": "Qh2#" }
+          ]
+        },
+        {
+          "label": "Ele acha a defesa e come em g4",
+          "ending": "Sem mate: ele achou o único jeito de segurar h2. Mas o cavalo de d4 come a dama com xeque, e você sai com dama por cavalo.",
+          "outcome": "advantage",
+          "moves": [
+            { "san": "c5" }, { "san": "d4" }, { "san": "cxd4" }, { "san": "c3" }, { "san": "dxc3" },
+            { "san": "Nxc3" }, { "san": "Nc6" }, { "san": "Nf3" }, { "san": "e6" }, { "san": "Bc4" },
+            { "san": "Qc7" }, { "san": "O-O" }, { "san": "Nf6" }, { "san": "Qe2" }, { "san": "Ng4" },
+            { "san": "h3" }, { "san": "Nd4" },
+            { "san": "hxg4", "note": "a melhor defesa: ele come o cavalo que mirava h2" },
+            { "san": "Nxe2+", "note": "Com xeque, o que não dá tempo de ele reagir. Você ganhou a dama." }
+          ]
+        }
       ]
     },
     {
       "type": "tip",
-      "title": "A casa d5 decide",
-      "text": "Depois de ...e5, a luta gira em torno de d5. As brancas querem instalar uma peça ali; você quer trocar essa peça ou empurrar ...d5 de uma vez. Olhe para essa casa antes de escolher qualquer plano."
+      "title": "O que procurar nessa armadilha",
+      "text": "Ela só existe porque h2 tem um defensor só. Antes de atacar uma casa perto do rei adversário, conte os defensores dela. Quando o número chega a um, procure um lance que expulse ou distraia esse defensor."
+    },
+    {
+      "type": "guided-line",
+      "id": "siciliana-linha",
+      "title": "E quando ele não entrega peão: a Siciliana aberta",
+      "startFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+      "orientation": "b",
+      "intro": "A linha principal, sem armadilha. Você continua com as pretas.",
+      "conclusion": "Dois peões centrais pretos, coluna c semiaberta e a casa d5 como centro da disputa.",
+      "steps": [
+        { "move": "c5", "reply": "Nf3", "explanation": "O peão de c vigia d4 sem bloquear nenhuma peça preta." },
+        { "move": "d6", "reply": "d4", "explanation": "Controla e5 e abre o bispo de c8." },
+        { "move": "cxd4", "reply": "Nxd4", "explanation": "A troca que dá nome à ideia: um peão lateral sai, um peão central branco some." },
+        { "move": "Nf6", "reply": "Nc3", "explanation": "Desenvolve atacando e4 e obriga as brancas a defender." },
+        { "move": "a6", "reply": "Be2", "explanation": "Tira b5 das peças brancas e prepara ...b5. É o lance da Najdorf." },
+        { "move": "e5", "reply": "Nb3", "explanation": "Ganha espaço e expulsa o cavalo. O preço é a casa d5." },
+        { "move": "Be7", "reply": "O-O", "explanation": "Termine o desenvolvimento e roque." }
+      ]
     },
     {
       "type": "exercise",
@@ -51,12 +120,7 @@
       "fen": "rnbqkbnr/pp2pppp/3p4/8/3QP3/5N2/PPP2PPP/RNB1KB1R b KQkq - 0 4",
       "acceptedMoves": ["Nc6"],
       "goal": "move",
-      "successText": "O cavalo sai e a dama precisa fugir. Você desenvolveu de graça: é por isso que as brancas recapturam com o cavalo."
-    },
-    {
-      "type": "tip",
-      "title": "O preço da Siciliana",
-      "text": "Você gasta lances com peões (c5, d6, a6) enquanto as brancas colocam peças em jogo. Por isso, depois de ...a6, pare de mexer peões sem necessidade: desenvolva e roque."
+      "successText": "O cavalo sai e a dama precisa fugir. Você desenvolveu de graça."
     }
   ],
   "checks": [

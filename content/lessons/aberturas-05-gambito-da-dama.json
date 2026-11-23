@@ -2,60 +2,294 @@
   "lessonId": "gambito-da-dama",
   "moduleId": "aberturas",
   "requiredScope": "module:aberturas",
-  "durationMinutes": 8,
+  "durationMinutes": 10,
   "body": [
     {
       "type": "paragraph",
-      "text": "O Gambito da Dama oferece o peão de c4 para tirar o peão de d5 do centro. Não é um sacrifício de verdade: as brancas recuperam o peão quando quiserem, porque as pretas não conseguem segurá-lo."
+      "text": "O Gambito da Dama oferece o peão de c4 para tirar o peão de d5 do centro. Como a Francesa, é uma abertura sólida demais para dar mate cedo — mas tem uma armadilha famosa em que a dama parece perdida e quem perde uma peça é o outro."
     },
     {
-      "type": "paragraph",
-      "text": "Jogue a Defesa Recusada com as brancas, a resposta mais sólida das pretas e a mais comum em qualquer nível."
-    },
-    {
-      "type": "guided-line",
-      "id": "gambito-linha",
-      "title": "O Gambito da Dama Recusado, lance a lance",
-      "orientation": "w",
-      "intro": "Você joga com as brancas.",
-      "conclusion": "Peças desenvolvidas, pressão em d5 e um centro estável. As pretas ainda precisam resolver o bispo de c8.",
-      "steps": [
+      "type": "guided-game",
+      "id": "gambito-partida",
+      "title": "Do primeiro lance ao ganho de uma peça",
+      "startFen": "rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR b KQkq - 0 1",
+      "orientation": "b",
+      "exhaustiveFrom": 13,
+      "intro": "As brancas abriram com 1.d4. Você joga com as pretas e vai deixar a sua dama aparentemente de graça.",
+      "conclusion": "Você venceu as três tentativas: a gananciosa, que custa uma peça a ele, a cautelosa e a que nem entra na armadilha.",
+      "variations": [
         {
-          "move": "d4",
-          "reply": "d5",
-          "explanation": "Centro ocupado pelos dois lados, agora na coluna d."
+          "label": "Ele come a dama e perde uma peça",
+          "ending": "Fim da armadilha: o seu rei pega o bispo de d8 e a conta fecha com uma peça a mais para você. O rei no centro não incomoda, porque as damas já saíram.",
+          "outcome": "advantage",
+          "moves": [
+            {
+              "san": "d5",
+              "note": "Disputa o centro de igual para igual."
+            },
+            {
+              "san": "c4",
+              "note": "ele oferece o gambito"
+            },
+            {
+              "san": "e6",
+              "note": "Recuse: defenda d5 com um peão. O preço é prender o bispo de c8."
+            },
+            {
+              "san": "Nc3",
+              "note": "ele soma um atacante em d5"
+            },
+            {
+              "san": "Nf6",
+              "note": "Mais um defensor de d5. Quase tudo nessa abertura gira em torno dessa casa."
+            },
+            {
+              "san": "Bg5",
+              "note": "ele crava o seu cavalo de f6"
+            },
+            {
+              "san": "Nbd7",
+              "note": "O lance que arma a cilada. Parece que d5 ficou mal defendido, mas é proposital."
+            },
+            {
+              "san": "cxd5",
+              "note": "ele troca no centro"
+            },
+            {
+              "san": "exd5",
+              "note": "Recapture com o peão, mantendo o centro."
+            },
+            {
+              "san": "Nxd5",
+              "note": "a isca funcionou: ele acha que o cavalo de f6 está cravado e come em d5"
+            },
+            {
+              "san": "Nxd5",
+              "note": "Capture mesmo com o cavalo cravado. A cravada era só aparente."
+            },
+            {
+              "san": "Bxd8",
+              "note": "ele leva a sua dama, achando que ganhou"
+            },
+            {
+              "san": "Bb4+",
+              "note": "O xeque que resolve tudo. Agora ele tem um único lance legal."
+            },
+            {
+              "san": "Qd2",
+              "note": "o único lance: tapar com a dama"
+            },
+            {
+              "san": "Bxd2+",
+              "note": "Troque as damas com xeque."
+            },
+            {
+              "san": "Kxd2",
+              "note": "ele recaptura com o rei"
+            },
+            {
+              "san": "Kxd8",
+              "note": "E o seu rei recolhe o bispo. Você fica com uma peça a mais."
+            }
+          ]
         },
         {
-          "move": "c4",
-          "reply": "e6",
-          "explanation": "O gambito. As pretas recusam e defendem d5 com um peão, aceitando prender o bispo de c8."
+          "label": "Ele recua o rei em vez de recapturar",
+          "ending": "Ele fugiu com o rei, então o seu rei pega o bispo de d8 primeiro. Ele recupera o bispo de d2 no lance seguinte e a conta fecha igual: uma peça a mais para você.",
+          "outcome": "advantage",
+          "moves": [
+            {
+              "san": "d5"
+            },
+            {
+              "san": "c4"
+            },
+            {
+              "san": "e6"
+            },
+            {
+              "san": "Nc3"
+            },
+            {
+              "san": "Nf6"
+            },
+            {
+              "san": "Bg5"
+            },
+            {
+              "san": "Nbd7"
+            },
+            {
+              "san": "cxd5"
+            },
+            {
+              "san": "exd5"
+            },
+            {
+              "san": "Nxd5"
+            },
+            {
+              "san": "Nxd5"
+            },
+            {
+              "san": "Bxd8"
+            },
+            {
+              "san": "Bb4+",
+              "note": "O xeque que resolve tudo. Agora ele tem um único lance legal."
+            },
+            {
+              "san": "Qd2"
+            },
+            {
+              "san": "Bxd2+"
+            },
+            {
+              "san": "Kd1",
+              "note": "a outra resposta legal: ele não captura"
+            },
+            {
+              "san": "Kxd8",
+              "note": "Recolha o bispo com o rei. A peça a mais continua sua."
+            }
+          ]
         },
         {
-          "move": "Nc3",
-          "reply": "Nf6",
-          "explanation": "Mais um atacante em d5. Nessa abertura, quase tudo gira em torno dessa casa."
+          "label": "Ele desconfia e guarda o bispo",
+          "ending": "Ele não pegou a dama, mas já tinha entregado o cavalo em d5. Uma peça a mais e ainda com xeque para organizar o resto.",
+          "outcome": "advantage",
+          "moves": [
+            {
+              "san": "d5"
+            },
+            {
+              "san": "c4"
+            },
+            {
+              "san": "e6"
+            },
+            {
+              "san": "Nc3"
+            },
+            {
+              "san": "Nf6"
+            },
+            {
+              "san": "Bg5"
+            },
+            {
+              "san": "Nbd7"
+            },
+            {
+              "san": "cxd5"
+            },
+            {
+              "san": "exd5"
+            },
+            {
+              "san": "Nxd5"
+            },
+            {
+              "san": "Nxd5"
+            },
+            {
+              "san": "Be3",
+              "note": "ele recua em vez de pegar a dama"
+            },
+            {
+              "san": "Bb4+",
+              "note": "Xeque de qualquer jeito. O cavalo que ele deu em d5 não volta."
+            }
+          ]
         },
         {
-          "move": "Bg5",
-          "reply": "Be7",
-          "explanation": "O bispo crava o cavalo de f6, que é um dos defensores de d5. As pretas desfazem a cravada."
-        },
-        {
-          "move": "e3",
-          "reply": "O-O",
-          "explanation": "Lance modesto e necessário: abre o bispo de f1 sem soltar d4."
-        },
-        {
-          "move": "Nf3",
-          "reply": "Nbd7",
-          "explanation": "Desenvolvimento completo de um lado; do outro, o cavalo vai a d7 para não atrapalhar o peão de c7."
+          "label": "Ele não cai na armadilha",
+          "ending": "Sem armadilha: ele desenvolveu em vez de capturar em d5. A partida segue equilibrada, no Gambito da Dama Recusado de sempre.",
+          "outcome": "equal",
+          "moves": [
+            {
+              "san": "d5"
+            },
+            {
+              "san": "c4"
+            },
+            {
+              "san": "e6"
+            },
+            {
+              "san": "Nc3"
+            },
+            {
+              "san": "Nf6"
+            },
+            {
+              "san": "Bg5"
+            },
+            {
+              "san": "Nbd7"
+            },
+            {
+              "san": "cxd5"
+            },
+            {
+              "san": "exd5"
+            },
+            {
+              "san": "e3",
+              "note": "ele desenvolve em vez de morder a isca"
+            },
+            {
+              "san": "Be7",
+              "note": "Desfaça a cravada e prepare o roque. Daqui é uma partida normal."
+            }
+          ]
         }
       ]
     },
     {
       "type": "tip",
-      "title": "Por que não dá para segurar o peão",
-      "text": "Depois de 1.d4 d5 2.c4 dxc4, tentar manter o peão com ...b5 abre o lado da dama. As brancas jogam a4 e a estrutura preta desmonta. Aceite o peão, devolva-o e desenvolva."
+      "title": "A lição por trás da armadilha",
+      "text": "O cavalo de f6 parecia cravado pelo bispo de g5, mas cravada contra a dama não é absoluta: você pode mover a peça cravada se o que vem depois compensa. Antes de confiar numa cravada, calcule o que acontece se o adversário simplesmente ignorar."
+    },
+    {
+      "type": "guided-line",
+      "id": "gambito-linha",
+      "title": "O Gambito da Dama Recusado pelo lado das brancas",
+      "orientation": "w",
+      "intro": "Agora com as brancas, sem armadilha nenhuma.",
+      "conclusion": "Peças desenvolvidas, pressão em d5 e um centro estável.",
+      "steps": [
+        {
+          "move": "d4",
+          "reply": "d5",
+          "explanation": "Centro ocupado pelos dois lados."
+        },
+        {
+          "move": "c4",
+          "reply": "e6",
+          "explanation": "O gambito. As pretas recusam e defendem d5 com um peão."
+        },
+        {
+          "move": "Nc3",
+          "reply": "Nf6",
+          "explanation": "Mais um atacante em d5."
+        },
+        {
+          "move": "Bg5",
+          "reply": "Be7",
+          "explanation": "O bispo crava o cavalo de f6; as pretas desfazem a cravada antes de qualquer coisa."
+        },
+        {
+          "move": "e3",
+          "reply": "O-O",
+          "explanation": "Lance modesto que abre o bispo de f1 sem soltar d4."
+        },
+        {
+          "move": "Nf3",
+          "reply": "Nbd7",
+          "explanation": "Desenvolvimento completo dos dois lados."
+        }
+      ]
     },
     {
       "type": "exercise",
@@ -77,7 +311,7 @@
         "Bxc4"
       ],
       "goal": "move",
-      "successText": "O bispo recupera o peão e já fica numa boa diagonal. Terminar o desenvolvimento primeiro (Cf3, Cc3) também serve, porque o peão de c4 não tem como ser defendido."
+      "successText": "O bispo recupera o peão e já fica numa boa diagonal. Terminar o desenvolvimento primeiro também serve: o peão de c4 não tem como ser defendido."
     }
   ],
   "checks": [

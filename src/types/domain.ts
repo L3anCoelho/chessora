@@ -146,7 +146,7 @@ export interface GuidedGameVariation {
   /** Lances alternando aluno e adversário, começando pelo aluno. */
   moves: GuidedGameMove[];
   /** Como termina. O padrão é mate. */
-  outcome?: 'mate' | 'advantage';
+  outcome?: 'mate' | 'advantage' | 'equal';
   /** Texto mostrado quando o aluno chega ao fim desta variante. */
   ending?: string;
 }
@@ -166,6 +166,12 @@ export interface GuidedGameBlock {
   conclusion?: string;
   /** Exige que TODA resposta legal do adversário esteja prevista. */
   exhaustive?: boolean;
+  /**
+   * Como `exhaustive`, mas só a partir deste lance (contando do 1). Serve para
+   * aberturas: nos primeiros lances é impossível prever tudo, mas da hora em
+   * que o mate vira forçado em diante não pode faltar defesa.
+   */
+  exhaustiveFrom?: number;
   variations: GuidedGameVariation[];
 }
 

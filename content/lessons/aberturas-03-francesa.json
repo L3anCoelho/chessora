@@ -2,37 +2,108 @@
   "lessonId": "francesa",
   "moduleId": "aberturas",
   "requiredScope": "module:aberturas",
-  "durationMinutes": 8,
+  "durationMinutes": 10,
   "body": [
     {
       "type": "paragraph",
-      "text": "Na Francesa, as pretas preparam ...d5 com 1...e6. O peão de d5 chega apoiado, e não solto. O preço é o bispo de c8, que fica preso atrás do próprio peão de e6."
+      "text": "Na Francesa as pretas preparam ...d5 com 1...e6. Essa muralha de peões é sólida demais para permitir mate nos primeiros lances — e é justamente por isso que a abertura é respeitada. O que existe aqui é uma armadilha que ganha a dama."
     },
     {
-      "type": "paragraph",
-      "text": "Jogue a Variante do Avanço com as pretas. O centro trava e os dois lados atacam a base da cadeia de peões do adversário."
-    },
-    {
-      "type": "guided-line",
-      "id": "francesa-linha",
-      "title": "A Variante do Avanço, lance a lance",
-      "startFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
-      "orientation": "b",
-      "intro": "As brancas abriram com 1.e4. Você joga com as pretas.",
-      "conclusion": "Centro travado, peças pretas apontando para d4. Agora o plano é somar atacantes nessa casa.",
-      "steps": [
-        { "move": "e6", "reply": "d4", "explanation": "Prepara ...d5 com apoio. As brancas montam o centro completo." },
-        { "move": "d5", "reply": "e5", "explanation": "O peão chega protegido. As brancas fecham o centro em vez de trocar." },
-        { "move": "c5", "reply": "c3", "explanation": "A base da cadeia branca é d4. Ataque sempre a base, nunca a ponta." },
-        { "move": "Nc6", "reply": "Nf3", "explanation": "Mais um atacante em d4. Conte os atacantes e os defensores dessa casa a cada lance." },
-        { "move": "Qb6", "reply": "Be2", "explanation": "A dama entra na pressão sobre d4 e de quebra vigia b2." },
-        { "move": "Bd7", "reply": "O-O", "explanation": "O bispo ruim sai pela porta dos fundos e a torre de a8 ganha caminho." }
+      "type": "guided-game",
+      "id": "francesa-partida",
+      "title": "Do primeiro lance ao ganho da dama",
+      "orientation": "w",
+      "exhaustiveFrom": 17,
+      "intro": "Você joga com as brancas, do começo ao fim. No lance 9 as pretas vão ter três respostas possíveis, e você vence as três.",
+      "conclusion": "As três fugas do rei preto estão cobertas, e em todas a dama cai. Essa é a armadilha clássica da Variante do Avanço.",
+      "variations": [
+        {
+          "label": "Ele bloqueia com o bispo",
+          "ending": "A dama cai: o bispo de b5 saiu de d3 e abriu a coluna d para a sua dama. É um ataque descoberto com xeque.",
+          "outcome": "advantage",
+          "moves": [
+            { "san": "e4", "note": "Peão ao centro." },
+            { "san": "e6", "note": "a Francesa: ele prepara ...d5 com apoio" },
+            { "san": "d4", "note": "Centro completo." },
+            { "san": "d5", "note": "ele chega com o peão protegido" },
+            { "san": "e5", "note": "Feche o centro em vez de trocar. A sua cadeia fica d4-e5 e a base é d4." },
+            { "san": "c5", "note": "ele ataca a base da sua cadeia, que é o certo" },
+            { "san": "c3", "note": "Segure d4 com outro peão. A disputa toda vai girar nessa casa." },
+            { "san": "Nc6", "note": "mais um atacante em d4" },
+            { "san": "Nf3", "note": "Mais um defensor. Conte atacantes e defensores a cada lance." },
+            { "san": "Qb6", "note": "a dama dele entra na pressão sobre d4" },
+            { "san": "Bd3", "note": "Lance natural de desenvolvimento. Repare que ele tapa a sua própria coluna d: isso vai importar." },
+            { "san": "cxd4", "note": "ele começa a liquidar no centro" },
+            { "san": "cxd4", "note": "Recapture. Agora d4 está defendido só pelo cavalo de f3." },
+            { "san": "Nxd4", "note": "ele come o peão" },
+            { "san": "Nxd4", "note": "Recapture de novo. Tudo normal até aqui." },
+            { "san": "Qxd4", "note": "o erro: ele pega o cavalo com a dama" },
+            { "san": "Bb5+", "note": "O golpe. O bispo sai de d3 com xeque e, ao sair, abre a coluna d: a sua dama passa a atacar a dama dele." },
+            { "san": "Bd7", "note": "ele tapa o xeque" },
+            { "san": "Qxd4", "note": "Dama capturada. Ele tem de atender ao xeque e não dá tempo de salvar a dama." }
+          ]
+        },
+        {
+          "label": "O rei vai para e7",
+          "ending": "Mesmo resultado: ele cuidou do xeque, você pegou a dama.",
+          "outcome": "advantage",
+          "moves": [
+            { "san": "e4" }, { "san": "e6" }, { "san": "d4" }, { "san": "d5" }, { "san": "e5" },
+            { "san": "c5" }, { "san": "c3" }, { "san": "Nc6" }, { "san": "Nf3" }, { "san": "Qb6" },
+            { "san": "Bd3" }, { "san": "cxd4" }, { "san": "cxd4" }, { "san": "Nxd4" }, { "san": "Nxd4" },
+            { "san": "Qxd4" }, { "san": "Bb5+" },
+            { "san": "Ke7", "note": "ele anda com o rei" },
+            { "san": "Qxd4" }
+          ]
+        },
+        {
+          "label": "O rei vai para d8",
+          "ending": "A terceira e última resposta legal. Também perde a dama.",
+          "outcome": "advantage",
+          "moves": [
+            { "san": "e4" }, { "san": "e6" }, { "san": "d4" }, { "san": "d5" }, { "san": "e5" },
+            { "san": "c5" }, { "san": "c3" }, { "san": "Nc6" }, { "san": "Nf3" }, { "san": "Qb6" },
+            { "san": "Bd3" }, { "san": "cxd4" }, { "san": "cxd4" }, { "san": "Nxd4" }, { "san": "Nxd4" },
+            { "san": "Qxd4" }, { "san": "Bb5+" },
+            { "san": "Kd8", "note": "ele foge para o outro lado" },
+            { "san": "Qxd4" }
+          ]
+        },
+        {
+          "label": "Ele não cai: desenvolve em vez de comer",
+          "ending": "Nada de armadilha. Ele desenvolveu o bispo e a partida segue equilibrada: agora é jogar o plano normal da Francesa.",
+          "outcome": "equal",
+          "moves": [
+            { "san": "e4" }, { "san": "e6" }, { "san": "d4" }, { "san": "d5" }, { "san": "e5" },
+            { "san": "c5" }, { "san": "c3" }, { "san": "Nc6" }, { "san": "Nf3" }, { "san": "Qb6" },
+            { "san": "Bd3" }, { "san": "cxd4" }, { "san": "cxd4" },
+            { "san": "Bd7", "note": "ele desenvolve o bispo ruim em vez de capturar" },
+            { "san": "O-O", "note": "Rei em segurança. Sem armadilha, a Francesa é uma disputa longa por d4 e d5." }
+          ]
+        }
       ]
     },
     {
       "type": "tip",
-      "title": "O bispo de c8 é o seu problema",
-      "text": "Em quase toda Francesa, esse bispo é a peça pior colocada do tabuleiro. Antes de atacar, decida o que fazer com ele: ...Bd7-b5 para trocar, ...b6 e ...Ba6, ou deixá-lo em d7 apoiando o resto."
+      "title": "Por que não existe mate rápido na Francesa",
+      "text": "O peão de e6 tapa a diagonal que leva a f7, que é por onde quase todos os mates de abertura entram. Procurei, posição por posição nas linhas principais, um erro que permitisse mate forçado em dois lances: não existe nenhum. Em compensação, as armadilhas que ganham material são frequentes."
+    },
+    {
+      "type": "guided-line",
+      "id": "francesa-linha",
+      "title": "A Variante do Avanço pelo lado das pretas",
+      "startFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+      "orientation": "b",
+      "intro": "Agora do outro lado, para você saber se defender dela.",
+      "conclusion": "Centro travado e peças pretas apontando para d4. O plano é somar atacantes nessa casa.",
+      "steps": [
+        { "move": "e6", "reply": "d4", "explanation": "Prepara ...d5 com apoio." },
+        { "move": "d5", "reply": "e5", "explanation": "O peão chega protegido e as brancas fecham o centro." },
+        { "move": "c5", "reply": "c3", "explanation": "A base da cadeia branca é d4. Ataque sempre a base." },
+        { "move": "Nc6", "reply": "Nf3", "explanation": "Mais um atacante em d4." },
+        { "move": "Qb6", "reply": "Be2", "explanation": "A dama pressiona d4 e vigia b2. Repare: aqui as brancas NÃO jogaram Bd3, e por isso não há armadilha." },
+        { "move": "Bd7", "reply": "O-O", "explanation": "O bispo ruim sai pela porta dos fundos." }
+      ]
     },
     {
       "type": "exercise",
@@ -51,11 +122,6 @@
       "acceptedMoves": ["c5"],
       "goal": "move",
       "successText": "3...c5. A cadeia branca é d4-e5; d4 é a base e é por ali que ela cai."
-    },
-    {
-      "type": "tip",
-      "title": "Dos dois lados",
-      "text": "Com as brancas, a regra se inverte: a sua cadeia é d4-e5 e a base preta é e6. Por isso as brancas atacam com f4-f5, nunca empurrando e5-e6 cedo demais."
     }
   ],
   "checks": [

@@ -15,6 +15,8 @@ export class GuidedGameError extends Error {}
 export interface GuidedNode {
   /** Caminho até aqui, em SAN canônico, separado por espaço. Serve de id. */
   path: string;
+  /** Quantos lances foram jogados até aqui (a raiz é 0). */
+  depth: number;
   /** Posição neste ponto. */
   fen: string;
   /** De quem é a vez: 'player' (aluno) ou 'opponent'. */
@@ -25,7 +27,7 @@ export interface GuidedNode {
   note?: string;
   children: GuidedNode[];
   /** Preenchido só nas folhas. */
-  ending: { outcome: 'mate' | 'advantage'; text?: string; label?: string } | null;
+  ending: { outcome: 'mate' | 'advantage' | 'equal'; text?: string; label?: string } | null;
 }
 
 export interface GuidedGame {
@@ -40,7 +42,9 @@ export interface GuidedGame {
  * Monta a árvore e valida tudo.
  * @throws GuidedGameError com a descrição do problema
  */
-export function buildGuidedGame(block: Pick<GuidedGameBlock, 'startFen' | 'variations' | 'exhaustive'>): GuidedGame {
+export function buildGuidedGame(
+  block: Pick<GuidedGameBlock, 'startFen' | 'variations' | 'exhaustive' | 'exhaustiveFrom'>,
+): GuidedGame {
   const startFen = block.startFen ?? START_FEN;
   let probe: Chess;
   try {
@@ -53,6 +57,7 @@ export function buildGuidedGame(block: Pick<GuidedGameBlock, 'startFen' | 'varia
 
   const root: GuidedNode = {
     path: '',
+    depth: 0,
     fen: startFen,
     turn: 'player',
     san: null,
@@ -65,7 +70,8 @@ export function buildGuidedGame(block: Pick<GuidedGameBlock, 'startFen' | 'varia
   const leaves: GuidedNode[] = [];
   collectLeaves(root, leaves);
   checkShape(root, leaves.length);
-  if (block.exhaustive) checkExhaustive(root);
+  const exhaustiveFrom = block.exhaustive ? 0 : block.exhaustiveFrom;
+  if (exhaustiveFrom !== undefined) checkExhaustive(root, exhaustiveFrom);
 
   return { startFen, playerColor, root, leaves };
 }
@@ -101,6 +107,7 @@ function insertVariation(
     if (!child) {
       child = {
         path: node.path ? `${node.path} ${san}` : san,
+        depth: node.depth + 1,
         fen: chess.fen(),
         turn: expectedTurn === 'player' ? 'opponent' : 'player',
         san,
@@ -159,10 +166,11 @@ function checkShape(node: GuidedNode, leafCount: number) {
   });
 }
 
-/** Toda resposta legal do adversário precisa estar prevista. */
-function checkExhaustive(root: GuidedNode) {
+/** Toda resposta legal do adversário precisa estar prevista, a partir de um lance. */
+function checkExhaustive(root: GuidedNode, fromPly: number) {
   walk(root, (node) => {
     if (node.turn !== 'opponent' || node.ending) return;
+    if (node.depth < fromPly) return;
     const chess = new Chess(node.fen);
     const legal = chess.moves().map(normalizeSan);
     const covered = new Set(node.children.map((child) => normalizeSan(child.san ?? '')));

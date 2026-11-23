@@ -220,7 +220,11 @@ function GuidedGameBoard({
               <div className="guided-leaf">
                 <p className={allDone ? 'guided-done' : 'guided-correct'}>
                   {allDone ? <Trophy size={16} aria-hidden="true" /> : <CheckCircle2 size={16} aria-hidden="true" />}{' '}
-                  {leaf.ending?.outcome === 'mate' ? 'Xeque-mate!' : 'Posição ganha!'}
+                  {leaf.ending?.outcome === 'mate'
+                    ? 'Xeque-mate!'
+                    : leaf.ending?.outcome === 'equal'
+                      ? 'Partida equilibrada.'
+                      : 'Posição ganha!'}
                 </p>
                 {leaf.ending?.text && <p className="guided-explanation">{leaf.ending.text}</p>}
                 {allDone ? (

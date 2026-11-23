@@ -1913,7 +1913,7 @@ code {
   border-radius: var(--radius-sm);
   font-size: var(--text-sm);
   font-variant-numeric: tabular-nums;
-  max-height: 15rem;
+  max-height: 20rem;
   overflow-y: auto;
 }
 

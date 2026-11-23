@@ -2,79 +2,94 @@
   "lessonId": "espanhola",
   "moduleId": "aberturas",
   "requiredScope": "module:aberturas",
-  "durationMinutes": 8,
+  "durationMinutes": 10,
   "body": [
     {
       "type": "paragraph",
-      "text": "A Espanhola ataca o defensor: o bispo vai a b5 e encosta no cavalo de c6, que é quem segura o peão de e5. A ameaça é indireta e demora a aparecer, por isso a abertura é lenta e dura muitos lances."
+      "text": "A Espanhola ataca o defensor: o bispo vai a b5 e encosta no cavalo que segura o peão de e5. Aqui você joga com as pretas e arma uma cilada para quem acha que o peão de e5 está de graça."
     },
     {
-      "type": "paragraph",
-      "text": "Jogue a linha fechada com as brancas. Oito lances de cada lado, todos com um motivo simples."
-    },
-    {
-      "type": "guided-line",
-      "id": "espanhola-linha",
-      "title": "A Espanhola fechada, lance a lance",
-      "orientation": "w",
-      "intro": "Você joga com as brancas.",
-      "conclusion": "Rei seguro, torre em e1, bispo guardado em b3 e o centro ainda fechado. É daqui que a Espanhola começa de verdade.",
-      "steps": [
+      "type": "guided-game",
+      "id": "espanhola-partida",
+      "title": "Do primeiro lance ao mate: o peão envenenado de e5",
+      "startFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+      "orientation": "b",
+      "exhaustiveFrom": 11,
+      "intro": "As brancas abriram com 1.e4. Você joga com as pretas e oferece um peão que não pode ser comido.",
+      "conclusion": "As duas tentativas dele no final estão cobertas: uma leva a mate, a outra devolve a dama. E se ele recusar a isca logo no começo, a partida segue igual.",
+      "variations": [
         {
-          "move": "e4",
-          "reply": "e5",
-          "explanation": "Centro ocupado dos dois lados."
+          "label": "Ele come o peão e depois bloqueia com o bispo",
+          "ending": "Xeque-mate. O bispo de e2 não pode capturar o cavalo porque está cravado pela dama de e4, e o rei não tem casa nenhuma.",
+          "moves": [
+            { "san": "e5", "note": "Resposta simétrica ao centro." },
+            { "san": "Nf3", "note": "ele ataca o seu peão de e5" },
+            { "san": "Nc6", "note": "Defenda com uma peça, nunca com um peão: o peão não entra em jogo depois." },
+            { "san": "Bb5", "note": "a Espanhola: ele encosta no defensor de e5" },
+            { "san": "Nd4", "note": "Um lance estranho de propósito: o cavalo sai de c6 e deixa e5 sem defesa. É a isca." },
+            { "san": "Nxe5", "note": "ele morde: come o peão" },
+            { "san": "Qg5", "note": "O golpe duplo. A dama ataca o cavalo de e5 e o peão de g2 ao mesmo tempo." },
+            { "san": "Nxf7", "note": "ele contra-ataca o seu rei e a sua torre" },
+            { "san": "Qxg2", "note": "Ignore a torre. O seu ataque chega primeiro: g2 cai e h1 fica na mira." },
+            { "san": "Rf1", "note": "ele salva a torre, mas tira a casa f1 do próprio rei" },
+            { "san": "Qxe4+", "note": "Mais um peão, com xeque. Agora ele só tem dois lances legais." },
+            { "san": "Be2", "note": "ele bloqueia com o bispo" },
+            { "san": "Nf3#" }
+          ]
         },
         {
-          "move": "Nf3",
-          "reply": "Nc6",
-          "explanation": "O cavalo ataca e5, as pretas defendem com o cavalo de c6."
+          "label": "Ele bloqueia com a dama e escapa do mate",
+          "ending": "Sem mate: foi o único jeito. Mas ele devolveu a dama, e você fica com dama e cavalo contra torre e bispo.",
+          "outcome": "advantage",
+          "moves": [
+            { "san": "e5" }, { "san": "Nf3" }, { "san": "Nc6" }, { "san": "Bb5" }, { "san": "Nd4" },
+            { "san": "Nxe5" }, { "san": "Qg5" }, { "san": "Nxf7" }, { "san": "Qxg2" }, { "san": "Rf1" },
+            { "san": "Qxe4+" },
+            { "san": "Qe2", "note": "ele entrega a dama para não levar mate" },
+            { "san": "Qxe2+", "note": "Capture com xeque. A conta de material ficou boa demais para ele reagir." }
+          ]
         },
         {
-          "move": "Bb5",
-          "reply": "a6",
-          "explanation": "O bispo encosta no defensor de e5. As pretas perguntam logo o que ele pretende."
-        },
-        {
-          "move": "Ba4",
-          "reply": "Nf6",
-          "explanation": "O bispo mantém a diagonal. Trocar em c6 daria às pretas o par de bispos."
-        },
-        {
-          "move": "O-O",
-          "reply": "Be7",
-          "explanation": "Rei seguro antes de qualquer coisa. O peão de e4 fica solto por um instante, e isso é de propósito."
-        },
-        {
-          "move": "Re1",
-          "reply": "b5",
-          "explanation": "Agora e4 está defendido. As pretas ganham espaço e enxotam o bispo."
-        },
-        {
-          "move": "Bb3",
-          "reply": "d6",
-          "explanation": "O bispo se instala na diagonal que termina em f7 e fica fora do alcance dos peões pretos."
-        },
-        {
-          "move": "c3",
-          "reply": "O-O",
-          "explanation": "Prepara d4 e abre a casa c2 para o bispo recuar se ...Na5 vier."
+          "label": "Ele desconfia da isca",
+          "ending": "Sem armadilha: ele trocou em vez de comer. A partida segue normal, com o seu peão de d4 incomodando o centro dele.",
+          "outcome": "advantage",
+          "moves": [
+            { "san": "e5" }, { "san": "Nf3" }, { "san": "Nc6" }, { "san": "Bb5" }, { "san": "Nd4" },
+            { "san": "Nxd4", "note": "a resposta correta: ele troca em vez de comer o peão" },
+            { "san": "exd4", "note": "Recapture. Você não ganhou nada, mas também não perdeu: é uma partida normal." }
+          ]
         }
       ]
     },
     {
       "type": "tip",
-      "title": "Por que 4.Bxc6 não ganha o peão",
-      "text": "Depois de 4.Bxc6 dxc6 5.Nxe5, as pretas têm 5...Dd4, atacando cavalo e peão, ou 5...De7, cravando o cavalo. O peão volta e as pretas ficam com os dois bispos. É o exercício abaixo."
+      "title": "Cuidado com esta aula",
+      "text": "O lance 4...Cd4 é objetivamente ruim: se as brancas responderem 5.Cxd4, elas ficam bem. A armadilha serve para você reconhecê-la quando estiver do outro lado. Não construa o seu jogo em cima dela."
+    },
+    {
+      "type": "guided-line",
+      "id": "espanhola-linha",
+      "title": "A Espanhola de verdade: a linha fechada",
+      "orientation": "w",
+      "intro": "Agora com as brancas, sem armadilha. Oito lances de cada lado, todos com um motivo simples.",
+      "conclusion": "Rei seguro, torre em e1, bispo guardado em b3 e o centro ainda fechado.",
+      "steps": [
+        { "move": "e4", "reply": "e5", "explanation": "Centro ocupado dos dois lados." },
+        { "move": "Nf3", "reply": "Nc6", "explanation": "O cavalo ataca e5, as pretas defendem com o cavalo." },
+        { "move": "Bb5", "reply": "a6", "explanation": "O bispo encosta no defensor de e5 e as pretas perguntam o que ele pretende." },
+        { "move": "Ba4", "reply": "Nf6", "explanation": "Trocar em c6 daria às pretas o par de bispos." },
+        { "move": "O-O", "reply": "Be7", "explanation": "Rei seguro antes de qualquer coisa, mesmo com e4 solto por um instante." },
+        { "move": "Re1", "reply": "b5", "explanation": "Agora e4 está defendido." },
+        { "move": "Bb3", "reply": "d6", "explanation": "O bispo se instala fora do alcance dos peões pretos." },
+        { "move": "c3", "reply": "O-O", "explanation": "Prepara d4 e abre c2 para o bispo recuar." }
+      ]
     },
     {
       "type": "exercise",
       "id": "espanhola-define",
       "prompt": "Jogue o lance que define a Abertura Espanhola.",
       "fen": "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3",
-      "acceptedMoves": [
-        "Bb5"
-      ],
+      "acceptedMoves": ["Bb5"],
       "goal": "move",
       "successText": "O bispo pressiona o cavalo que defende e5. Nada é ganho ainda, mas a pergunta está feita."
     },
@@ -83,28 +98,13 @@
       "id": "espanhola-recupera",
       "prompt": "As brancas capturaram o peão de e5. Recupere o material com a dama.",
       "fen": "r1bqkbnr/1pp2ppp/p1p5/4N3/4P3/8/PPPP1PPP/RNBQK2R b KQkq - 0 5",
-      "acceptedMoves": [
-        "Qd4",
-        "Qe7"
-      ],
+      "acceptedMoves": ["Qd4", "Qe7"],
       "goal": "move",
-      "successText": "Dois lances servem: 5...Dd4 ataca o cavalo e o peão de e4 ao mesmo tempo; 5...De7 crava o cavalo na coluna e. Nos dois casos o peão volta e as pretas ficam com o par de bispos."
-    },
-    {
-      "type": "tip",
-      "title": "Paciência",
-      "text": "A Espanhola quase nunca é decidida nos dez primeiros lances. Se você não vê um golpe, melhore a peça pior colocada e espere. Quem tenta forçar cedo demais costuma abrir o próprio rei."
+      "successText": "Dois lances servem: 5...Dd4 ataca o cavalo e o peão de e4 ao mesmo tempo; 5...De7 crava o cavalo na coluna e. Nos dois casos o peão volta."
     }
   ],
   "checks": [
-    {
-      "exerciseId": "espanhola-define",
-      "mode": "theory"
-    },
-    {
-      "exerciseId": "espanhola-recupera",
-      "mode": "best",
-      "minGap": 50
-    }
+    { "exerciseId": "espanhola-define", "mode": "theory" },
+    { "exerciseId": "espanhola-recupera", "mode": "best", "minGap": 50 }
   ]
 }

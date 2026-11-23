@@ -146,6 +146,8 @@ export function checkGuidedGame(block) {
   const playerMoves = new Map();
   /** Posições em que o adversário joga, com as defesas previstas. */
   const opponentReplies = new Map();
+  /** A partir de qual lance a cobertura total é exigida. */
+  const exhaustiveFrom = block.exhaustive ? 0 : block.exhaustiveFrom;
 
   block.variations.forEach((variation, index) => {
     const label = variation.label ?? `variante ${index + 1}`;
@@ -171,8 +173,8 @@ export function checkGuidedGame(block) {
         }
         playerMoves.set(key, san);
       } else {
-        if (!opponentReplies.has(key)) opponentReplies.set(key, new Set());
-        opponentReplies.get(key).add(san);
+        if (!opponentReplies.has(key)) opponentReplies.set(key, { ply, defesas: new Set() });
+        opponentReplies.get(key).defesas.add(san);
       }
     }
     if (variation.moves.length % 2 === 0) {
@@ -184,10 +186,11 @@ export function checkGuidedGame(block) {
     }
   });
 
-  if (block.exhaustive) {
-    for (const [fen, covered] of opponentReplies) {
+  if (exhaustiveFrom !== undefined) {
+    for (const [fen, info] of opponentReplies) {
+      if (info.ply < exhaustiveFrom) continue;
       const legal = new Chess(fen).moves();
-      const missing = legal.filter((san) => !covered.has(san));
+      const missing = legal.filter((san) => !info.defesas.has(san));
       if (missing.length > 0) {
         errors.push(`falta a resposta para ${missing.join(', ')} na posição ${fen}`);
       }
