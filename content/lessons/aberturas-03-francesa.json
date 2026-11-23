@@ -14,8 +14,8 @@
       "title": "Do primeiro lance ao ganho da dama",
       "orientation": "w",
       "exhaustiveFrom": 17,
-      "intro": "Você joga com as brancas, do começo ao fim. No lance 9 as pretas vão ter três respostas possíveis, e você vence as três.",
-      "conclusion": "As três fugas do rei preto estão cobertas, e em todas a dama cai. Essa é a armadilha clássica da Variante do Avanço.",
+      "intro": "Você joga com as brancas, do começo ao fim. No lance 9 as pretas vão ter três respostas possíveis, e você vence as três. Mais cedo, no lance 5, elas também podem evitar a armadilha inteira.",
+      "conclusion": "As três fugas do rei preto estão cobertas, e em todas a dama cai. Essa é a armadilha clássica da Variante do Avanço. E se as pretas nunca atacarem d4 com a dama, a armadilha nem chega a existir.",
       "variations": [
         {
           "label": "Ele bloqueia com o bispo",
@@ -79,6 +79,17 @@
             { "san": "Bd3" }, { "san": "cxd4" }, { "san": "cxd4" },
             { "san": "Bd7", "note": "ele desenvolve o bispo ruim em vez de capturar" },
             { "san": "O-O", "note": "Rei em segurança. Sem armadilha, a Francesa é uma disputa longa por d4 e d5." }
+          ]
+        },
+        {
+          "label": "Ele nem ataca d4 com a dama",
+          "ending": "Sem a dama em b6 pressionando d4, não existe ataque descoberto nenhum para armar. Desenvolva com calma: a vantagem aqui é só a posicional de sempre.",
+          "outcome": "equal",
+          "moves": [
+            { "san": "e4" }, { "san": "e6" }, { "san": "d4" }, { "san": "d5" }, { "san": "e5" },
+            { "san": "c5" }, { "san": "c3" }, { "san": "Nc6" }, { "san": "Nf3" },
+            { "san": "Be7", "note": "ele desenvolve o bispo em vez de atacar d4 com a dama: sem Db6, não há o que a sua Bb5+ venha a descobrir depois" },
+            { "san": "Be2", "note": "Desenvolva com calma. Sem a dama preta em b6, o truque do bispo em b5 não tem alvo nenhum." }
           ]
         }
       ]

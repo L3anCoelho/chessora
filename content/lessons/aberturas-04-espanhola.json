@@ -16,7 +16,7 @@
       "orientation": "b",
       "exhaustiveFrom": 11,
       "intro": "As brancas abriram com 1.e4. Você joga com as pretas e oferece um peão que não pode ser comido.",
-      "conclusion": "As duas tentativas dele no final estão cobertas: uma leva a mate, a outra devolve a dama. E se ele recusar a isca logo no começo, a partida segue igual.",
+      "conclusion": "O cavalo em d4 é um garfo: ele ataca o bispo e o cavalo de f3 ao mesmo tempo. Se as brancas ignorarem o garfo ou comerem o peão, você sai ganhando; só a troca imediata (Cxd4) deixa a posição normal.",
       "variations": [
         {
           "label": "Ele come o peão e depois bloqueia com o bispo",
@@ -58,13 +58,33 @@
             { "san": "Nxd4", "note": "a resposta correta: ele troca em vez de comer o peão" },
             { "san": "exd4", "note": "Recapture. Você não ganhou nada, mas também não perdeu: é uma partida normal." }
           ]
+        },
+        {
+          "label": "Ele ignora o garfo e desenvolve",
+          "ending": "O cavalo de d4 ataca o bispo de b5 e o cavalo de f3 ao mesmo tempo. Ignorando os dois, as brancas só têm a si mesmas a culpar: você captura o bispo de graça.",
+          "outcome": "advantage",
+          "moves": [
+            { "san": "e5" }, { "san": "Nf3" }, { "san": "Nc6" }, { "san": "Bb5" }, { "san": "Nd4" },
+            { "san": "O-O", "note": "ele ignora o garfo e roca, como se nada tivesse acontecido" },
+            { "san": "Nxb5", "note": "Capture o bispo. Nada o defende: o garfo cobrou o preço." }
+          ]
+        },
+        {
+          "label": "Ele salva só o bispo",
+          "ending": "Salvar o bispo não resolve: o cavalo de d4 ainda ataca o cavalo de f3, e ele estava sem defesa com o rei branco ainda no centro.",
+          "outcome": "advantage",
+          "moves": [
+            { "san": "e5" }, { "san": "Nf3" }, { "san": "Nc6" }, { "san": "Bb5" }, { "san": "Nd4" },
+            { "san": "Ba4", "note": "ele recua o bispo, mas esquece do cavalo de f3" },
+            { "san": "Nxf3+", "note": "Capture o outro cavalo do garfo, com xeque de quebra: o rei branco ainda está no centro." }
+          ]
         }
       ]
     },
     {
       "type": "tip",
       "title": "Cuidado com esta aula",
-      "text": "O lance 4...Cd4 é objetivamente ruim: se as brancas responderem 5.Cxd4, elas ficam bem. A armadilha serve para você reconhecê-la quando estiver do outro lado. Não construa o seu jogo em cima dela."
+      "text": "O lance 4...Cd4 só funciona porque é um garfo real: ataca o bispo e o cavalo ao mesmo tempo. Mesmo assim, a teoria considera o lance discutível, porque 5.Cxd4 (a única resposta que desfaz as duas ameaças de uma vez) deixa as brancas bem. A armadilha serve para você reconhecê-la quando estiver do outro lado; não construa o seu jogo em cima dela."
     },
     {
       "type": "guided-line",

@@ -15,7 +15,7 @@
       "orientation": "w",
       "exhaustiveFrom": 13,
       "intro": "Você joga com as brancas, do começo ao fim. O adversário escolhe sozinho o que tentar, e cada tentativa dele pede uma resposta diferente.",
-      "conclusion": "Você venceu as três tentativas: a gananciosa, que termina em mate, e as duas em que ele se defende e você sai com vantagem.",
+      "conclusion": "Você venceu as quatro tentativas: a gananciosa, que termina em mate, e as três em que ele se defende ou joga diferente, e você segue bem.",
       "variations": [
         {
           "label": "Ele come a dama e leva mate",
@@ -74,6 +74,24 @@
             { "san": "h3" },
             { "san": "Bxf3", "note": "ele desfaz a cravada trocando" },
             { "san": "Qxf3", "note": "Recapture com a dama: ela fica ativa e ainda olha para f7." }
+          ]
+        },
+        {
+          "label": "Ele nem entra no Giuoco Piano: joga Bc5 direto",
+          "ending": "Sem armadilha nenhuma: a partir daqui é a linha principal, calma, de desenvolvimento. É exatamente a posição da aula \"E quando ele não erra\", logo abaixo.",
+          "outcome": "equal",
+          "moves": [
+            { "san": "e4" },
+            { "san": "e5" },
+            { "san": "Nf3" },
+            { "san": "Nc6" },
+            { "san": "Bc4" },
+            { "san": "Bc5", "note": "ele espelha o seu bispo em vez de jogar d6: é o Giuoco Piano, sem armadilha nenhuma" },
+            { "san": "c3", "note": "Prepare d4 com calma. Sem o peão em d6 primeiro, a armadilha de Légal nem existe nessa ordem de lances." },
+            { "san": "Nf6", "note": "ele desenvolve e ataca e4" },
+            { "san": "d3", "note": "Segure e4 e desenvolva o resto das peças. Daqui a partida é só boa teoria, sem truque." },
+            { "san": "d6", "note": "ele completa o desenvolvimento" },
+            { "san": "O-O", "note": "Rei em segurança. Isso é tudo: sem erro do adversário, não existe atalho." }
           ]
         }
       ]

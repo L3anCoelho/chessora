@@ -2,7 +2,7 @@
   "lessonId": "mate-qualquer-defesa",
   "moduleId": "finais",
   "requiredScope": "module:finais",
-  "durationMinutes": 8,
+  "durationMinutes": 11,
   "body": [
     {
       "type": "paragraph",
@@ -10,7 +10,7 @@
     },
     {
       "type": "paragraph",
-      "text": "As duas partidas abaixo têm todas as defesas previstas, sem exceção. O adversário sorteia uma tentativa a cada vez, e a aula só fica completa quando você vencer todas."
+      "text": "As três partidas abaixo têm todas as defesas previstas, sem exceção. O adversário sorteia uma tentativa a cada vez, e a aula só fica completa quando você vencer todas."
     },
     {
       "type": "guided-game",
@@ -96,6 +96,45 @@
       "type": "tip",
       "title": "O que fazer quando o rei está no meio do tabuleiro",
       "text": "Com duas torres, repita a escada: corte uma fileira, espere o rei andar, corte a próxima. Com dama e rei, aproxime o rei até ele cobrir as casas vizinhas e só então dê o xeque."
+    },
+    {
+      "type": "guided-game",
+      "id": "mate-torre-sozinha-defesas",
+      "title": "Uma torre sozinha: oposição direta, contra qualquer fuga",
+      "startFen": "4k3/8/8/4K3/8/8/8/R7 w - - 0 1",
+      "orientation": "w",
+      "exhaustive": true,
+      "intro": "Com uma torre só, o rei faz quase todo o trabalho. Tome a oposição direta: o rei preto vai ter que escolher um lado.",
+      "conclusion": "As duas fugas pedem o mesmo plano, espelhado: a torre corta a coluna do lado em que o rei NÃO foi, o rei preto fica só com uma casa, e a torre entra na oitava fileira para o mate.",
+      "variations": [
+        {
+          "label": "O rei vai para f8",
+          "ending": "Tg8 é mate: a torre cobre a oitava fileira inteira e o rei branco, em e6, cobre e7, e8 e f7.",
+          "moves": [
+            { "san": "Ke6", "note": "Tome a oposição direta (reis na mesma coluna, com uma casa entre eles). É isso que obriga o rei preto a escolher um lado." },
+            { "san": "Kf8", "note": "ele vai para a direita" },
+            { "san": "Rg1", "note": "A torre corta a coluna g, do lado para onde ele NÃO foi. Agora o rei preto só tem e8." },
+            { "san": "Ke8", "note": "o único lance que sobrou" },
+            { "san": "Rg8#" }
+          ]
+        },
+        {
+          "label": "O rei vai para d8",
+          "ending": "Tc8 é mate, pelo mesmo motivo espelhado: a torre cobre a oitava fileira e o rei branco cobre e7, e8 e d7.",
+          "moves": [
+            { "san": "Ke6" },
+            { "san": "Kd8", "note": "ele vai para a esquerda" },
+            { "san": "Rc1", "note": "A torre corta a coluna c, do lado oposto ao rei." },
+            { "san": "Ke8", "note": "o único lance que sobrou" },
+            { "san": "Rc8#" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "tip",
+      "title": "Uma torre é mais lenta, não mais fraca",
+      "text": "Sem a segunda torre, o seu rei precisa entrar no jogo e tomar a oposição antes de cortar a coluna. É um lance a mais em cada etapa, mas o resultado é o mesmo: o rei adversário acaba preso numa única casa."
     }
   ],
   "checks": []

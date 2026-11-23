@@ -16,7 +16,7 @@
       "orientation": "b",
       "exhaustiveFrom": 13,
       "intro": "As brancas abriram com 1.d4. Você joga com as pretas e vai deixar a sua dama aparentemente de graça.",
-      "conclusion": "Você venceu as três tentativas: a gananciosa, que custa uma peça a ele, a cautelosa e a que nem entra na armadilha.",
+      "conclusion": "Você venceu as quatro tentativas: a gananciosa, que custa uma peça a ele, a cautelosa, a que nem entra na armadilha e a que evita a cravada desde o início.",
       "variations": [
         {
           "label": "Ele come a dama e perde uma peça",
@@ -241,6 +241,36 @@
             {
               "san": "Be7",
               "note": "Desfaça a cravada e prepare o roque. Daqui é uma partida normal."
+            }
+          ]
+        },
+        {
+          "label": "Ele nem crava o cavalo: joga Cf3 em vez de Bg5",
+          "ending": "Sem cravada, não há cavalo \"aparentemente preso\" nem isca nenhuma. É só o Gambito da Dama Recusado mais comum de todos.",
+          "outcome": "equal",
+          "moves": [
+            {
+              "san": "d5"
+            },
+            {
+              "san": "c4"
+            },
+            {
+              "san": "e6"
+            },
+            {
+              "san": "Nc3"
+            },
+            {
+              "san": "Nf6"
+            },
+            {
+              "san": "Nf3",
+              "note": "ele desenvolve o cavalo em vez de cravar com o bispo"
+            },
+            {
+              "san": "Be7",
+              "note": "Desenvolva com calma. Sem o bispo em g5, não existe cavalo cravado para fingir que está preso."
             }
           ]
         }

@@ -15,7 +15,7 @@
       "startFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
       "orientation": "b",
       "intro": "As brancas abriram com 1.e4 e vão entregar um peão pelo desenvolvimento. Você joga com as pretas até o fim.",
-      "conclusion": "Em todas as tentativas o problema das brancas é o mesmo: o cavalo de f3 é o único defensor de h2, e ele foi obrigado a sair.",
+      "conclusion": "Em quase todas as tentativas o problema das brancas é o mesmo: o cavalo de f3 é o único defensor de h2, e ele foi obrigado a sair. Se as brancas não entregarem o gambito, a armadilha nem chega a existir.",
       "variations": [
         {
           "label": "Ele captura o cavalo",
@@ -77,6 +77,22 @@
             { "san": "h3" }, { "san": "Nd4" },
             { "san": "hxg4", "note": "a melhor defesa: ele come o cavalo que mirava h2" },
             { "san": "Nxe2+", "note": "Com xeque, o que não dá tempo de ele reagir. Você ganhou a dama." }
+          ]
+        },
+        {
+          "label": "Ele não entrega o gambito: joga Cf3 primeiro",
+          "ending": "Sem gambito e sem armadilha: as brancas desenvolveram antes de abrir o centro, e a casa h2 nunca fica com um defensor só. É um Siciliano Aberto normal.",
+          "outcome": "equal",
+          "moves": [
+            { "san": "c5", "note": "A Siciliana: o peão vigia d4 sem bloquear nenhuma peça preta." },
+            { "san": "Nf3", "note": "ele desenvolve antes de abrir o centro, sem oferecer peão nenhum" },
+            { "san": "Nc6", "note": "Desenvolva normalmente. Sem c3 cedo, não há peão para aceitar." },
+            { "san": "d4", "note": "só agora ele abre o centro" },
+            { "san": "cxd4", "note": "Troque como sempre: um peão lateral seu sai, um peão central dele some." },
+            { "san": "Nxd4", "note": "ele recaptura com o cavalo, já no lugar certo" },
+            { "san": "Nf6", "note": "Desenvolva atacando e4. Essa é a estrutura normal da Siciliana Aberta, sem truque nenhum." },
+            { "san": "Nc3", "note": "ele defende e4" },
+            { "san": "d6", "note": "Apoie e5 e abra o bispo de c8. Dali para a frente é a partida comum, sem o cavalo de f3 isolado defendendo h2." }
           ]
         }
       ]

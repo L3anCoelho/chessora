@@ -23,7 +23,7 @@ values (
     "orientation": "w",
     "exhaustiveFrom": 13,
     "intro": "Você joga com as brancas, do começo ao fim. O adversário escolhe sozinho o que tentar, e cada tentativa dele pede uma resposta diferente.",
-    "conclusion": "Você venceu as três tentativas: a gananciosa, que termina em mate, e as duas em que ele se defende e você sai com vantagem.",
+    "conclusion": "Você venceu as quatro tentativas: a gananciosa, que termina em mate, e as três em que ele se defende ou joga diferente, e você segue bem.",
     "variations": [
       {
         "label": "Ele come a dama e leva mate",
@@ -179,6 +179,52 @@ values (
             "note": "Recapture com a dama: ela fica ativa e ainda olha para f7."
           }
         ]
+      },
+      {
+        "label": "Ele nem entra no Giuoco Piano: joga Bc5 direto",
+        "ending": "Sem armadilha nenhuma: a partir daqui é a linha principal, calma, de desenvolvimento. É exatamente a posição da aula \"E quando ele não erra\", logo abaixo.",
+        "outcome": "equal",
+        "moves": [
+          {
+            "san": "e4"
+          },
+          {
+            "san": "e5"
+          },
+          {
+            "san": "Nf3"
+          },
+          {
+            "san": "Nc6"
+          },
+          {
+            "san": "Bc4"
+          },
+          {
+            "san": "Bc5",
+            "note": "ele espelha o seu bispo em vez de jogar d6: é o Giuoco Piano, sem armadilha nenhuma"
+          },
+          {
+            "san": "c3",
+            "note": "Prepare d4 com calma. Sem o peão em d6 primeiro, a armadilha de Légal nem existe nessa ordem de lances."
+          },
+          {
+            "san": "Nf6",
+            "note": "ele desenvolve e ataca e4"
+          },
+          {
+            "san": "d3",
+            "note": "Segure e4 e desenvolva o resto das peças. Daqui a partida é só boa teoria, sem truque."
+          },
+          {
+            "san": "d6",
+            "note": "ele completa o desenvolvimento"
+          },
+          {
+            "san": "O-O",
+            "note": "Rei em segurança. Isso é tudo: sem erro do adversário, não existe atalho."
+          }
+        ]
       }
     ]
   },
@@ -285,7 +331,7 @@ values (
     "startFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
     "orientation": "b",
     "intro": "As brancas abriram com 1.e4 e vão entregar um peão pelo desenvolvimento. Você joga com as pretas até o fim.",
-    "conclusion": "Em todas as tentativas o problema das brancas é o mesmo: o cavalo de f3 é o único defensor de h2, e ele foi obrigado a sair.",
+    "conclusion": "Em quase todas as tentativas o problema das brancas é o mesmo: o cavalo de f3 é o único defensor de h2, e ele foi obrigado a sair. Se as brancas não entregarem o gambito, a armadilha nem chega a existir.",
     "variations": [
       {
         "label": "Ele captura o cavalo",
@@ -561,6 +607,49 @@ values (
             "note": "Com xeque, o que não dá tempo de ele reagir. Você ganhou a dama."
           }
         ]
+      },
+      {
+        "label": "Ele não entrega o gambito: joga Cf3 primeiro",
+        "ending": "Sem gambito e sem armadilha: as brancas desenvolveram antes de abrir o centro, e a casa h2 nunca fica com um defensor só. É um Siciliano Aberto normal.",
+        "outcome": "equal",
+        "moves": [
+          {
+            "san": "c5",
+            "note": "A Siciliana: o peão vigia d4 sem bloquear nenhuma peça preta."
+          },
+          {
+            "san": "Nf3",
+            "note": "ele desenvolve antes de abrir o centro, sem oferecer peão nenhum"
+          },
+          {
+            "san": "Nc6",
+            "note": "Desenvolva normalmente. Sem c3 cedo, não há peão para aceitar."
+          },
+          {
+            "san": "d4",
+            "note": "só agora ele abre o centro"
+          },
+          {
+            "san": "cxd4",
+            "note": "Troque como sempre: um peão lateral seu sai, um peão central dele some."
+          },
+          {
+            "san": "Nxd4",
+            "note": "ele recaptura com o cavalo, já no lugar certo"
+          },
+          {
+            "san": "Nf6",
+            "note": "Desenvolva atacando e4. Essa é a estrutura normal da Siciliana Aberta, sem truque nenhum."
+          },
+          {
+            "san": "Nc3",
+            "note": "ele defende e4"
+          },
+          {
+            "san": "d6",
+            "note": "Apoie e5 e abra o bispo de c8. Dali para a frente é a partida comum, sem o cavalo de f3 isolado defendendo h2."
+          }
+        ]
       }
     ]
   },
@@ -662,8 +751,8 @@ values (
     "title": "Do primeiro lance ao ganho da dama",
     "orientation": "w",
     "exhaustiveFrom": 17,
-    "intro": "Você joga com as brancas, do começo ao fim. No lance 9 as pretas vão ter três respostas possíveis, e você vence as três.",
-    "conclusion": "As três fugas do rei preto estão cobertas, e em todas a dama cai. Essa é a armadilha clássica da Variante do Avanço.",
+    "intro": "Você joga com as brancas, do começo ao fim. No lance 9 as pretas vão ter três respostas possíveis, e você vence as três. Mais cedo, no lance 5, elas também podem evitar a armadilha inteira.",
+    "conclusion": "As três fugas do rei preto estão cobertas, e em todas a dama cai. Essa é a armadilha clássica da Variante do Avanço. E se as pretas nunca atacarem d4 com a dama, a armadilha nem chega a existir.",
     "variations": [
       {
         "label": "Ele bloqueia com o bispo",
@@ -931,6 +1020,48 @@ values (
             "note": "Rei em segurança. Sem armadilha, a Francesa é uma disputa longa por d4 e d5."
           }
         ]
+      },
+      {
+        "label": "Ele nem ataca d4 com a dama",
+        "ending": "Sem a dama em b6 pressionando d4, não existe ataque descoberto nenhum para armar. Desenvolva com calma: a vantagem aqui é só a posicional de sempre.",
+        "outcome": "equal",
+        "moves": [
+          {
+            "san": "e4"
+          },
+          {
+            "san": "e6"
+          },
+          {
+            "san": "d4"
+          },
+          {
+            "san": "d5"
+          },
+          {
+            "san": "e5"
+          },
+          {
+            "san": "c5"
+          },
+          {
+            "san": "c3"
+          },
+          {
+            "san": "Nc6"
+          },
+          {
+            "san": "Nf3"
+          },
+          {
+            "san": "Be7",
+            "note": "ele desenvolve o bispo em vez de atacar d4 com a dama: sem Db6, não há o que a sua Bb5+ venha a descobrir depois"
+          },
+          {
+            "san": "Be2",
+            "note": "Desenvolva com calma. Sem a dama preta em b6, o truque do bispo em b5 não tem alvo nenhum."
+          }
+        ]
       }
     ]
   },
@@ -1029,7 +1160,7 @@ values (
     "orientation": "b",
     "exhaustiveFrom": 11,
     "intro": "As brancas abriram com 1.e4. Você joga com as pretas e oferece um peão que não pode ser comido.",
-    "conclusion": "As duas tentativas dele no final estão cobertas: uma leva a mate, a outra devolve a dama. E se ele recusar a isca logo no começo, a partida segue igual.",
+    "conclusion": "O cavalo em d4 é um garfo: ele ataca o bispo e o cavalo de f3 ao mesmo tempo. Se as brancas ignorarem o garfo ou comerem o peão, você sai ganhando; só a troca imediata (Cxd4) deixa a posição normal.",
     "variations": [
       {
         "label": "Ele come o peão e depois bloqueia com o bispo",
@@ -1165,13 +1296,73 @@ values (
             "note": "Recapture. Você não ganhou nada, mas também não perdeu: é uma partida normal."
           }
         ]
+      },
+      {
+        "label": "Ele ignora o garfo e desenvolve",
+        "ending": "O cavalo de d4 ataca o bispo de b5 e o cavalo de f3 ao mesmo tempo. Ignorando os dois, as brancas só têm a si mesmas a culpar: você captura o bispo de graça.",
+        "outcome": "advantage",
+        "moves": [
+          {
+            "san": "e5"
+          },
+          {
+            "san": "Nf3"
+          },
+          {
+            "san": "Nc6"
+          },
+          {
+            "san": "Bb5"
+          },
+          {
+            "san": "Nd4"
+          },
+          {
+            "san": "O-O",
+            "note": "ele ignora o garfo e roca, como se nada tivesse acontecido"
+          },
+          {
+            "san": "Nxb5",
+            "note": "Capture o bispo. Nada o defende: o garfo cobrou o preço."
+          }
+        ]
+      },
+      {
+        "label": "Ele salva só o bispo",
+        "ending": "Salvar o bispo não resolve: o cavalo de d4 ainda ataca o cavalo de f3, e ele estava sem defesa com o rei branco ainda no centro.",
+        "outcome": "advantage",
+        "moves": [
+          {
+            "san": "e5"
+          },
+          {
+            "san": "Nf3"
+          },
+          {
+            "san": "Nc6"
+          },
+          {
+            "san": "Bb5"
+          },
+          {
+            "san": "Nd4"
+          },
+          {
+            "san": "Ba4",
+            "note": "ele recua o bispo, mas esquece do cavalo de f3"
+          },
+          {
+            "san": "Nxf3+",
+            "note": "Capture o outro cavalo do garfo, com xeque de quebra: o rei branco ainda está no centro."
+          }
+        ]
       }
     ]
   },
   {
     "type": "tip",
     "title": "Cuidado com esta aula",
-    "text": "O lance 4...Cd4 é objetivamente ruim: se as brancas responderem 5.Cxd4, elas ficam bem. A armadilha serve para você reconhecê-la quando estiver do outro lado. Não construa o seu jogo em cima dela."
+    "text": "O lance 4...Cd4 só funciona porque é um garfo real: ataca o bispo e o cavalo ao mesmo tempo. Mesmo assim, a teoria considera o lance discutível, porque 5.Cxd4 (a única resposta que desfaz as duas ameaças de uma vez) deixa as brancas bem. A armadilha serve para você reconhecê-la quando estiver do outro lado; não construa o seu jogo em cima dela."
   },
   {
     "type": "guided-line",
@@ -1273,7 +1464,7 @@ values (
     "orientation": "b",
     "exhaustiveFrom": 13,
     "intro": "As brancas abriram com 1.d4. Você joga com as pretas e vai deixar a sua dama aparentemente de graça.",
-    "conclusion": "Você venceu as três tentativas: a gananciosa, que custa uma peça a ele, a cautelosa e a que nem entra na armadilha.",
+    "conclusion": "Você venceu as quatro tentativas: a gananciosa, que custa uma peça a ele, a cautelosa, a que nem entra na armadilha e a que evita a cravada desde o início.",
     "variations": [
       {
         "label": "Ele come a dama e perde uma peça",
@@ -1498,6 +1689,36 @@ values (
           {
             "san": "Be7",
             "note": "Desfaça a cravada e prepare o roque. Daqui é uma partida normal."
+          }
+        ]
+      },
+      {
+        "label": "Ele nem crava o cavalo: joga Cf3 em vez de Bg5",
+        "ending": "Sem cravada, não há cavalo \"aparentemente preso\" nem isca nenhuma. É só o Gambito da Dama Recusado mais comum de todos.",
+        "outcome": "equal",
+        "moves": [
+          {
+            "san": "d5"
+          },
+          {
+            "san": "c4"
+          },
+          {
+            "san": "e6"
+          },
+          {
+            "san": "Nc3"
+          },
+          {
+            "san": "Nf6"
+          },
+          {
+            "san": "Nf3",
+            "note": "ele desenvolve o cavalo em vez de cravar com o bispo"
+          },
+          {
+            "san": "Be7",
+            "note": "Desenvolva com calma. Sem o bispo em g5, não existe cavalo cravado para fingir que está preso."
           }
         ]
       }
@@ -2309,7 +2530,7 @@ values (
   },
   {
     "type": "paragraph",
-    "text": "As duas partidas abaixo têm todas as defesas previstas, sem exceção. O adversário sorteia uma tentativa a cada vez, e a aula só fica completa quando você vencer todas."
+    "text": "As três partidas abaixo têm todas as defesas previstas, sem exceção. O adversário sorteia uma tentativa a cada vez, e a aula só fica completa quando você vencer todas."
   },
   {
     "type": "guided-game",
@@ -2448,6 +2669,72 @@ values (
     "type": "tip",
     "title": "O que fazer quando o rei está no meio do tabuleiro",
     "text": "Com duas torres, repita a escada: corte uma fileira, espere o rei andar, corte a próxima. Com dama e rei, aproxime o rei até ele cobrir as casas vizinhas e só então dê o xeque."
+  },
+  {
+    "type": "guided-game",
+    "id": "mate-torre-sozinha-defesas",
+    "title": "Uma torre sozinha: oposição direta, contra qualquer fuga",
+    "startFen": "4k3/8/8/4K3/8/8/8/R7 w - - 0 1",
+    "orientation": "w",
+    "exhaustive": true,
+    "intro": "Com uma torre só, o rei faz quase todo o trabalho. Tome a oposição direta: o rei preto vai ter que escolher um lado.",
+    "conclusion": "As duas fugas pedem o mesmo plano, espelhado: a torre corta a coluna do lado em que o rei NÃO foi, o rei preto fica só com uma casa, e a torre entra na oitava fileira para o mate.",
+    "variations": [
+      {
+        "label": "O rei vai para f8",
+        "ending": "Tg8 é mate: a torre cobre a oitava fileira inteira e o rei branco, em e6, cobre e7, e8 e f7.",
+        "moves": [
+          {
+            "san": "Ke6",
+            "note": "Tome a oposição direta (reis na mesma coluna, com uma casa entre eles). É isso que obriga o rei preto a escolher um lado."
+          },
+          {
+            "san": "Kf8",
+            "note": "ele vai para a direita"
+          },
+          {
+            "san": "Rg1",
+            "note": "A torre corta a coluna g, do lado para onde ele NÃO foi. Agora o rei preto só tem e8."
+          },
+          {
+            "san": "Ke8",
+            "note": "o único lance que sobrou"
+          },
+          {
+            "san": "Rg8#"
+          }
+        ]
+      },
+      {
+        "label": "O rei vai para d8",
+        "ending": "Tc8 é mate, pelo mesmo motivo espelhado: a torre cobre a oitava fileira e o rei branco cobre e7, e8 e d7.",
+        "moves": [
+          {
+            "san": "Ke6"
+          },
+          {
+            "san": "Kd8",
+            "note": "ele vai para a esquerda"
+          },
+          {
+            "san": "Rc1",
+            "note": "A torre corta a coluna c, do lado oposto ao rei."
+          },
+          {
+            "san": "Ke8",
+            "note": "o único lance que sobrou"
+          },
+          {
+            "san": "Rc8#"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "tip",
+    "title": "Uma torre é mais lenta, não mais fraca",
+    "text": "Sem a segunda torre, o seu rei precisa entrar no jogo e tomar a oposição antes de cortar a coluna. É um lance a mais em cada etapa, mas o resultado é o mesmo: o rei adversário acaba preso numa única casa."
   }
 ]$json$::jsonb
 )
