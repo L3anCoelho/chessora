@@ -1,0 +1,55 @@
+{
+  "lessonId": "estrutura-de-peoes",
+  "moduleId": "estrategia",
+  "requiredScope": "module:estrategia",
+  "durationMinutes": 8,
+  "body": [
+    {
+      "type": "paragraph",
+      "text": "Peões não voltam atrás. Toda vez que você move um, decide alguma coisa para o resto da partida. Por isso vale conhecer os três defeitos e a única virtude que importam de verdade."
+    },
+    {
+      "type": "paragraph",
+      "text": "Peões dobrados são dois peões na mesma coluna: eles não se defendem e andam devagar. Peão isolado é o que não tem vizinho em nenhuma coluna ao lado: precisa ser defendido por peças. E peão passado é o que não tem nenhum peão adversário à frente nem nas colunas vizinhas: esse é o que ganha finais."
+    },
+    {
+      "type": "diagram",
+      "fen": "6k1/pp3ppp/8/8/8/2P5/PP1P1PPP/6K1 w - - 0 1",
+      "highlights": ["c3", "d2"],
+      "caption": "As brancas têm um peão a mais na ala da dama. É dali que nasce um peão passado, se os peões forem empurrados na hora certa.",
+      "orientation": "w"
+    },
+    {
+      "type": "exercise",
+      "id": "estrutura-recaptura",
+      "prompt": "As pretas capturaram em c3. Recapture com a peça que não dobra os seus peões.",
+      "fen": "r1bqk2r/pppp1ppp/2n2n2/4p3/2B1P3/2bP4/PPPB1PPP/R2QK1NR w KQkq - 0 6",
+      "acceptedMoves": ["Bxc3"],
+      "goal": "move",
+      "successText": "Bxc3 mantém os peões lado a lado. Recapturar com bxc3 também é jogável, mas deixa dois peões na coluna c e um peão de a isolado."
+    },
+    {
+      "type": "tip",
+      "title": "Peão dobrado nem sempre é ruim",
+      "text": "Dobrar peões abre uma coluna para as suas torres e pode somar atacantes no centro. O defeito só pesa de verdade no final, quando sobram poucas peças e os peões precisam andar sozinhos."
+    },
+    {
+      "type": "exercise",
+      "id": "estrutura-ruptura",
+      "prompt": "Três peões brancos contra três pretos, mas os brancos estão mais adiantados. Encontre o avanço que cria um peão passado imparável.",
+      "fen": "8/ppp5/8/PPP5/8/8/8/K6k w - - 0 1",
+      "acceptedMoves": ["b6"],
+      "goal": "move",
+      "successText": "b6! Se as pretas capturam com qualquer um dos peões, o outro peão branco passa e chega a dama primeiro. É a ruptura clássica de três contra três."
+    },
+    {
+      "type": "tip",
+      "title": "A pergunta que resolve o final",
+      "text": "Conte os peões de cada lado do tabuleiro. Onde você tiver mais peões do que o adversário, é ali que nasce o seu peão passado. Empurre o peão que não tem adversário na frente primeiro."
+    }
+  ],
+  "checks": [
+    { "exerciseId": "estrutura-recaptura", "mode": "theory" },
+    { "exerciseId": "estrutura-ruptura", "mode": "best", "minGap": 100 }
+  ]
+}

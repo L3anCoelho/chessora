@@ -1,0 +1,55 @@
+{
+  "lessonId": "seguranca-do-rei",
+  "moduleId": "estrategia",
+  "requiredScope": "module:estrategia",
+  "durationMinutes": 6,
+  "body": [
+    {
+      "type": "paragraph",
+      "text": "O rei no centro é o maior perigo da abertura. As colunas centrais são as primeiras a abrir, e é por elas que as torres e a dama adversárias entram."
+    },
+    {
+      "type": "paragraph",
+      "text": "Rocar resolve dois problemas de uma vez: tira o rei da zona de perigo e traz a torre para perto do centro. Como regra, roque nos dez primeiros lances, antes de qualquer plano de ataque."
+    },
+    {
+      "type": "exercise",
+      "id": "rei-roque-agora",
+      "prompt": "O centro vai abrir a qualquer momento. Ponha o rei em segurança.",
+      "fen": "r1bqk2r/ppp2ppp/2np1n2/2b1p3/2B1P3/2NP1N2/PPP2PPP/R1BQK2R w KQkq - 2 6",
+      "acceptedMoves": ["O-O"],
+      "goal": "move",
+      "successText": "Roque feito. O rei sai da coluna e, e a torre de h1 passa a olhar para o meio do tabuleiro."
+    },
+    {
+      "type": "tip",
+      "title": "Não estrague o abrigo",
+      "text": "Depois de rocar, evite mexer os peões que estão na frente do rei. Cada um deles que avança abre uma linha ou deixa uma casa fraca atrás de si. Só mexa com um motivo concreto."
+    },
+    {
+      "type": "diagram",
+      "fen": "3r2k1/5ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1",
+      "highlights": ["d1", "d8", "g1", "h2"],
+      "caption": "Os dois reis estão presos atrás dos próprios peões. Quem dominar a coluna d primeiro ameaça o mate do corredor.",
+      "orientation": "w"
+    },
+    {
+      "type": "exercise",
+      "id": "rei-casa-de-fuga",
+      "prompt": "O abrigo tem um defeito: o rei não tem casa de fuga. Abra uma com o peão da torre.",
+      "fen": "3r2k1/5ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1",
+      "acceptedMoves": ["h3", "h4"],
+      "goal": "move",
+      "successText": "Agora o rei respira em h2 e o mate na última fileira deixa de ser uma ameaça. Esse lance se chama janela."
+    },
+    {
+      "type": "tip",
+      "title": "Quando abrir a janela",
+      "text": "Não gaste o lance cedo demais: em posições com muitas peças ele é tempo perdido. O momento certo é quando as damas ou as torres começam a dominar uma coluna aberta."
+    }
+  ],
+  "checks": [
+    { "exerciseId": "rei-roque-agora", "mode": "theory" },
+    { "exerciseId": "rei-casa-de-fuga", "mode": "theory" }
+  ]
+}

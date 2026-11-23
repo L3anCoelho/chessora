@@ -1,0 +1,59 @@
+{
+  "lessonId": "trocas",
+  "moduleId": "estrategia",
+  "requiredScope": "module:estrategia",
+  "durationMinutes": 6,
+  "body": [
+    {
+      "type": "paragraph",
+      "text": "Trocar peças parece neutro, mas quase nunca é. Cada troca muda o tipo de posição, e quem está melhor deve escolher o tipo de posição que favorece a própria vantagem."
+    },
+    {
+      "type": "paragraph",
+      "text": "A regra mais útil para iniciantes: com material a mais, troque peças; com material a menos, evite trocas e mantenha as peças no tabuleiro. Menos peças deixam a vantagem material mais fácil de converter."
+    },
+    {
+      "type": "exercise",
+      "id": "trocas-damas",
+      "prompt": "Você tem um peão a mais. Troque as damas.",
+      "fen": "6k1/5ppp/8/3q4/8/8/P2Q1PPP/6K1 w - - 0 1",
+      "acceptedMoves": [
+        "Qxd5"
+      ],
+      "goal": "move",
+      "successText": "Sem as damas, o peão a mais vale muito mais: não há contra-ataque possível e o peão de a2 vira dama no fim."
+    },
+    {
+      "type": "tip",
+      "title": "Troque o defensor, não o atacante",
+      "text": "Quando você ataca o rei adversário, troque as peças que defendem esse rei e mantenha as suas atacantes. Quando você se defende, faça o contrário: cada peça atacante que sair do tabuleiro alivia a pressão."
+    },
+    {
+      "type": "exercise",
+      "id": "trocas-torres",
+      "prompt": "Você tem um peão a mais e as torres estão frente a frente. Troque-as e vá para o final de peões.",
+      "fen": "3r4/4kppp/8/8/8/8/P4PPP/3R2K1 w - - 0 1",
+      "acceptedMoves": [
+        "Rxd8"
+      ],
+      "goal": "move",
+      "successText": "Com as torres fora, sobra um final de peões em que o peão de a2 corre sozinho pela ala da dama. É o tipo de final que se ganha sem precisar calcular muito."
+    },
+    {
+      "type": "tip",
+      "title": "Antes de trocar, pergunte",
+      "text": "Qual das duas peças é melhor, a minha ou a dele? Depois da troca, quem fica com a estrutura melhor? Se você não souber responder, provavelmente não é hora de trocar."
+    }
+  ],
+  "checks": [
+    {
+      "exerciseId": "trocas-damas",
+      "mode": "best",
+      "minGap": 200
+    },
+    {
+      "exerciseId": "trocas-torres",
+      "mode": "theory"
+    }
+  ]
+}

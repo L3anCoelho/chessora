@@ -498,6 +498,350 @@ on conflict (lesson_id) do update
       body = excluded.body,
       updated_at = now();
 
+-- estrategia · desenvolvimento
+insert into public.lesson_contents (lesson_id, module_id, required_scope, body)
+values (
+  'desenvolvimento',
+  'estrategia',
+  'module:estrategia',
+  $json$[
+  {
+    "type": "paragraph",
+    "text": "Desenvolver é tirar as peças da última fileira e colocá-las onde elas fazem alguma coisa. Nos dez primeiros lances, quem tem mais peças em jogo costuma ditar o que acontece."
+  },
+  {
+    "type": "paragraph",
+    "text": "A ordem que funciona é quase sempre a mesma: um peão central, os cavalos, os bispos, o roque. Jogue a sequência abaixo e repare que nenhuma peça é movida duas vezes."
+  },
+  {
+    "type": "guided-line",
+    "id": "desenvolvimento-ordem",
+    "title": "Seis lances, seis peças em jogo",
+    "orientation": "w",
+    "intro": "Você joga com as brancas. Não há nada de espetacular aqui, e é esse o ponto.",
+    "conclusion": "Seis lances e o desenvolvimento acabou: dois peões no centro, dois cavalos, dois bispos e o rei no canto. Só agora começa o plano.",
+    "steps": [
+      {
+        "move": "d4",
+        "reply": "d5",
+        "explanation": "Um peão central abre caminho para a dama e para o bispo de c1."
+      },
+      {
+        "move": "Nf3",
+        "reply": "Nf6",
+        "explanation": "O cavalo primeiro. Ele tem menos casas boas que o bispo, então é mais fácil decidir onde ele vai."
+      },
+      {
+        "move": "e3",
+        "reply": "e6",
+        "explanation": "Lance modesto que libera o bispo de f1. Nem todo lance precisa ser agressivo."
+      },
+      {
+        "move": "Bd3",
+        "reply": "Bd6",
+        "explanation": "O bispo numa diagonal que aponta para o lado do rei adversário."
+      },
+      {
+        "move": "O-O",
+        "reply": "O-O",
+        "explanation": "Rei em segurança e torre mais perto do centro, num lance só."
+      },
+      {
+        "move": "c4",
+        "reply": "c6",
+        "explanation": "Com as peças prontas, agora sim: o peão disputa o centro. Esta é a hora certa de mexer peões de novo."
+      }
+    ]
+  },
+  {
+    "type": "tip",
+    "title": "Três erros que custam a partida",
+    "text": "Mover a mesma peça duas vezes sem motivo, tirar a dama cedo e empurrar peões laterais antes de rocar. Cada um deles entrega um ou dois tempos ao adversário, e é com esses tempos que ele ataca."
+  },
+  {
+    "type": "exercise",
+    "id": "desenv-defende-peca",
+    "prompt": "As brancas tiraram a dama cedo e atacam e5. Defenda o peão desenvolvendo um cavalo.",
+    "fen": "rnbqkbnr/pppp1ppp/8/4p2Q/4P3/8/PPPP1PPP/RNB1KBNR b KQkq - 1 2",
+    "acceptedMoves": [
+      "Nc6"
+    ],
+    "goal": "move",
+    "successText": "Cc6 defende e5 e desenvolve ao mesmo tempo. Defender com um peão resolveria menos: o peão não entra em jogo depois."
+  },
+  {
+    "type": "exercise",
+    "id": "desenv-roque",
+    "prompt": "As peças menores já estão fora. Faça o lance que termina o desenvolvimento.",
+    "fen": "r1bqk2r/ppp2ppp/2np1n2/2b1p3/2B1P3/2NP1N2/PPP2PPP/R1BQK2R w KQkq - 2 6",
+    "acceptedMoves": [
+      "O-O"
+    ],
+    "goal": "move",
+    "successText": "O roque tira o rei do centro e liga as torres. Depois dele você pode pensar em atacar."
+  }
+]$json$::jsonb
+)
+on conflict (lesson_id) do update
+  set module_id = excluded.module_id,
+      required_scope = excluded.required_scope,
+      body = excluded.body,
+      updated_at = now();
+
+-- estrategia · seguranca-do-rei
+insert into public.lesson_contents (lesson_id, module_id, required_scope, body)
+values (
+  'seguranca-do-rei',
+  'estrategia',
+  'module:estrategia',
+  $json$[
+  {
+    "type": "paragraph",
+    "text": "O rei no centro é o maior perigo da abertura. As colunas centrais são as primeiras a abrir, e é por elas que as torres e a dama adversárias entram."
+  },
+  {
+    "type": "paragraph",
+    "text": "Rocar resolve dois problemas de uma vez: tira o rei da zona de perigo e traz a torre para perto do centro. Como regra, roque nos dez primeiros lances, antes de qualquer plano de ataque."
+  },
+  {
+    "type": "exercise",
+    "id": "rei-roque-agora",
+    "prompt": "O centro vai abrir a qualquer momento. Ponha o rei em segurança.",
+    "fen": "r1bqk2r/ppp2ppp/2np1n2/2b1p3/2B1P3/2NP1N2/PPP2PPP/R1BQK2R w KQkq - 2 6",
+    "acceptedMoves": [
+      "O-O"
+    ],
+    "goal": "move",
+    "successText": "Roque feito. O rei sai da coluna e, e a torre de h1 passa a olhar para o meio do tabuleiro."
+  },
+  {
+    "type": "tip",
+    "title": "Não estrague o abrigo",
+    "text": "Depois de rocar, evite mexer os peões que estão na frente do rei. Cada um deles que avança abre uma linha ou deixa uma casa fraca atrás de si. Só mexa com um motivo concreto."
+  },
+  {
+    "type": "diagram",
+    "fen": "3r2k1/5ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1",
+    "highlights": [
+      "d1",
+      "d8",
+      "g1",
+      "h2"
+    ],
+    "caption": "Os dois reis estão presos atrás dos próprios peões. Quem dominar a coluna d primeiro ameaça o mate do corredor.",
+    "orientation": "w"
+  },
+  {
+    "type": "exercise",
+    "id": "rei-casa-de-fuga",
+    "prompt": "O abrigo tem um defeito: o rei não tem casa de fuga. Abra uma com o peão da torre.",
+    "fen": "3r2k1/5ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1",
+    "acceptedMoves": [
+      "h3",
+      "h4"
+    ],
+    "goal": "move",
+    "successText": "Agora o rei respira em h2 e o mate na última fileira deixa de ser uma ameaça. Esse lance se chama janela."
+  },
+  {
+    "type": "tip",
+    "title": "Quando abrir a janela",
+    "text": "Não gaste o lance cedo demais: em posições com muitas peças ele é tempo perdido. O momento certo é quando as damas ou as torres começam a dominar uma coluna aberta."
+  }
+]$json$::jsonb
+)
+on conflict (lesson_id) do update
+  set module_id = excluded.module_id,
+      required_scope = excluded.required_scope,
+      body = excluded.body,
+      updated_at = now();
+
+-- estrategia · estrutura-de-peoes
+insert into public.lesson_contents (lesson_id, module_id, required_scope, body)
+values (
+  'estrutura-de-peoes',
+  'estrategia',
+  'module:estrategia',
+  $json$[
+  {
+    "type": "paragraph",
+    "text": "Peões não voltam atrás. Toda vez que você move um, decide alguma coisa para o resto da partida. Por isso vale conhecer os três defeitos e a única virtude que importam de verdade."
+  },
+  {
+    "type": "paragraph",
+    "text": "Peões dobrados são dois peões na mesma coluna: eles não se defendem e andam devagar. Peão isolado é o que não tem vizinho em nenhuma coluna ao lado: precisa ser defendido por peças. E peão passado é o que não tem nenhum peão adversário à frente nem nas colunas vizinhas: esse é o que ganha finais."
+  },
+  {
+    "type": "diagram",
+    "fen": "6k1/pp3ppp/8/8/8/2P5/PP1P1PPP/6K1 w - - 0 1",
+    "highlights": [
+      "c3",
+      "d2"
+    ],
+    "caption": "As brancas têm um peão a mais na ala da dama. É dali que nasce um peão passado, se os peões forem empurrados na hora certa.",
+    "orientation": "w"
+  },
+  {
+    "type": "exercise",
+    "id": "estrutura-recaptura",
+    "prompt": "As pretas capturaram em c3. Recapture com a peça que não dobra os seus peões.",
+    "fen": "r1bqk2r/pppp1ppp/2n2n2/4p3/2B1P3/2bP4/PPPB1PPP/R2QK1NR w KQkq - 0 6",
+    "acceptedMoves": [
+      "Bxc3"
+    ],
+    "goal": "move",
+    "successText": "Bxc3 mantém os peões lado a lado. Recapturar com bxc3 também é jogável, mas deixa dois peões na coluna c e um peão de a isolado."
+  },
+  {
+    "type": "tip",
+    "title": "Peão dobrado nem sempre é ruim",
+    "text": "Dobrar peões abre uma coluna para as suas torres e pode somar atacantes no centro. O defeito só pesa de verdade no final, quando sobram poucas peças e os peões precisam andar sozinhos."
+  },
+  {
+    "type": "exercise",
+    "id": "estrutura-ruptura",
+    "prompt": "Três peões brancos contra três pretos, mas os brancos estão mais adiantados. Encontre o avanço que cria um peão passado imparável.",
+    "fen": "8/ppp5/8/PPP5/8/8/8/K6k w - - 0 1",
+    "acceptedMoves": [
+      "b6"
+    ],
+    "goal": "move",
+    "successText": "b6! Se as pretas capturam com qualquer um dos peões, o outro peão branco passa e chega a dama primeiro. É a ruptura clássica de três contra três."
+  },
+  {
+    "type": "tip",
+    "title": "A pergunta que resolve o final",
+    "text": "Conte os peões de cada lado do tabuleiro. Onde você tiver mais peões do que o adversário, é ali que nasce o seu peão passado. Empurre o peão que não tem adversário na frente primeiro."
+  }
+]$json$::jsonb
+)
+on conflict (lesson_id) do update
+  set module_id = excluded.module_id,
+      required_scope = excluded.required_scope,
+      body = excluded.body,
+      updated_at = now();
+
+-- estrategia · trocas
+insert into public.lesson_contents (lesson_id, module_id, required_scope, body)
+values (
+  'trocas',
+  'estrategia',
+  'module:estrategia',
+  $json$[
+  {
+    "type": "paragraph",
+    "text": "Trocar peças parece neutro, mas quase nunca é. Cada troca muda o tipo de posição, e quem está melhor deve escolher o tipo de posição que favorece a própria vantagem."
+  },
+  {
+    "type": "paragraph",
+    "text": "A regra mais útil para iniciantes: com material a mais, troque peças; com material a menos, evite trocas e mantenha as peças no tabuleiro. Menos peças deixam a vantagem material mais fácil de converter."
+  },
+  {
+    "type": "exercise",
+    "id": "trocas-damas",
+    "prompt": "Você tem um peão a mais. Troque as damas.",
+    "fen": "6k1/5ppp/8/3q4/8/8/P2Q1PPP/6K1 w - - 0 1",
+    "acceptedMoves": [
+      "Qxd5"
+    ],
+    "goal": "move",
+    "successText": "Sem as damas, o peão a mais vale muito mais: não há contra-ataque possível e o peão de a2 vira dama no fim."
+  },
+  {
+    "type": "tip",
+    "title": "Troque o defensor, não o atacante",
+    "text": "Quando você ataca o rei adversário, troque as peças que defendem esse rei e mantenha as suas atacantes. Quando você se defende, faça o contrário: cada peça atacante que sair do tabuleiro alivia a pressão."
+  },
+  {
+    "type": "exercise",
+    "id": "trocas-torres",
+    "prompt": "Você tem um peão a mais e as torres estão frente a frente. Troque-as e vá para o final de peões.",
+    "fen": "3r4/4kppp/8/8/8/8/P4PPP/3R2K1 w - - 0 1",
+    "acceptedMoves": [
+      "Rxd8"
+    ],
+    "goal": "move",
+    "successText": "Com as torres fora, sobra um final de peões em que o peão de a2 corre sozinho pela ala da dama. É o tipo de final que se ganha sem precisar calcular muito."
+  },
+  {
+    "type": "tip",
+    "title": "Antes de trocar, pergunte",
+    "text": "Qual das duas peças é melhor, a minha ou a dele? Depois da troca, quem fica com a estrutura melhor? Se você não souber responder, provavelmente não é hora de trocar."
+  }
+]$json$::jsonb
+)
+on conflict (lesson_id) do update
+  set module_id = excluded.module_id,
+      required_scope = excluded.required_scope,
+      body = excluded.body,
+      updated_at = now();
+
+-- estrategia · planejamento
+insert into public.lesson_contents (lesson_id, module_id, required_scope, body)
+values (
+  'planejamento',
+  'estrategia',
+  'module:estrategia',
+  $json$[
+  {
+    "type": "paragraph",
+    "text": "Plano não é prever dez lances. É escolher um objetivo pequeno e colocar as peças a serviço dele. Sem objetivo, você joga lance a lance e acaba só reagindo ao adversário."
+  },
+  {
+    "type": "paragraph",
+    "text": "Para achar o objetivo, faça três perguntas: qual é a minha peça pior colocada, qual é a fraqueza do adversário que não some, e qual coluna ou diagonal está aberta. A resposta a qualquer uma delas já serve de plano."
+  },
+  {
+    "type": "diagram",
+    "fen": "r5k1/pp3ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1",
+    "highlights": [
+      "d1",
+      "d7",
+      "d8"
+    ],
+    "caption": "A coluna d está aberta e só a torre branca a ocupa. O caminho natural é d1, depois d7, a fileira onde moram os peões pretos.",
+    "orientation": "w"
+  },
+  {
+    "type": "exercise",
+    "id": "plano-coluna-aberta",
+    "prompt": "A coluna d está aberta e nenhuma peça a disputa. Ocupe-a com a sua torre.",
+    "fen": "r5k1/5ppp/8/8/8/8/5PPP/R5K1 w - - 0 1",
+    "acceptedMoves": [
+      "Rd1"
+    ],
+    "goal": "move",
+    "successText": "Td1. Coluna aberta é a estrada das torres: é por ela que elas entram na posição adversária."
+  },
+  {
+    "type": "tip",
+    "title": "Da coluna para a sétima",
+    "text": "Dominar a coluna aberta é meio caminho. O outro meio é entrar na sétima fileira, onde a torre ataca os peões que ainda não se mexeram e prende o rei na última fileira."
+  },
+  {
+    "type": "exercise",
+    "id": "plano-setima",
+    "prompt": "A torre já domina a coluna aberta. Entre na sétima fileira.",
+    "fen": "r5k1/pp3ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1",
+    "acceptedMoves": [
+      "Rd7"
+    ],
+    "goal": "move",
+    "successText": "Td7 ataca os peões de b7 e f7 e deixa a torre preta sem nada para fazer. É a casa mais forte que uma torre pode ocupar."
+  },
+  {
+    "type": "tip",
+    "title": "Um plano de cada vez",
+    "text": "Se você não enxerga nenhum plano, melhore a peça pior colocada e olhe de novo. Isso quase nunca é um lance ruim, e muitas vezes o plano aparece sozinho depois dele."
+  }
+]$json$::jsonb
+)
+on conflict (lesson_id) do update
+  set module_id = excluded.module_id,
+      required_scope = excluded.required_scope,
+      body = excluded.body,
+      updated_at = now();
+
 -- finais · rei-e-peao
 insert into public.lesson_contents (lesson_id, module_id, required_scope, body)
 values (

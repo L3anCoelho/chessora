@@ -547,11 +547,11 @@ export const lessons: Lesson[] = [
 
   /* ---------------- Módulo 3: Estratégia ---------------- */
   { id: 'controle-do-centro', slug: 'controle-do-centro', moduleId: 'estrategia', order: 1, title: 'Controle do centro', summary: 'Por que as casas d4, e4, d5 e e5 importam tanto.', durationMinutes: 7, access: 'premium', requiredScope: SCOPES.estrategia, status: 'published' },
-  { id: 'desenvolvimento', slug: 'desenvolvimento', moduleId: 'estrategia', order: 2, title: 'Desenvolvimento', summary: 'Colocar as peças em jogo na ordem certa.', durationMinutes: 6, access: 'premium', requiredScope: SCOPES.estrategia, status: 'coming-soon' },
-  { id: 'seguranca-do-rei', slug: 'seguranca-do-rei', moduleId: 'estrategia', order: 3, title: 'Segurança do rei', summary: 'Rocar no momento certo e manter o abrigo.', durationMinutes: 6, access: 'premium', requiredScope: SCOPES.estrategia, status: 'coming-soon' },
-  { id: 'estrutura-de-peoes', slug: 'estrutura-de-peoes', moduleId: 'estrategia', order: 4, title: 'Estrutura de peões', summary: 'Peões dobrados, isolados e passados.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.estrategia, status: 'coming-soon' },
-  { id: 'trocas', slug: 'trocas', moduleId: 'estrategia', order: 5, title: 'Trocas', summary: 'Quando trocar peças favorece você.', durationMinutes: 6, access: 'premium', requiredScope: SCOPES.estrategia, status: 'coming-soon' },
-  { id: 'planejamento', slug: 'planejamento', moduleId: 'estrategia', order: 6, title: 'Planejamento', summary: 'Montar um plano simples a partir da posição.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.estrategia, status: 'coming-soon' },
+  { id: 'desenvolvimento', slug: 'desenvolvimento', moduleId: 'estrategia', order: 2, title: 'Desenvolvimento', summary: 'Colocar as peças em jogo na ordem certa.', durationMinutes: 6, access: 'premium', requiredScope: SCOPES.estrategia, status: 'published' },
+  { id: 'seguranca-do-rei', slug: 'seguranca-do-rei', moduleId: 'estrategia', order: 3, title: 'Segurança do rei', summary: 'Rocar no momento certo e manter o abrigo.', durationMinutes: 6, access: 'premium', requiredScope: SCOPES.estrategia, status: 'published' },
+  { id: 'estrutura-de-peoes', slug: 'estrutura-de-peoes', moduleId: 'estrategia', order: 4, title: 'Estrutura de peões', summary: 'Peões dobrados, isolados e passados.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.estrategia, status: 'published' },
+  { id: 'trocas', slug: 'trocas', moduleId: 'estrategia', order: 5, title: 'Trocas', summary: 'Quando trocar peças favorece você.', durationMinutes: 6, access: 'premium', requiredScope: SCOPES.estrategia, status: 'published' },
+  { id: 'planejamento', slug: 'planejamento', moduleId: 'estrategia', order: 6, title: 'Planejamento', summary: 'Montar um plano simples a partir da posição.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.estrategia, status: 'published' },
 
   /* ---------------- Módulo 4: Aberturas ---------------- */
   { id: 'italiana', slug: 'abertura-italiana', moduleId: 'aberturas', order: 1, title: 'Abertura Italiana', summary: '1.e4 e5 2.Nf3 Nc6 3.Bc4 e as ideias contra f7.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.aberturas, status: 'published' },

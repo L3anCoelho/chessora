@@ -1,0 +1,59 @@
+{
+  "lessonId": "desenvolvimento",
+  "moduleId": "estrategia",
+  "requiredScope": "module:estrategia",
+  "durationMinutes": 6,
+  "body": [
+    {
+      "type": "paragraph",
+      "text": "Desenvolver é tirar as peças da última fileira e colocá-las onde elas fazem alguma coisa. Nos dez primeiros lances, quem tem mais peças em jogo costuma ditar o que acontece."
+    },
+    {
+      "type": "paragraph",
+      "text": "A ordem que funciona é quase sempre a mesma: um peão central, os cavalos, os bispos, o roque. Jogue a sequência abaixo e repare que nenhuma peça é movida duas vezes."
+    },
+    {
+      "type": "guided-line",
+      "id": "desenvolvimento-ordem",
+      "title": "Seis lances, seis peças em jogo",
+      "orientation": "w",
+      "intro": "Você joga com as brancas. Não há nada de espetacular aqui, e é esse o ponto.",
+      "conclusion": "Seis lances e o desenvolvimento acabou: dois peões no centro, dois cavalos, dois bispos e o rei no canto. Só agora começa o plano.",
+      "steps": [
+        { "move": "d4", "reply": "d5", "explanation": "Um peão central abre caminho para a dama e para o bispo de c1." },
+        { "move": "Nf3", "reply": "Nf6", "explanation": "O cavalo primeiro. Ele tem menos casas boas que o bispo, então é mais fácil decidir onde ele vai." },
+        { "move": "e3", "reply": "e6", "explanation": "Lance modesto que libera o bispo de f1. Nem todo lance precisa ser agressivo." },
+        { "move": "Bd3", "reply": "Bd6", "explanation": "O bispo numa diagonal que aponta para o lado do rei adversário." },
+        { "move": "O-O", "reply": "O-O", "explanation": "Rei em segurança e torre mais perto do centro, num lance só." },
+        { "move": "c4", "reply": "c6", "explanation": "Com as peças prontas, agora sim: o peão disputa o centro. Esta é a hora certa de mexer peões de novo." }
+      ]
+    },
+    {
+      "type": "tip",
+      "title": "Três erros que custam a partida",
+      "text": "Mover a mesma peça duas vezes sem motivo, tirar a dama cedo e empurrar peões laterais antes de rocar. Cada um deles entrega um ou dois tempos ao adversário, e é com esses tempos que ele ataca."
+    },
+    {
+      "type": "exercise",
+      "id": "desenv-defende-peca",
+      "prompt": "As brancas tiraram a dama cedo e atacam e5. Defenda o peão desenvolvendo um cavalo.",
+      "fen": "rnbqkbnr/pppp1ppp/8/4p2Q/4P3/8/PPPP1PPP/RNB1KBNR b KQkq - 1 2",
+      "acceptedMoves": ["Nc6"],
+      "goal": "move",
+      "successText": "Cc6 defende e5 e desenvolve ao mesmo tempo. Defender com um peão resolveria menos: o peão não entra em jogo depois."
+    },
+    {
+      "type": "exercise",
+      "id": "desenv-roque",
+      "prompt": "As peças menores já estão fora. Faça o lance que termina o desenvolvimento.",
+      "fen": "r1bqk2r/ppp2ppp/2np1n2/2b1p3/2B1P3/2NP1N2/PPP2PPP/R1BQK2R w KQkq - 2 6",
+      "acceptedMoves": ["O-O"],
+      "goal": "move",
+      "successText": "O roque tira o rei do centro e liga as torres. Depois dele você pode pensar em atacar."
+    }
+  ],
+  "checks": [
+    { "exerciseId": "desenv-defende-peca", "mode": "theory" },
+    { "exerciseId": "desenv-roque", "mode": "theory" }
+  ]
+}

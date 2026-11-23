@@ -1,0 +1,55 @@
+{
+  "lessonId": "planejamento",
+  "moduleId": "estrategia",
+  "requiredScope": "module:estrategia",
+  "durationMinutes": 8,
+  "body": [
+    {
+      "type": "paragraph",
+      "text": "Plano não é prever dez lances. É escolher um objetivo pequeno e colocar as peças a serviço dele. Sem objetivo, você joga lance a lance e acaba só reagindo ao adversário."
+    },
+    {
+      "type": "paragraph",
+      "text": "Para achar o objetivo, faça três perguntas: qual é a minha peça pior colocada, qual é a fraqueza do adversário que não some, e qual coluna ou diagonal está aberta. A resposta a qualquer uma delas já serve de plano."
+    },
+    {
+      "type": "diagram",
+      "fen": "r5k1/pp3ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1",
+      "highlights": ["d1", "d7", "d8"],
+      "caption": "A coluna d está aberta e só a torre branca a ocupa. O caminho natural é d1, depois d7, a fileira onde moram os peões pretos.",
+      "orientation": "w"
+    },
+    {
+      "type": "exercise",
+      "id": "plano-coluna-aberta",
+      "prompt": "A coluna d está aberta e nenhuma peça a disputa. Ocupe-a com a sua torre.",
+      "fen": "r5k1/5ppp/8/8/8/8/5PPP/R5K1 w - - 0 1",
+      "acceptedMoves": ["Rd1"],
+      "goal": "move",
+      "successText": "Td1. Coluna aberta é a estrada das torres: é por ela que elas entram na posição adversária."
+    },
+    {
+      "type": "tip",
+      "title": "Da coluna para a sétima",
+      "text": "Dominar a coluna aberta é meio caminho. O outro meio é entrar na sétima fileira, onde a torre ataca os peões que ainda não se mexeram e prende o rei na última fileira."
+    },
+    {
+      "type": "exercise",
+      "id": "plano-setima",
+      "prompt": "A torre já domina a coluna aberta. Entre na sétima fileira.",
+      "fen": "r5k1/pp3ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1",
+      "acceptedMoves": ["Rd7"],
+      "goal": "move",
+      "successText": "Td7 ataca os peões de b7 e f7 e deixa a torre preta sem nada para fazer. É a casa mais forte que uma torre pode ocupar."
+    },
+    {
+      "type": "tip",
+      "title": "Um plano de cada vez",
+      "text": "Se você não enxerga nenhum plano, melhore a peça pior colocada e olhe de novo. Isso quase nunca é um lance ruim, e muitas vezes o plano aparece sozinho depois dele."
+    }
+  ],
+  "checks": [
+    { "exerciseId": "plano-coluna-aberta", "mode": "theory" },
+    { "exerciseId": "plano-setima", "mode": "theory" }
+  ]
+}
