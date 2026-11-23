@@ -15,7 +15,7 @@
       "orientation": "w",
       "exhaustiveFrom": 13,
       "intro": "Você joga com as brancas, do começo ao fim. O adversário escolhe sozinho o que tentar, e cada tentativa dele pede uma resposta diferente.",
-      "conclusion": "Você venceu as quatro tentativas: a gananciosa, que termina em mate, e as três em que ele se defende ou joga diferente, e você segue bem.",
+      "conclusion": "Você venceu as cinco tentativas: a gananciosa, que termina em mate, e as quatro em que ele se defende ou joga diferente, e você segue bem.",
       "variations": [
         {
           "label": "Ele come a dama e leva mate",
@@ -92,6 +92,22 @@
             { "san": "d3", "note": "Segure e4 e desenvolva o resto das peças. Daqui a partida é só boa teoria, sem truque." },
             { "san": "d6", "note": "ele completa o desenvolvimento" },
             { "san": "O-O", "note": "Rei em segurança. Isso é tudo: sem erro do adversário, não existe atalho." }
+          ]
+        },
+        {
+          "label": "Ele desenvolve em vez de cravar",
+          "ending": "Sem cravada nenhuma: o bispo preto nem chegou a g4, então não existe nada para a armadilha de Légal funcionar em cima. É só desenvolvimento normal dos dois lados.",
+          "outcome": "equal",
+          "moves": [
+            { "san": "e4" },
+            { "san": "e5" },
+            { "san": "Nf3" },
+            { "san": "Nc6" },
+            { "san": "Bc4" },
+            { "san": "d6" },
+            { "san": "Nc3" },
+            { "san": "Nf6", "note": "ele desenvolve o cavalo direto, sem cravar o seu com o bispo" },
+            { "san": "d3", "note": "Continue o desenvolvimento normal. Sem a cravada em g4, não há cavalo \"envenenado\" para oferecer." }
           ]
         }
       ]

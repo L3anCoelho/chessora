@@ -105,7 +105,7 @@ values (
     "orientation": "w",
     "exhaustiveFrom": 13,
     "intro": "Você joga com as brancas, do começo ao fim. O adversário escolhe sozinho o que tentar, e cada tentativa dele pede uma resposta diferente.",
-    "conclusion": "Você venceu as quatro tentativas: a gananciosa, que termina em mate, e as três em que ele se defende ou joga diferente, e você segue bem.",
+    "conclusion": "Você venceu as cinco tentativas: a gananciosa, que termina em mate, e as quatro em que ele se defende ou joga diferente, e você segue bem.",
     "variations": [
       {
         "label": "Ele come a dama e leva mate",
@@ -307,6 +307,42 @@ values (
             "note": "Rei em segurança. Isso é tudo: sem erro do adversário, não existe atalho."
           }
         ]
+      },
+      {
+        "label": "Ele desenvolve em vez de cravar",
+        "ending": "Sem cravada nenhuma: o bispo preto nem chegou a g4, então não existe nada para a armadilha de Légal funcionar em cima. É só desenvolvimento normal dos dois lados.",
+        "outcome": "equal",
+        "moves": [
+          {
+            "san": "e4"
+          },
+          {
+            "san": "e5"
+          },
+          {
+            "san": "Nf3"
+          },
+          {
+            "san": "Nc6"
+          },
+          {
+            "san": "Bc4"
+          },
+          {
+            "san": "d6"
+          },
+          {
+            "san": "Nc3"
+          },
+          {
+            "san": "Nf6",
+            "note": "ele desenvolve o cavalo direto, sem cravar o seu com o bispo"
+          },
+          {
+            "san": "d3",
+            "note": "Continue o desenvolvimento normal. Sem a cravada em g4, não há cavalo \"envenenado\" para oferecer."
+          }
+        ]
       }
     ]
   },
@@ -412,8 +448,8 @@ values (
     "title": "Do primeiro lance ao mate: a casa h2 esquecida",
     "startFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
     "orientation": "b",
-    "intro": "As brancas abriram com 1.e4 e vão entregar um peão pelo desenvolvimento. Você joga com as pretas até o fim.",
-    "conclusion": "Em quase todas as tentativas o problema das brancas é o mesmo: o cavalo de f3 é o único defensor de h2, e ele foi obrigado a sair. Se as brancas não entregarem o gambito, a armadilha nem chega a existir.",
+    "intro": "As brancas abriram com 1.e4 e vão entregar um peão pelo desenvolvimento. Você joga com as pretas até o fim. Mas as brancas têm outros sistemas inteiros contra a Siciliana — o Fechado e o Alapin — que você também vai reconhecer aqui.",
+    "conclusion": "Em quase todas as tentativas o problema das brancas é o mesmo: o cavalo de f3 é o único defensor de h2, e ele foi obrigado a sair. Se as brancas não entregarem o gambito — ou jogarem um sistema diferente, como o Fechado ou o Alapin —, a armadilha nem chega a existir.",
     "variations": [
       {
         "label": "Ele captura o cavalo",
@@ -732,6 +768,92 @@ values (
             "note": "Apoie e5 e abra o bispo de c8. Dali para a frente é a partida comum, sem o cavalo de f3 isolado defendendo h2."
           }
         ]
+      },
+      {
+        "label": "Ele joga a Siciliana Fechada (2.Cc3)",
+        "ending": "Um sistema inteiro diferente: as brancas nem abrem o centro com d4, então a casa h2 nunca fica desprotegida. Fianqueto, reagrupe e jogue um plano lento dos dois lados.",
+        "outcome": "equal",
+        "moves": [
+          {
+            "san": "c5",
+            "note": "A Siciliana: o peão vigia d4 sem bloquear nenhuma peça preta."
+          },
+          {
+            "san": "Nc3",
+            "note": "a Siciliana Fechada: ele nem pensa em abrir o centro com d4"
+          },
+          {
+            "san": "Nc6",
+            "note": "Desenvolva normalmente: sem d4 no ar, não há coluna c para disputar ainda."
+          },
+          {
+            "san": "g3",
+            "note": "ele prepara o fianqueto do bispo de f1"
+          },
+          {
+            "san": "g6",
+            "note": "Espelhe o plano: o seu bispo de f8 também vai para o fianqueto."
+          },
+          {
+            "san": "Bg2",
+            "note": "ele completa o fianqueto"
+          },
+          {
+            "san": "Bg7",
+            "note": "Mesma ideia do seu lado. Os dois bispos vigiam a diagonal inteira, sem trocas no centro."
+          },
+          {
+            "san": "d3",
+            "note": "ele apoia e4 com calma"
+          },
+          {
+            "san": "d6",
+            "note": "Apoie e5 e prepare o seu próprio desenvolvimento. É um jogo mais lento, sem armadilha de nenhum dos dois lados."
+          }
+        ]
+      },
+      {
+        "label": "Ele joga o Alapin (2.c3)",
+        "ending": "Outro sistema sem gambito nenhum: as brancas preparam d4 com apoio de peão, sem nunca abrir mão de um peão central. A dama preta fica bem ativa em d5.",
+        "outcome": "equal",
+        "moves": [
+          {
+            "san": "c5",
+            "note": "A Siciliana: o peão vigia d4 sem bloquear nenhuma peça preta."
+          },
+          {
+            "san": "c3",
+            "note": "o Alapin: ele prepara d4 com apoio de peão, sem gambito"
+          },
+          {
+            "san": "d5",
+            "note": "Ataque e4 na mesma hora, antes que d4 aconteça."
+          },
+          {
+            "san": "exd5",
+            "note": "ele troca"
+          },
+          {
+            "san": "Qxd5",
+            "note": "Recapture com a dama. Aqui é seguro: com o peão em c3, as brancas não têm Cc3 para ganhar tempo atacando-a."
+          },
+          {
+            "san": "d4",
+            "note": "ele ocupa o centro"
+          },
+          {
+            "san": "Nf6",
+            "note": "Desenvolva mantendo a pressão sobre d4."
+          },
+          {
+            "san": "Nf3",
+            "note": "ele desenvolve"
+          },
+          {
+            "san": "e6",
+            "note": "Abra o bispo de f8 e prepare o roque. A partida segue equilibrada, outra vez sem a casa h2 isolada."
+          }
+        ]
       }
     ]
   },
@@ -833,8 +955,8 @@ values (
     "title": "Do primeiro lance ao ganho da dama",
     "orientation": "w",
     "exhaustiveFrom": 17,
-    "intro": "Você joga com as brancas, do começo ao fim. No lance 9 as pretas vão ter três respostas possíveis, e você vence as três. Mais cedo, no lance 5, elas também podem evitar a armadilha inteira.",
-    "conclusion": "As três fugas do rei preto estão cobertas, e em todas a dama cai. Essa é a armadilha clássica da Variante do Avanço. E se as pretas nunca atacarem d4 com a dama, a armadilha nem chega a existir.",
+    "intro": "Você joga com as brancas, do começo ao fim. No lance 9 as pretas vão ter três respostas possíveis, e você vence as três. Mais cedo, elas também podem evitar a armadilha inteira — seja mudando o plano de desenvolvimento, seja escolhendo outra manobra para o cavalo.",
+    "conclusion": "As três fugas do rei preto estão cobertas, e em todas a dama cai. Essa é a armadilha clássica da Variante do Avanço. E se as pretas nunca atacarem d4 com a dama — ou manobrarem o cavalo por e7 em vez de c6 —, a armadilha nem chega a existir.",
     "variations": [
       {
         "label": "Ele bloqueia com o bispo",
@@ -1142,6 +1264,50 @@ values (
           {
             "san": "Be2",
             "note": "Desenvolva com calma. Sem a dama preta em b6, o truque do bispo em b5 não tem alvo nenhum."
+          }
+        ]
+      },
+      {
+        "label": "Ele manobra o cavalo por e7 em vez de c6",
+        "ending": "Outro plano, outra estrutura: o cavalo de e7 mira f5, não d4. Sem o cavalo em c6 para cair depois, a troca Cxd4 nem acontece — então não há coluna d aberta para a sua dama.",
+        "outcome": "equal",
+        "moves": [
+          {
+            "san": "e4"
+          },
+          {
+            "san": "e6"
+          },
+          {
+            "san": "d4"
+          },
+          {
+            "san": "d5"
+          },
+          {
+            "san": "e5"
+          },
+          {
+            "san": "c5"
+          },
+          {
+            "san": "c3"
+          },
+          {
+            "san": "Ne7",
+            "note": "ele manobra o cavalo para f5 em vez de desenvolver para c6"
+          },
+          {
+            "san": "Nf3",
+            "note": "Continue o desenvolvimento normal."
+          },
+          {
+            "san": "Nbc6",
+            "note": "ele completa o desenvolvimento com o outro cavalo"
+          },
+          {
+            "san": "Be2",
+            "note": "Sem a dama atacando d4 e sem o cavalo de c6 para capturar nada, essa partida é só a luta normal da Francesa."
           }
         ]
       }
@@ -1546,7 +1712,7 @@ values (
     "orientation": "b",
     "exhaustiveFrom": 13,
     "intro": "As brancas abriram com 1.d4. Você joga com as pretas e vai deixar a sua dama aparentemente de graça.",
-    "conclusion": "Você venceu as quatro tentativas: a gananciosa, que custa uma peça a ele, a cautelosa, a que nem entra na armadilha e a que evita a cravada desde o início.",
+    "conclusion": "Você venceu as cinco tentativas: a gananciosa, que custa uma peça a ele, a cautelosa, a que nem entra na armadilha, a que evita a cravada desde o início e a que troca tudo cedo demais para a armadilha existir.",
     "variations": [
       {
         "label": "Ele come a dama e perde uma peça",
@@ -1801,6 +1967,36 @@ values (
           {
             "san": "Be7",
             "note": "Desenvolva com calma. Sem o bispo em g5, não existe cavalo cravado para fingir que está preso."
+          }
+        ]
+      },
+      {
+        "label": "Ele troca em d5 antes de cravar",
+        "ending": "A troca cedo demais: sem o bispo em g5 e sem o cavalo cravado, não existe isca nenhuma para armar. É a Variante de Troca do Gambito da Dama, uma estrutura simétrica e tranquila.",
+        "outcome": "equal",
+        "moves": [
+          {
+            "san": "d5"
+          },
+          {
+            "san": "c4"
+          },
+          {
+            "san": "e6"
+          },
+          {
+            "san": "Nc3"
+          },
+          {
+            "san": "Nf6"
+          },
+          {
+            "san": "cxd5",
+            "note": "ele troca em d5 antes de cravar o cavalo"
+          },
+          {
+            "san": "exd5",
+            "note": "Recapture com o peão. Sem bispo em g5, sem cravada, sem armadilha: é só a Variante de Troca, com um centro simétrico e sólido."
           }
         ]
       }

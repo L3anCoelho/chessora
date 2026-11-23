@@ -14,8 +14,8 @@
       "title": "Do primeiro lance ao mate: a casa h2 esquecida",
       "startFen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
       "orientation": "b",
-      "intro": "As brancas abriram com 1.e4 e vão entregar um peão pelo desenvolvimento. Você joga com as pretas até o fim.",
-      "conclusion": "Em quase todas as tentativas o problema das brancas é o mesmo: o cavalo de f3 é o único defensor de h2, e ele foi obrigado a sair. Se as brancas não entregarem o gambito, a armadilha nem chega a existir.",
+      "intro": "As brancas abriram com 1.e4 e vão entregar um peão pelo desenvolvimento. Você joga com as pretas até o fim. Mas as brancas têm outros sistemas inteiros contra a Siciliana — o Fechado e o Alapin — que você também vai reconhecer aqui.",
+      "conclusion": "Em quase todas as tentativas o problema das brancas é o mesmo: o cavalo de f3 é o único defensor de h2, e ele foi obrigado a sair. Se as brancas não entregarem o gambito — ou jogarem um sistema diferente, como o Fechado ou o Alapin —, a armadilha nem chega a existir.",
       "variations": [
         {
           "label": "Ele captura o cavalo",
@@ -93,6 +93,38 @@
             { "san": "Nf6", "note": "Desenvolva atacando e4. Essa é a estrutura normal da Siciliana Aberta, sem truque nenhum." },
             { "san": "Nc3", "note": "ele defende e4" },
             { "san": "d6", "note": "Apoie e5 e abra o bispo de c8. Dali para a frente é a partida comum, sem o cavalo de f3 isolado defendendo h2." }
+          ]
+        },
+        {
+          "label": "Ele joga a Siciliana Fechada (2.Cc3)",
+          "ending": "Um sistema inteiro diferente: as brancas nem abrem o centro com d4, então a casa h2 nunca fica desprotegida. Fianqueto, reagrupe e jogue um plano lento dos dois lados.",
+          "outcome": "equal",
+          "moves": [
+            { "san": "c5", "note": "A Siciliana: o peão vigia d4 sem bloquear nenhuma peça preta." },
+            { "san": "Nc3", "note": "a Siciliana Fechada: ele nem pensa em abrir o centro com d4" },
+            { "san": "Nc6", "note": "Desenvolva normalmente: sem d4 no ar, não há coluna c para disputar ainda." },
+            { "san": "g3", "note": "ele prepara o fianqueto do bispo de f1" },
+            { "san": "g6", "note": "Espelhe o plano: o seu bispo de f8 também vai para o fianqueto." },
+            { "san": "Bg2", "note": "ele completa o fianqueto" },
+            { "san": "Bg7", "note": "Mesma ideia do seu lado. Os dois bispos vigiam a diagonal inteira, sem trocas no centro." },
+            { "san": "d3", "note": "ele apoia e4 com calma" },
+            { "san": "d6", "note": "Apoie e5 e prepare o seu próprio desenvolvimento. É um jogo mais lento, sem armadilha de nenhum dos dois lados." }
+          ]
+        },
+        {
+          "label": "Ele joga o Alapin (2.c3)",
+          "ending": "Outro sistema sem gambito nenhum: as brancas preparam d4 com apoio de peão, sem nunca abrir mão de um peão central. A dama preta fica bem ativa em d5.",
+          "outcome": "equal",
+          "moves": [
+            { "san": "c5", "note": "A Siciliana: o peão vigia d4 sem bloquear nenhuma peça preta." },
+            { "san": "c3", "note": "o Alapin: ele prepara d4 com apoio de peão, sem gambito" },
+            { "san": "d5", "note": "Ataque e4 na mesma hora, antes que d4 aconteça." },
+            { "san": "exd5", "note": "ele troca" },
+            { "san": "Qxd5", "note": "Recapture com a dama. Aqui é seguro: com o peão em c3, as brancas não têm Cc3 para ganhar tempo atacando-a." },
+            { "san": "d4", "note": "ele ocupa o centro" },
+            { "san": "Nf6", "note": "Desenvolva mantendo a pressão sobre d4." },
+            { "san": "Nf3", "note": "ele desenvolve" },
+            { "san": "e6", "note": "Abra o bispo de f8 e prepare o roque. A partida segue equilibrada, outra vez sem a casa h2 isolada." }
           ]
         }
       ]
