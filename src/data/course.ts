@@ -97,11 +97,22 @@ export const modules: Module[] = [
     order: 5,
     title: 'Finais',
     summary: 'Como converter vantagem em vitória quando restam poucas peças.',
-    outcomes: ['Promover peões com apoio do rei', 'Dar mate com torre e com dama'],
+    outcomes: [
+      'Promover peões com apoio do rei',
+      'Dar mate com torre e com dama',
+      'Levar o mate até o fim contra qualquer defesa',
+    ],
     access: 'premium',
     requiredScope: SCOPES.finais,
     ebookChapter: 4,
-    lessonIds: ['rei-e-peao', 'promocao-no-final', 'finais-basicos', 'mate-com-torre', 'mate-com-dama'],
+    lessonIds: [
+      'rei-e-peao',
+      'promocao-no-final',
+      'finais-basicos',
+      'mate-com-torre',
+      'mate-com-dama',
+      'mate-qualquer-defesa',
+    ],
   },
 ];
 
@@ -566,6 +577,7 @@ export const lessons: Lesson[] = [
   { id: 'finais-basicos', slug: 'finais-basicos', moduleId: 'finais', order: 3, title: 'Finais básicos', summary: 'Rei ativo e peões passados.', durationMinutes: 7, access: 'premium', requiredScope: SCOPES.finais, status: 'published' },
   { id: 'mate-com-torre', slug: 'mate-com-torre', moduleId: 'finais', order: 4, title: 'Mate com torre', summary: 'Empurrar o rei para a borda com rei e torre.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.finais, status: 'published' },
   { id: 'mate-com-dama', slug: 'mate-com-dama', moduleId: 'finais', order: 5, title: 'Mate com dama', summary: 'Mate rápido sem cair no afogamento.', durationMinutes: 6, access: 'premium', requiredScope: SCOPES.finais, status: 'published' },
+  { id: 'mate-qualquer-defesa', slug: 'mate-contra-qualquer-defesa', moduleId: 'finais', order: 6, title: 'Mate contra qualquer defesa', summary: 'A partida inteira até o mate, com todas as fugas do adversário.', durationMinutes: 8, access: 'premium', requiredScope: SCOPES.finais, status: 'published' },
 ];
 
 export const course: Course = {

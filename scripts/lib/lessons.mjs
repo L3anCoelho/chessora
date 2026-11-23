@@ -39,8 +39,10 @@ export function checkLesson(lesson) {
   const blocks = lesson.body ?? [];
   if (blocks.length < 6 || blocks.length > 9) fail(`tem ${blocks.length} blocos (o combinado é de 6 a 9)`);
 
-  const exercises = blocks.filter((block) => block.type === 'exercise');
-  if (exercises.length < 2) fail(`tem ${exercises.length} exercício(s); o mínimo é 2`);
+  const interactive = blocks.filter(
+    (block) => block.type === 'exercise' || block.type === 'guided-line' || block.type === 'guided-game',
+  );
+  if (interactive.length < 2) fail(`tem ${interactive.length} bloco(s) para praticar; o mínimo é 2`);
 
   for (const block of blocks) {
     if (block.type === 'diagram') {
@@ -85,6 +87,11 @@ export function checkLesson(lesson) {
       const errors = checkGuidedLine(block);
       for (const error of errors) fail(`guia ${block.id}: ${error}`);
     }
+
+    if (block.type === 'guided-game') {
+      const errors = checkGuidedGame(block);
+      for (const error of errors) fail(`partida ${block.id}: ${error}`);
+    }
   }
 
   return problems;
@@ -122,6 +129,71 @@ export function checkGuidedLine(block) {
     }
     if (!step.explanation) errors.push(`passo ${index + 1}: sem explicação`);
   });
+  return errors;
+}
+
+/**
+ * Confere uma partida guiada: cada variante é legal, termina como promete e,
+ * quando exhaustive está ligado, nenhuma defesa legal fica sem resposta.
+ */
+export function checkGuidedGame(block) {
+  const errors = [];
+  const startFen = block.startFen ?? 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
+  if (!isValidFen(startFen)) return [`posição inicial inválida: ${startFen}`];
+  if (!block.variations?.length) return ['sem variantes'];
+
+  // Cada posição de lance do aluno só pode ter uma resposta certa.
+  const playerMoves = new Map();
+  /** Posições em que o adversário joga, com as defesas previstas. */
+  const opponentReplies = new Map();
+
+  block.variations.forEach((variation, index) => {
+    const label = variation.label ?? `variante ${index + 1}`;
+    const chess = new Chess(startFen);
+    if (!variation.moves?.length) {
+      errors.push(`${label}: sem lances`);
+      return;
+    }
+    for (const [ply, entry] of variation.moves.entries()) {
+      const fen = chess.fen();
+      let san;
+      try {
+        san = chess.move(entry.san).san;
+      } catch {
+        errors.push(`${label}: lance ${ply + 1} "${entry.san}" é ilegal em ${fen}`);
+        return;
+      }
+      const key = `${fen}`;
+      if (ply % 2 === 0) {
+        const seen = playerMoves.get(key);
+        if (seen && seen !== san) {
+          errors.push(`${label}: nesta posição já havia o lance ${seen}, e agora aparece ${san}`);
+        }
+        playerMoves.set(key, san);
+      } else {
+        if (!opponentReplies.has(key)) opponentReplies.set(key, new Set());
+        opponentReplies.get(key).add(san);
+      }
+    }
+    if (variation.moves.length % 2 === 0) {
+      errors.push(`${label}: a variante precisa terminar num lance do aluno`);
+    }
+    const outcome = variation.outcome ?? 'mate';
+    if (outcome === 'mate' && !chess.isCheckmate()) {
+      errors.push(`${label}: deveria terminar em xeque-mate, mas não termina`);
+    }
+  });
+
+  if (block.exhaustive) {
+    for (const [fen, covered] of opponentReplies) {
+      const legal = new Chess(fen).moves();
+      const missing = legal.filter((san) => !covered.has(san));
+      if (missing.length > 0) {
+        errors.push(`falta a resposta para ${missing.join(', ')} na posição ${fen}`);
+      }
+    }
+  }
+
   return errors;
 }
 

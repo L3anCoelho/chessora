@@ -6,6 +6,8 @@ import { ChessBoard } from '@/features/chess/components/ChessBoard';
 import { legalTargets } from '@/features/chess/logic/rules';
 import { PuzzleBoard, type PuzzlePhase } from '@/features/challenges/components/PuzzleBoard';
 import { evaluateExerciseMove } from '@/features/challenges/validate';
+import { playSound } from '@/features/chess/logic/sound';
+import { GuidedGame } from './GuidedGame';
 import { GuidedLine } from './GuidedLine';
 import { usePreferences } from '@/hooks/usePreferences';
 
@@ -44,6 +46,7 @@ function LessonDiagram({ block }: { block: DiagramBlock }) {
 }
 
 function LessonExercise({ block, onSolved }: { block: ExerciseBlock; onSolved?: (id: string) => void }) {
+  const { preferences } = usePreferences();
   const [phase, setPhase] = useState<PuzzlePhase>('playing');
   const [round, setRound] = useState(0);
   return (
@@ -59,14 +62,18 @@ function LessonExercise({ block, onSolved }: { block: ExerciseBlock; onSolved?: 
           evaluate={(_ply, san, after) => (evaluateExerciseMove(block, san, after) ? { kind: 'solved' } : { kind: 'wrong' })}
           onPhaseChange={(next) => {
             setPhase(next);
-            if (next === 'solved') onSolved?.(block.id);
+            if (next === 'solved') {
+              playSound('correct', preferences.sounds);
+              onSolved?.(block.id);
+            }
+            if (next === 'wrong') playSound('wrong', preferences.sounds);
           }}
         />
       </div>
       <figcaption role="status" aria-live="polite">
         {phase === 'solved' && (
           <span className="exercise-feedback is-success">
-            <CheckCircle2 size={18} aria-hidden="true" /> {block.successText}
+            <CheckCircle2 size={18} aria-hidden="true" /> <strong>Certo!</strong> {block.successText}
             <button type="button" className="link-button" onClick={() => setRound((value) => value + 1)}>
               <RotateCcw size={14} aria-hidden="true" /> Repetir
             </button>
@@ -124,6 +131,8 @@ export function LessonContent({
             return <LessonExercise key={block.id} block={block} onSolved={onExerciseSolved} />;
           case 'guided-line':
             return <GuidedLine key={block.id} block={block} onFinished={onGuidedLineFinished} />;
+          case 'guided-game':
+            return <GuidedGame key={block.id} block={block} onFinished={onGuidedLineFinished} />;
           default:
             return null;
         }

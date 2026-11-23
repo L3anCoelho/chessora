@@ -1298,6 +1298,167 @@ on conflict (lesson_id) do update
       body = excluded.body,
       updated_at = now();
 
+-- finais · mate-qualquer-defesa
+insert into public.lesson_contents (lesson_id, module_id, required_scope, body)
+values (
+  'mate-qualquer-defesa',
+  'finais',
+  'module:finais',
+  $json$[
+  {
+    "type": "paragraph",
+    "text": "Nas aulas anteriores você jogou o mate contra uma defesa só. Numa partida de verdade o adversário escolhe para onde fugir, e cada fuga pede uma resposta diferente. É isso que você treina aqui."
+  },
+  {
+    "type": "paragraph",
+    "text": "As duas partidas abaixo têm todas as defesas previstas, sem exceção. O adversário sorteia uma tentativa a cada vez, e a aula só fica completa quando você vencer todas."
+  },
+  {
+    "type": "guided-game",
+    "id": "mate-dama-defesas",
+    "title": "Dama e rei: mate em três, contra qualquer fuga",
+    "startFen": "5k2/8/8/4K3/8/8/8/1Q6 w - - 0 1",
+    "orientation": "w",
+    "exhaustive": true,
+    "intro": "Você joga com as brancas. Comece aproximando o rei: a dama sozinha não dá mate.",
+    "conclusion": "As três fugas do rei preto levam a mates diferentes. Repare que o lance que muda é sempre o da dama, nunca o do rei.",
+    "variations": [
+      {
+        "label": "O rei corre para o canto",
+        "ending": "Dg7 é mate porque o rei de f6 defende a dama e cobre as casas vizinhas.",
+        "moves": [
+          {
+            "san": "Kf6",
+            "note": "O rei vem primeiro. Dar xeque agora só empurraria o rei preto para longe."
+          },
+          {
+            "san": "Kg8",
+            "note": "ele corre para a direita"
+          },
+          {
+            "san": "Qg6+",
+            "note": "Agora sim, o xeque: a dama entra apoiada pelo rei e tira a fileira do adversário."
+          },
+          {
+            "san": "Kh8",
+            "note": "ele se enfia no canto"
+          },
+          {
+            "san": "Qg7#"
+          }
+        ]
+      },
+      {
+        "label": "O rei volta pela direita",
+        "ending": "Df7 é mate pelo mesmo motivo: dama colada no rei adversário, defendida pelo seu rei.",
+        "moves": [
+          {
+            "san": "Kf6"
+          },
+          {
+            "san": "Kg8"
+          },
+          {
+            "san": "Qg6+"
+          },
+          {
+            "san": "Kf8",
+            "note": "ele tenta voltar"
+          },
+          {
+            "san": "Qf7#"
+          }
+        ]
+      },
+      {
+        "label": "O rei foge pela esquerda",
+        "ending": "Dd8 é mate: a dama cobre a oitava fileira inteira e o rei de f6 tira as casas de fuga.",
+        "moves": [
+          {
+            "san": "Kf6"
+          },
+          {
+            "san": "Ke8",
+            "note": "ele foge para o outro lado"
+          },
+          {
+            "san": "Qd3",
+            "note": "Sem xeque. A dama fecha a coluna d e deixa o rei preto com uma casa só."
+          },
+          {
+            "san": "Kf8",
+            "note": "o único lance que sobrou"
+          },
+          {
+            "san": "Qd8#"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "tip",
+    "title": "Por que nem todo lance é xeque",
+    "text": "Na terceira defesa o lance certo é um lance quieto, sem xeque. Dar xeque por dar xeque é o erro mais comum nesses finais: o rei adversário ganha casas e você recomeça do zero."
+  },
+  {
+    "type": "guided-game",
+    "id": "mate-escada-defesas",
+    "title": "Duas torres: a escada, contra qualquer fuga",
+    "startFen": "4k3/8/8/8/8/8/R7/1R5K w - - 0 1",
+    "orientation": "w",
+    "exhaustive": true,
+    "intro": "Com duas torres o seu rei nem precisa ajudar. Uma torre corta uma fileira, a outra dá o mate.",
+    "conclusion": "Nas duas fugas o mate é o mesmo lance. Com a escada não importa para onde o rei vai: ele não escapa da fileira.",
+    "variations": [
+      {
+        "label": "O rei vai para a direita",
+        "ending": "A torre de a7 corta a sétima fileira e a de b8 dá o mate na oitava.",
+        "moves": [
+          {
+            "san": "Ra7",
+            "note": "A primeira torre corta a sétima fileira. O rei preto fica preso na oitava."
+          },
+          {
+            "san": "Kf8",
+            "note": "ele anda para a direita"
+          },
+          {
+            "san": "Rb8#"
+          }
+        ]
+      },
+      {
+        "label": "O rei vai para a esquerda",
+        "ending": "Mesmo lance, mesmo mate. A fileira inteira estava fechada.",
+        "moves": [
+          {
+            "san": "Ra7"
+          },
+          {
+            "san": "Kd8",
+            "note": "ele anda para a esquerda"
+          },
+          {
+            "san": "Rb8#"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "tip",
+    "title": "O que fazer quando o rei está no meio do tabuleiro",
+    "text": "Com duas torres, repita a escada: corte uma fileira, espere o rei andar, corte a próxima. Com dama e rei, aproxime o rei até ele cobrir as casas vizinhas e só então dê o xeque."
+  }
+]$json$::jsonb
+)
+on conflict (lesson_id) do update
+  set module_id = excluded.module_id,
+      required_scope = excluded.required_scope,
+      body = excluded.body,
+      updated_at = now();
+
 -- taticas · ataque-duplo
 insert into public.lesson_contents (lesson_id, module_id, required_scope, body)
 values (

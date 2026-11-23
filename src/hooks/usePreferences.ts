@@ -8,6 +8,8 @@ export interface Preferences {
   showCoordinates: boolean;
   defaultEngineLevel: EngineLevel;
   confirmBeforeRestart: boolean;
+  /** Sons curtos de acerto e erro nas aulas. */
+  sounds: boolean;
   theme: 'dark' | 'light';
 }
 
@@ -17,6 +19,7 @@ const DEFAULTS: Preferences = {
   showCoordinates: true,
   defaultEngineLevel: 'facil',
   confirmBeforeRestart: true,
+  sounds: true,
   theme: 'dark',
 };
 

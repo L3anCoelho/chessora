@@ -128,7 +128,46 @@ export type LessonBlock =
       goal: 'move' | 'checkmate';
       successText: string;
     }
-  | GuidedLineBlock;
+  | GuidedLineBlock
+  | GuidedGameBlock;
+
+/** Um lance dentro de uma partida guiada. */
+export interface GuidedGameMove {
+  /** Lance em SAN do chess.js (inglês). */
+  san: string;
+  /** Por que esse lance. Nos lances do adversário, o que ele está tentando. */
+  note?: string;
+}
+
+/** Uma variante completa: a partida do início ao fim por um caminho. */
+export interface GuidedGameVariation {
+  /** Rótulo curto ("se ele defende com o cavalo"). */
+  label?: string;
+  /** Lances alternando aluno e adversário, começando pelo aluno. */
+  moves: GuidedGameMove[];
+  /** Como termina. O padrão é mate. */
+  outcome?: 'mate' | 'advantage';
+  /** Texto mostrado quando o aluno chega ao fim desta variante. */
+  ending?: string;
+}
+
+/**
+ * Partida guiada com ramificações: o aluno joga do começo ao fim e o
+ * adversário pode tentar defesas diferentes a cada repetição. Só termina
+ * quando o aluno vence todas as tentativas.
+ */
+export interface GuidedGameBlock {
+  type: 'guided-game';
+  id: string;
+  title: string;
+  startFen?: string;
+  orientation?: 'w' | 'b';
+  intro?: string;
+  conclusion?: string;
+  /** Exige que TODA resposta legal do adversário esteja prevista. */
+  exhaustive?: boolean;
+  variations: GuidedGameVariation[];
+}
 
 /** Um passo do guia lance a lance. Os lances vêm em SAN do chess.js (inglês). */
 export interface GuidedStep {

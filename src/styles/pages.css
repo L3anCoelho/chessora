@@ -1862,6 +1862,18 @@ code {
   font-variant-numeric: tabular-nums;
 }
 
+.guided-correct {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--green-text);
+  font-weight: 700;
+}
+
+.guided-correct svg {
+  flex: none;
+}
+
 .guided-wrong {
   color: var(--danger-text);
   font-weight: 600;
@@ -1932,4 +1944,53 @@ code {
   .guided-line {
     padding: var(--space-4);
   }
+}
+
+/* ---------- Partida guiada com ramificações ---------- */
+
+.guided-leaf {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.guided-defences {
+  display: grid;
+  gap: var(--space-1);
+  margin: 0;
+  padding: var(--space-3);
+  list-style: none;
+  background: var(--surface-2);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.guided-defences li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.guided-defences li.is-done {
+  color: var(--green-text);
+  font-weight: 600;
+}
+
+.guided-defences svg {
+  flex: none;
+}
+
+.guided-defences .dot {
+  width: 7px;
+  height: 7px;
+  margin: 0 3px;
+  border-radius: 50%;
+  background: var(--line-strong);
+  flex: none;
+}
+
+.guided-explanation svg {
+  vertical-align: -2px;
+  margin-right: 4px;
+  color: var(--text-muted);
 }

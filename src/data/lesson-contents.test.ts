@@ -12,6 +12,7 @@ import { describe, expect, it } from 'vitest';
 import { Chess } from 'chess.js';
 import type { LessonBlock } from '@/types/domain';
 import { evaluateExerciseMove } from '@/features/challenges/validate';
+import { buildGuidedGame } from '@/features/learning/logic/guidedGame';
 import { compileGuidedLine } from '@/features/learning/logic/guidedLine';
 import { lessons as catalog } from './course';
 
@@ -88,15 +89,19 @@ describe('aulas premium no banco', () => {
     for (const lesson of all.filter((item) => item.source === 'migração')) {
       expect(lesson.body.length, `${lesson.lessonId}: blocos`).toBeGreaterThanOrEqual(6);
       expect(lesson.body.length, `${lesson.lessonId}: blocos`).toBeLessThanOrEqual(9);
-      const exercises = lesson.body.filter((block) => block.type === 'exercise');
-      expect(exercises.length, `${lesson.lessonId}: exercícios`).toBeGreaterThanOrEqual(2);
+      const praticos = lesson.body.filter(
+        (block) => block.type === 'exercise' || block.type === 'guided-line' || block.type === 'guided-game',
+      );
+      expect(praticos.length, `${lesson.lessonId}: blocos para praticar`).toBeGreaterThanOrEqual(2);
     }
   });
 
   it('ids de exercício e de guia são únicos em todo o curso', () => {
     const ids = all.flatMap((lesson) =>
       lesson.body
-        .filter((block) => block.type === 'exercise' || block.type === 'guided-line')
+        .filter(
+          (block) => block.type === 'exercise' || block.type === 'guided-line' || block.type === 'guided-game',
+        )
         .map((block) => (block as { id: string }).id),
     );
     expect(new Set(ids).size, `ids repetidos em ${ids.join(', ')}`).toBe(ids.length);
@@ -174,6 +179,34 @@ describe('aulas premium no banco', () => {
         // A posição de cada passo é a posição final do passo anterior.
         for (let index = 1; index < line.steps.length; index += 1) {
           expect(line.steps[index].fenBefore, `${label}: passo ${index + 1}`).toBe(line.steps[index - 1].fenAfter);
+        }
+      }
+    }
+  });
+
+  it('toda partida guiada vira uma árvore válida, com todas as defesas previstas', () => {
+    for (const lesson of all) {
+      for (const block of lesson.body) {
+        if (block.type !== 'guided-game') continue;
+        const label = `${lesson.lessonId}/${block.id}`;
+        const tree = buildGuidedGame(block); // lança se alguma variante estiver errada
+        expect(tree.leaves.length, `${label}: precisa de pelo menos duas defesas`).toBeGreaterThanOrEqual(2);
+        for (const leaf of tree.leaves) {
+          const chess = new Chess(leaf.fen);
+          if (leaf.ending?.outcome === 'mate') {
+            expect(chess.isCheckmate(), `${label}: a folha "${leaf.path}" precisa ser mate`).toBe(true);
+          }
+        }
+        // Com exhaustive ligado, nenhuma resposta legal do adversário fica de fora.
+        if (block.exhaustive) {
+          const visitar = (node: typeof tree.root) => {
+            if (node.turn === 'opponent' && !node.ending) {
+              const legais = new Chess(node.fen).moves().length;
+              expect(node.children.length, `${label}: defesas previstas em "${node.path}"`).toBe(legais);
+            }
+            node.children.forEach(visitar);
+          };
+          visitar(tree.root);
         }
       }
     }

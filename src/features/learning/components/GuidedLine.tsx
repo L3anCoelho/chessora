@@ -8,12 +8,14 @@ import { ChessBoard } from '@/features/chess/components/ChessBoard';
 import { useChessGame } from '@/features/chess/hooks/useChessGame';
 import { findKingSquare, isPromotionMove, legalTargets, toMovePairs } from '@/features/chess/logic/rules';
 import { pieceWithArticle, sanToPortuguese } from '@/features/chess/logic/notation';
+import { playSound } from '@/features/chess/logic/sound';
 import { compileGuidedLine, isExpectedMove } from '@/features/learning/logic/guidedLine';
 import { usePreferences } from '@/hooks/usePreferences';
 
 type Phase = 'playing' | 'wrong' | 'replying' | 'done';
 
 const WRONG_MOVE_MS = 700;
+const CONFIRM_MS = 1600;
 const REPLY_DELAY_MS = 550;
 
 const COLOR_LABEL = { w: 'brancas', b: 'pretas' } as const;
@@ -58,6 +60,8 @@ function GuidedLineBoard({
   const [stepIndex, setStepIndex] = useState(0);
   const [phase, setPhase] = useState<Phase>('playing');
   const [hintLevel, setHintLevel] = useState(0);
+  /** Confirmação verde do último lance certo. Some sozinha. */
+  const [confirmed, setConfirmed] = useState<string | null>(null);
   const timers = useRef<number[]>([]);
   const finished = useRef(false);
 
@@ -81,6 +85,8 @@ function GuidedLineBoard({
     if (!move) return;
 
     if (!isExpectedMove(current.move, move.san)) {
+      playSound('wrong', preferences.sounds);
+      setConfirmed(null);
       setPhase('wrong');
       setHintLevel((level) => Math.max(level, 1));
       later(() => {
@@ -90,12 +96,17 @@ function GuidedLineBoard({
       return;
     }
 
+    playSound('correct', preferences.sounds);
+    setConfirmed(sanToPortuguese(move.san));
+    later(() => setConfirmed(null), CONFIRM_MS);
+
     const advance = () => {
       const next = stepIndex + 1;
       setStepIndex(next);
       setHintLevel(0);
       if (next >= total) {
         setPhase('done');
+        playSound('finish', preferences.sounds);
         if (!finished.current) {
           finished.current = true;
           onFinished?.(block.id);
@@ -122,6 +133,7 @@ function GuidedLineBoard({
     setStepIndex(0);
     setPhase('playing');
     setHintLevel(0);
+    setConfirmed(null);
   };
 
   const stepBack = () => {
@@ -132,6 +144,7 @@ function GuidedLineBoard({
     setStepIndex(stepIndex - 1);
     setPhase('playing');
     setHintLevel(0);
+    setConfirmed(null);
   };
 
   const status = game.status;
@@ -174,6 +187,11 @@ function GuidedLineBoard({
 
         <div className="guided-side">
           <div className="guided-feedback" role="status" aria-live="polite">
+            {confirmed && phase !== 'done' && (
+              <p className="guided-correct">
+                <CheckCircle2 size={16} aria-hidden="true" /> Certo! {confirmed}
+              </p>
+            )}
             {phase === 'wrong' && <p className="guided-wrong">Não é esse lance aqui. Tente de novo.</p>}
             {phase === 'done' && (
               <p className="guided-done">

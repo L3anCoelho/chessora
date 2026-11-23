@@ -108,6 +108,12 @@ export default function SettingsPage() {
             checked={preferences.confirmBeforeRestart}
             onChange={(value) => update({ confirmBeforeRestart: value })}
           />
+          <Toggle
+            label="Som nas aulas"
+            description="Toca um som curto quando você acerta ou erra um lance no guia e nos exercícios."
+            checked={preferences.sounds}
+            onChange={(value) => update({ sounds: value })}
+          />
           <SegmentedControl<EngineLevel>
             label="Dificuldade inicial contra o computador"
             value={preferences.defaultEngineLevel}
