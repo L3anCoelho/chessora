@@ -1901,7 +1901,7 @@ code {
   border-radius: var(--radius-sm);
   font-size: var(--text-sm);
   font-variant-numeric: tabular-nums;
-  max-height: 11rem;
+  max-height: 15rem;
   overflow-y: auto;
 }
 
