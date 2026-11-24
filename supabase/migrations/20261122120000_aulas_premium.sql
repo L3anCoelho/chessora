@@ -1326,7 +1326,7 @@ values (
     "orientation": "b",
     "exhaustiveFrom": 11,
     "intro": "As brancas abriram com 1.e4. Você joga com as pretas e oferece um peão que não pode ser comido.",
-    "conclusion": "O cavalo em d4 é um garfo: ele ataca o bispo e o cavalo de f3 ao mesmo tempo. Se as brancas ignorarem o garfo ou comerem o peão, você sai ganhando; só a troca imediata (Cxd4) deixa a posição normal.",
+    "conclusion": "O cavalo em d4 é um garfo: ele ataca o bispo e o cavalo de f3 ao mesmo tempo. Qualquer lance que não resolva as duas ameaças ao mesmo tempo — comer o peão, roque, Ba4, c3 ou Bc4 — custa material ou pior; só a troca imediata (Cxd4) deixa a posição normal.",
     "variations": [
       {
         "label": "Ele come o peão e depois bloqueia com o bispo",
@@ -1520,6 +1520,66 @@ values (
           {
             "san": "Nxf3+",
             "note": "Capture o outro cavalo do garfo, com xeque de quebra: o rei branco ainda está no centro."
+          }
+        ]
+      },
+      {
+        "label": "Ele tenta expulsar o cavalo com c3",
+        "ending": "O peão ataca o cavalo, mas não defende o bispo. O cavalo escapa capturando: você fica com uma peça a mais.",
+        "outcome": "advantage",
+        "moves": [
+          {
+            "san": "e5"
+          },
+          {
+            "san": "Nf3"
+          },
+          {
+            "san": "Nc6"
+          },
+          {
+            "san": "Bb5"
+          },
+          {
+            "san": "Nd4"
+          },
+          {
+            "san": "c3",
+            "note": "ele ataca o cavalo com o peão, em vez de reagir ao garfo"
+          },
+          {
+            "san": "Nxb5",
+            "note": "Capture o bispo antes de sair da casa atacada: nada em b5 o defende."
+          }
+        ]
+      },
+      {
+        "label": "Ele recua o bispo para c4 e esquece o cavalo",
+        "ending": "O bispo foge para uma diagonal melhor, mas abandona o cavalo de f3, que era a outra ponta do garfo.",
+        "outcome": "advantage",
+        "moves": [
+          {
+            "san": "e5"
+          },
+          {
+            "san": "Nf3"
+          },
+          {
+            "san": "Nc6"
+          },
+          {
+            "san": "Bb5"
+          },
+          {
+            "san": "Nd4"
+          },
+          {
+            "san": "Bc4",
+            "note": "ele reposiciona o bispo em vez de resolver o garfo"
+          },
+          {
+            "san": "Nxf3+",
+            "note": "Capture o cavalo com xeque. A estrutura branca fica rachada depois da recaptura."
           }
         ]
       }
